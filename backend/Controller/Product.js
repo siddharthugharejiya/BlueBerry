@@ -19,7 +19,7 @@ export const All_product = async (req, res) => {
         const userId = req.user.userId;
         console.log("Logged in user:", userId);
 
-        const data = await ProductModel.find();
+        const data = await ProductModel.find()
 
         return res.send({ message: "Products fetched", data: data });
     } catch (err) {
@@ -28,8 +28,10 @@ export const All_product = async (req, res) => {
 }
 
 
-export const card = async (req, res) => {
+export const cart = async (req, res) => {
     const userId = req.user.userId
-    console.log("Logged in user:", userId);
+    console.log("Logged in user:", userId)
+
     const data = await ProductModel.find({ user: userId }).populate("user")
+    res.send(data)
 }
