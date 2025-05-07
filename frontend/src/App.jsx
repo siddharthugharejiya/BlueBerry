@@ -5,9 +5,9 @@ import Nav from './Componets/Nav';
 function App() {
   return (
     <>
-      <div className="container m-auto">
 
-    <Nav/>
+        <Nav />
+      <div className="container m-auto">
       </div>
     </>
   );
