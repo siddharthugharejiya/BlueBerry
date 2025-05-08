@@ -7,7 +7,12 @@ function Nav() {
   const [state, setstate] = useState(false);
   const [offcanvas, setoffcanvas] = useState(false)
   useEffect(() => {
-    setoffcanvas(true)
+    const show = localStorage.getItem("popshow")
+    if (!show) {
+      setoffcanvas(true);
+      localStorage.setItem("popshow", true)
+    }
+
   }, [])
 
   return (
@@ -192,22 +197,60 @@ function Nav() {
       </div>
 
 
+
+      {/* {offcanvas === true ? (
+        <div className="h-screen fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white h-56 rounded-xl shadow-lg w-[90%] max-w-4xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+
+
+            <div className="hidden md:block">
+              <img
+                src="./newsletter.jpg"
+                alt="Newsletter"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="flex flex-col justify-center items-center p-8">
+              <h1 className="text-3xl font-semibold mb-4">Subscribe to Newsletter</h1>
+              <p className="text-center text-gray-600 mb-6">
+                Subscribe the BlueBerry to get in touch and get the future update.
+              </p>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="p-3 w-full border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-all">
+                Subscribe
+              </button>
+            </div>
+
+          </div>
+        </div>
+      ) : (
+        "waiting"
+      )} */}
+
       {
         offcanvas === true ? <>
-          <div className="fixed h-screen min-w-[100%] bg-red-600 top-0 flex justify-center items-center">
-            <div className="h-[50vh] min-w-[50%] bg-white grid grid-cols-2">
-              <div className="w-full h-full overflow-hidden">
-               
-                <img src="./newsletter.jpg" alt="" className="object-fill h-[100%] w-full" />
-           
+          <div className="fixed h-screen w-full inset-0 bg-opacity-50 z-50 bg-black flex justify-center items-center">
+            <div className="grid md:grid-cols-2 grid-cols-1 rounded-xl shadow-lg bg-white overflow-hidden w-[90%] max-w-2xl ">
+              <div><img src="./newsletter.jpg" alt="" className="h-full w-full object-cover " /></div>
+              <div>
+                <div className="p-5 flex flex-col justify-center items-center h-full">
+                  <h1 className="text-2xl  font-semibold mb-4">Newsletter.</h1>
+                  <p className="text-gray-600 mb-6">Subscribe the BlueBerry to get in touch and get the future update.</p>
+                  <input type="text" name="" placeholder="Email Address" id="" className="border w-[90%] p-2 rounded-lg" />
+                  <div>
+                    <button className="p-2 mt-3 bg-[rgb(108_127_216/1)] text-white rounded-lg"> Subscribe</button>
+                  </div>
+                </div>
               </div>
-              <div></div>
             </div>
           </div>
-        </> : "d"
+        </> : ''
       }
-
-
     </div>
   );
 }
