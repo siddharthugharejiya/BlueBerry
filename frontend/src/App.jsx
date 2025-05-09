@@ -1,13 +1,12 @@
-import React from 'react';
 import './App.css';
-import Nav from './Componets/Nav';
+import MainRouter from './Router/MainRouter';
 
 function App() {
   return (
     <>
 
-        <Nav />
       <div className="container m-auto">
+      <MainRouter/>
       </div>
     </>
   );
