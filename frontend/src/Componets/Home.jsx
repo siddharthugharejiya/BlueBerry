@@ -8,6 +8,8 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 
+import SlickSliderComponent from './SlickSliderComponent';
+
 function Home() {
 
   return (
@@ -312,6 +314,22 @@ function Home() {
 
 
       </Swiper >
+      
+      {/* slider 2.0 */}
+
+       <div className='grid grid-cols-2 h-screen w-full'>
+        <div className='h-full w-full rounded-xl flex justify-center items-center relative'>
+          <div className='h-[70%] relative'>
+  <img src="./category.jpg" alt="" className='h-full rounded-3xl img-clip' />
+  <span className='p-1 px-4 bg-[rgba(0,0,0,0.86)] rounded-full text-white opacity-80 absolute top-5 right-5'>
+    50% off
+  </span>
+     </div>
+</div>
+         <div><SlickSliderComponent/>
+         </div>
+       </div>
+      {/* slider 2.0 */}
 
 
 
