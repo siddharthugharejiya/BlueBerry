@@ -34,7 +34,7 @@ const SlickSliderComponent = () => {
   };
 
   return (
-    <div className="container h-full w-[75%] mx-auto p-4 ">
+    <div className="container h-full w-[77%]  mx-auto p-4 z-50 bg-white rounded-xl">
       <Slider {...settings}>
         <div>
           <div className="h-[200px] w-[90%]  border flex justify-center items-center flex-col rounded-2xl bg-[rgb(225_252_242)] group">

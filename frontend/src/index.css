@@ -31,6 +31,14 @@ clip-path:polygon(
   0% 85%
 )
 
+
+}
+
+.slick-prev:before, .slick-next:before,.slick-prev, .slick-next{
+  display: none;
+}
+.slick-dots li button:before{
+  display: none;
 }
 
 .shape-radius {

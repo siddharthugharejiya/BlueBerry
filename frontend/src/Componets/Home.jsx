@@ -332,14 +332,13 @@ function Home() {
       </div>
 
       <div className='grid grid-cols-2 h-screen 2xl:h-[70%] relative'>
-        <div className='h-full w-full rounded-xl flex justify-center items-center relative'>
+        <div className='h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
           <div className='h-[70%] relative'>
             <img src="./category.jpg" alt="" className='h-full rounded-3xl img-clip' />
 
             <img src="./top-shape.png" className='right-0 absolute top-[65%]' alt="" />
-            <img src="./top-shape.png" className='right-[87px]  absolute bottom-0 ' alt="" />
+            <img src="./top-shape.png" className='2xl:right-[88px] xl:right-[73px] lg:right-[58px] md:right-[54px] sm:right-[69px]  absolute bottom-0 ' alt="" />
 
-            {/* <div className="shape-radius"></div> */}
 
             <span className='p-1 px-4 bg-[rgba(0,0,0,0.86)] rounded-full text-white opacity-80 absolute top-5 right-5'>
               50% off
@@ -347,7 +346,7 @@ function Home() {
           </div>
         </div>
 
-        <div className='h-full '>
+        <div className='h-full'>
           <div className='h-[60%] flex justify-center items-center'>
             <svg width="100%" height="100%" viewBox="0 0 800 200" className="w-full group ">
               <defs>
@@ -377,20 +376,21 @@ function Home() {
                 textAnchor="middle"
                 x="50%"
                 y="80"
-                className="fill-white xl:text-[140px] stroke-black stroke-[1px] font-bold transition-all duration-500"
+                className="fill-white xl:text-[140px] md:text-[140px] sm:text-[140px] stroke-black stroke-[1px] font-bold transition-all duration-500"
                 fontFamily="Arial"
+                style={{fontSize:"140px"}}
                 id="mainText"
               >
                 <tspan x="30%" dy="40">Explore</tspan>
                 <tspan x="46%" dy="130">Categories</tspan>
               </text>
 
-              {/* Lighting Layer */}
+
               <text
                 textAnchor="middle"
                 x="50%"
                 y="80"
-                className="xl:text-[140px] font-bold pointer-events-none"
+                className="xl:text-[140px] md:text-[140px] sm:text-[140px] font-bold pointer-events-none"
                 fontFamily="Arial"
                 fill="white"
                 mask="url(#light-mask)"
