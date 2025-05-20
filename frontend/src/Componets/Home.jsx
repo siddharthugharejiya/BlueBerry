@@ -9,68 +9,82 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 
 import SlickSliderComponent from './SlickSliderComponent';
+import { useEffect } from 'react';
 
 function Home() {
+
+  useEffect(() => {
+    const mainText = document.getElementById("mainText");
+    const anim = document.querySelector("animateTransform");
+
+    mainText.addEventListener("mouseenter", () => {
+      anim.beginElement();
+    });
+  }, []);
 
   return (
     <>
       <Nav />
       {/* slider */}
-      <Swiper
-        spaceBetween={50}
-        modules={[Autoplay, Pagination]}
-        slidesPerView={1}
-        pagination={{ clickable: true, bulletClass: "swiper-pagination-bullet", }}
+      <div className='h-screen 2xl:h-[50%]'>
 
 
-        loop={true} autoplay={{ delay: 7000 }}
-      >
-        <SwiperSlide>
-          <div className="h-screen w-full bg-[#F8F8FB] relative overflow-hidden">
-            <div className="grid grid-cols-1 sm:grid-cols-2 h-full w-full">
-              <div className=" h-full w-full ">
-                <div className="flex text-qu flex-col justify-center h-full sm:ms-28 ms-2 mb-2">
-                  <span
-                    className="text-xl text-[#777] mb-4 ms-1 animate__animated animate__fadeInUp"
-                    style={{ animationDelay: "0.3s", animationDuration: "0.8s" }}
-                  >
-                    Flat 30% off
-                  </span>
+        <Swiper
+          spaceBetween={50}
+          modules={[Autoplay, Pagination]}
+          slidesPerView={1}
+          pagination={{ clickable: true, bulletClass: "swiper-pagination-bullet h-full w-full", }}
 
-                  <div
-                    className="p-0 m-0 2xl:text-7xl md:text-3xl sm:text-xl text-4xl mb-5 text-[#3d4750] font-semibold animate__animated animate__fadeInUp"
-                    style={{ animationDelay: "0.9s", animationDuration: "0.8s" }}
-                  >
-                    Explore
-                    <div className="relative inline-block text-[#6c7fd8]">
-                      Healthy
-                      <img
-                        src="./shape.png"
-                        alt="shape"
-                        className="absolute w-9 h-9 md:w-8 md:h-8 sm:w-8 sm:h-8 sm:-top-5 sm:-right-5 -top-6 -right-6"
-                      />
+
+          loop={true} autoplay={{ delay: 7000 }}
+          style={{ height: "100%", width: "100%" }}
+        >
+          <SwiperSlide>
+            <div className="h-full w-full bg-[#F8F8FB] relative overflow-hidden">
+              <div className="grid grid-cols-1 sm:grid-cols-2 h-full w-full">
+                <div className=" h-full w-full ">
+                  <div className="flex text-qu flex-col justify-center h-full sm:ms-28 ms-2 mb-2">
+                    <span
+                      className="text-xl text-[#777] mb-4 ms-1 animate__animated animate__fadeInUp"
+                      style={{ animationDelay: "0.3s", animationDuration: "0.8s" }}
+                    >
+                      Flat 30% off
+                    </span>
+
+                    <div
+                      className="p-0 m-0 2xl:text-7xl md:text-3xl sm:text-xl text-4xl mb-5 text-[#3d4750] font-semibold animate__animated animate__fadeInUp"
+                      style={{ animationDelay: "0.9s", animationDuration: "0.8s" }}
+                    >
+                      Explore
+                      <div className="relative inline-block text-[#6c7fd8]">
+                        Healthy
+                        <img
+                          src="./shape.png"
+                          alt="shape"
+                          className="absolute w-9 h-9 md:w-8 md:h-8 sm:w-8 sm:h-8 sm:-top-5 sm:-right-5 -top-6 -right-6"
+                        />
+                      </div>
+                      <br />
+
+                      & Fresh Fruits
                     </div>
-                    <br />
 
-                    & Fresh Fruits
-                  </div>
+                    <div
+                      className="animate__animated animate__fadeInUp"
+                      style={{ animationDelay: "1.5s", animationDuration: "0.8s" }}
+                    >
+                      <button className="mt-2 px-6 py-3 border border-black hover:bg-[#6c7fd8] hover:text-white transition duration-500 rounded-xl w-fit">
+                        Shop Now
+                      </button>
 
-                  <div
-                    className="animate__animated animate__fadeInUp"
-                    style={{ animationDelay: "1.5s", animationDuration: "0.8s" }}
-                  >
-                    <button className="mt-2 px-6 py-3 border border-black hover:bg-[#6c7fd8] hover:text-white transition duration-500 rounded-xl w-fit">
-                      Shop Now
-                    </button>
+                    </div>
 
                   </div>
-
                 </div>
-              </div>
 
 
-              <div className="flex items-center justify-center h-full w-full relative ">
-                <img src="./hero-1.png" alt="Hero" className="
+                <div className="flex items-center justify-center h-full w-full relative ">
+                  <img src="./hero-1.png" alt="Hero" className="
                 animate__animated
                 animate__fadeInUp
                 drop-shadow-3xl
@@ -80,21 +94,21 @@ function Home() {
                 object-cover
                  min-w-[45%] max-h-[70%]
                   z-30" />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 300 300"
-                  className="animate-shape 
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 300 300"
+                    className="animate-shape 
                     animate__animated
                 animate__fadeInRight
                   w-[120%] absolute sm:top-[95px] xl:top-[-20px] lg:top-[-20px] md:top-[40px] top-[10px] right-[-50px] max-[1399px]:right-[-30px] max-[1199px]:w-[125%] max-[991px]:w-[100%] max-[991px]:top-[0px] max-[575px]:right-[0] max-[420px]:w-[110%] max-[420px]:right-[-30px]"
-                >
-                  <linearGradient id="shape_1" x1="100%" x2="0%" y1="100%" y2="0%" />
-                  <path fill="white">
-                    <animate
-                      repeatCount="indefinite"
-                      attributeName="d"
-                      dur="15s"
-                      values="
+                  >
+                    <linearGradient id="shape_1" x1="100%" x2="0%" y1="100%" y2="0%" />
+                    <path fill="white">
+                      <animate
+                        repeatCount="indefinite"
+                        attributeName="d"
+                        dur="15s"
+                        values="
                   M37.5,186c-12.1-10.5-11.8-32.3-7.2-46.7c4.8-15,13.1-17.8,30.1-36.7C91,68.8,83.5,56.7,103.4,45 
                   c22.2-13.1,51.1-9.5,69.6-1.6c18.1,7.8,15.7,15.3,43.3,33.2c28.8,18.8,37.2,14.3,46.7,27.9c15.6,22.3,6.4,53.3,4.4,60.2 
                   c-3.3,11.2-7.1,23.9-18.5,32c-16.3,11.5-29.5,0.7-48.6,11c-16.2,8.7-12.6,19.7-28.2,33.2c-22.7,19.7-63.8,25.7-79.9,9.7 
@@ -109,63 +123,63 @@ function Home() {
                   c22.2-13.1,51.1-9.5,69.6-1.6c18.1,7.8,15.7,15.3,43.3,33.2c28.8,18.8,37.2,14.3,46.7,27.9c15.6,22.3,6.4,53.3,4.4,60.2 
                   c-3.3,11.2-7.1,23.9-18.5,32c-16.3,11.5-29.5,0.7-48.6,11c-16.2,8.7-12.6,19.7-28.2,33.2c-22.7,19.7-63.8,25.7-79.9,9.7 
                   c-15.2-15.1,0.3-41.7-16.6-54.9C63,186,49.7,196.7,37.5,186z"
-                    />
-                  </path>
-                </svg>
-              </div>
-            </div>
-
-          </div>
-
-
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <div className="h-screen w-full bg-[#F8F8FB] relative overflow-hidden">
-            <div className="grid grid-col sm:grid-cols-2 h-full w-full">
-              <div className=" h-full w-full ">
-                <div className="flex text-qu flex-col justify-center h-full sm:ms-28 ms-2 mb-2">
-                  <span
-                    className="text-xl text-[#777] mb-4 ms-1 animate__animated animate__fadeInUp"
-                    style={{ animationDelay: "0.3s", animationDuration: "0.8s" }}
-                  >
-                    Flat 30% off
-                  </span>
-
-                  <div
-                    className="p-0 m-0 2xl:text-7xl md:text-3xl sm:text-xl text-4xl mb-5 text-[#3d4750] font-semibold animate__animated animate__fadeInUp"
-                    style={{ animationDelay: "0.9s", animationDuration: "0.8s" }}
-                  >
-                    Explore
-                    <div className="relative inline-block text-[#6c7fd8]">
-                      Warm
-                      <img
-                        src="./shape.png"
-                        alt="shape"
-                        className="absolute w-9 h-9 md:w-8 md:h-8 sm:w-8 sm:h-8 sm:-top-5 sm:-right-5 -top-6 -right-6"
                       />
-                    </div>
-                    <br />
-
-                    & Fresh Fruits
-                  </div>
-
-                  <div
-                    className="animate__animated animate__fadeInUp"
-                    style={{ animationDelay: "1.5s", animationDuration: "0.8s" }}
-                  >
-                    <button className="mt-2 px-6 py-3 border border-black hover:bg-[#6c7fd8] hover:text-white transition duration-500 rounded-xl w-fit">
-                      Shop Now
-                    </button>
-
-                  </div>
-
+                    </path>
+                  </svg>
                 </div>
               </div>
 
+            </div>
 
-              <div className="flex items-center justify-center h-full w-full relative ">
-                <img src="./hero-2.png" alt="Hero" className="
+
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <div className="h-screen w-full bg-[#F8F8FB] relative overflow-hidden">
+              <div className="grid grid-col sm:grid-cols-2 h-full w-full">
+                <div className=" h-full w-full ">
+                  <div className="flex text-qu flex-col justify-center h-full sm:ms-28 ms-2 mb-2">
+                    <span
+                      className="text-xl text-[#777] mb-4 ms-1 animate__animated animate__fadeInUp"
+                      style={{ animationDelay: "0.3s", animationDuration: "0.8s" }}
+                    >
+                      Flat 30% off
+                    </span>
+
+                    <div
+                      className="p-0 m-0 2xl:text-7xl md:text-3xl sm:text-xl text-4xl mb-5 text-[#3d4750] font-semibold animate__animated animate__fadeInUp"
+                      style={{ animationDelay: "0.9s", animationDuration: "0.8s" }}
+                    >
+                      Explore
+                      <div className="relative inline-block text-[#6c7fd8]">
+                        Warm
+                        <img
+                          src="./shape.png"
+                          alt="shape"
+                          className="absolute w-9 h-9 md:w-8 md:h-8 sm:w-8 sm:h-8 sm:-top-5 sm:-right-5 -top-6 -right-6"
+                        />
+                      </div>
+                      <br />
+
+                      & Fresh Fruits
+                    </div>
+
+                    <div
+                      className="animate__animated animate__fadeInUp"
+                      style={{ animationDelay: "1.5s", animationDuration: "0.8s" }}
+                    >
+                      <button className="mt-2 px-6 py-3 border border-black hover:bg-[#6c7fd8] hover:text-white transition duration-500 rounded-xl w-fit">
+                        Shop Now
+                      </button>
+
+                    </div>
+
+                  </div>
+                </div>
+
+
+                <div className="flex items-center justify-center h-full w-full relative ">
+                  <img src="./hero-2.png" alt="Hero" className="
                 animate__animated
                 animate__fadeInUp
                 drop-shadow-3xl
@@ -175,21 +189,21 @@ function Home() {
                 object-cover
                  min-w-[45%] max-h-[70%]
                   z-30" />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 300 300"
-                  className="animate-shape 
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 300 300"
+                    className="animate-shape 
                     animate__animated
                 animate__fadeInRight
                   w-[120%] absolute sm:top-[95px] xl:top-[-20px] lg:top-[-20px] md:top-[40px] top-[10px] right-[-50px] max-[1399px]:right-[-30px] max-[1199px]:w-[125%] max-[991px]:w-[100%] max-[991px]:top-[0px] max-[575px]:right-[0] max-[420px]:w-[110%] max-[420px]:right-[-30px]"
-                >
-                  <linearGradient id="shape_1" x1="100%" x2="0%" y1="100%" y2="0%" />
-                  <path fill="white">
-                    <animate
-                      repeatCount="indefinite"
-                      attributeName="d"
-                      dur="15s"
-                      values="
+                  >
+                    <linearGradient id="shape_1" x1="100%" x2="0%" y1="100%" y2="0%" />
+                    <path fill="white">
+                      <animate
+                        repeatCount="indefinite"
+                        attributeName="d"
+                        dur="15s"
+                        values="
                   M37.5,186c-12.1-10.5-11.8-32.3-7.2-46.7c4.8-15,13.1-17.8,30.1-36.7C91,68.8,83.5,56.7,103.4,45 
                   c22.2-13.1,51.1-9.5,69.6-1.6c18.1,7.8,15.7,15.3,43.3,33.2c28.8,18.8,37.2,14.3,46.7,27.9c15.6,22.3,6.4,53.3,4.4,60.2 
                   c-3.3,11.2-7.1,23.9-18.5,32c-16.3,11.5-29.5,0.7-48.6,11c-16.2,8.7-12.6,19.7-28.2,33.2c-22.7,19.7-63.8,25.7-79.9,9.7 
@@ -204,65 +218,65 @@ function Home() {
                   c22.2-13.1,51.1-9.5,69.6-1.6c18.1,7.8,15.7,15.3,43.3,33.2c28.8,18.8,37.2,14.3,46.7,27.9c15.6,22.3,6.4,53.3,4.4,60.2 
                   c-3.3,11.2-7.1,23.9-18.5,32c-16.3,11.5-29.5,0.7-48.6,11c-16.2,8.7-12.6,19.7-28.2,33.2c-22.7,19.7-63.8,25.7-79.9,9.7 
                   c-15.2-15.1,0.3-41.7-16.6-54.9C63,186,49.7,196.7,37.5,186z"
-                    />
-                  </path>
-                </svg>
-              </div>
-            </div>
-
-          </div>
-
-
-        </SwiperSlide>
-
-
-
-        <SwiperSlide>
-          <div className="h-screen w-full bg-[#F8F8FB] relative overflow-hidden">
-            <div className="grid grid-col sm:grid-cols-2 h-full w-full">
-              <div className=" h-full w-full ">
-                <div className="flex text-qu flex-col justify-center h-full sm:ms-28 ms-2 mb-2">
-                  <span
-                    className="text-xl text-[#777] mb-4 ms-1 animate__animated animate__fadeInUp"
-                    style={{ animationDelay: "0.3s", animationDuration: "0.8s" }}
-                  >
-                    Flat 30% off
-                  </span>
-
-                  <div
-                    className="p-0 m-0 2xl:text-7xl md:text-3xl sm:text-xl text-4xl mb-5 text-[#3d4750] font-semibold animate__animated animate__fadeInUp"
-                    style={{ animationDelay: "0.9s", animationDuration: "0.8s" }}
-                  >
-                    Explore
-                    <div className="relative inline-block text-[#6c7fd8]">
-                      Organic
-                      <img
-                        src="./shape.png"
-                        alt="shape"
-                        className="absolute w-9 h-9 md:w-8 md:h-8 sm:w-8 sm:h-8 sm:-top-5 sm:-right-5 -top-6 -right-6"
                       />
-                    </div>
-                    <br />
-
-                    & Fresh Fruits
-                  </div>
-
-                  <div
-                    className="animate__animated animate__fadeInUp"
-                    style={{ animationDelay: "1.5s", animationDuration: "0.8s" }}
-                  >
-                    <button className="mt-2 px-6 py-3 border border-black hover:bg-[#6c7fd8] hover:text-white transition duration-500 rounded-xl w-fit">
-                      Shop Now
-                    </button>
-
-                  </div>
-
+                    </path>
+                  </svg>
                 </div>
               </div>
 
+            </div>
 
-              <div className="flex items-center justify-center h-full w-full relative ">
-                <img src="./hero-3.png" alt="Hero" className="
+
+          </SwiperSlide>
+
+
+
+          <SwiperSlide>
+            <div className="h-screen w-full bg-[#F8F8FB] relative overflow-hidden">
+              <div className="grid grid-col sm:grid-cols-2 h-full w-full">
+                <div className=" h-full w-full ">
+                  <div className="flex text-qu flex-col justify-center h-full sm:ms-28 ms-2 mb-2">
+                    <span
+                      className="text-xl text-[#777] mb-4 ms-1 animate__animated animate__fadeInUp"
+                      style={{ animationDelay: "0.3s", animationDuration: "0.8s" }}
+                    >
+                      Flat 30% off
+                    </span>
+
+                    <div
+                      className="p-0 m-0 2xl:text-7xl md:text-3xl sm:text-xl text-4xl mb-5 text-[#3d4750] font-semibold animate__animated animate__fadeInUp"
+                      style={{ animationDelay: "0.9s", animationDuration: "0.8s" }}
+                    >
+                      Explore
+                      <div className="relative inline-block text-[#6c7fd8]">
+                        Organic
+                        <img
+                          src="./shape.png"
+                          alt="shape"
+                          className="absolute w-9 h-9 md:w-8 md:h-8 sm:w-8 sm:h-8 sm:-top-5 sm:-right-5 -top-6 -right-6"
+                        />
+                      </div>
+                      <br />
+
+                      & Fresh Fruits
+                    </div>
+
+                    <div
+                      className="animate__animated animate__fadeInUp"
+                      style={{ animationDelay: "1.5s", animationDuration: "0.8s" }}
+                    >
+                      <button className="mt-2 px-6 py-3 border border-black hover:bg-[#6c7fd8] hover:text-white transition duration-500 rounded-xl w-fit">
+                        Shop Now
+                      </button>
+
+                    </div>
+
+                  </div>
+                </div>
+
+
+                <div className="flex items-center justify-center h-full w-full relative ">
+                  <img src="./hero-3.png" alt="Hero" className="
                 animate__animated
                 animate__fadeInUp
                 drop-shadow-3xl
@@ -272,21 +286,21 @@ function Home() {
                 object-cover
                  min-w-[45%] max-h-[70%]
                   z-30" />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 300 300"
-                  className="animate-shape 
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 300 300"
+                    className="animate-shape 
                     animate__animated
                 animate__fadeInRight
                   w-[120%] absolute sm:top-[95px] xl:top-[-20px] lg:top-[-20px] md:top-[40px] top-[10px] right-[-50px] max-[1399px]:right-[-30px] max-[1199px]:w-[125%] max-[991px]:w-[100%] max-[991px]:top-[0px] max-[575px]:right-[0] max-[420px]:w-[110%] max-[420px]:right-[-30px]"
-                >
-                  <linearGradient id="shape_1" x1="100%" x2="0%" y1="100%" y2="0%" />
-                  <path fill="white">
-                    <animate
-                      repeatCount="indefinite"
-                      attributeName="d"
-                      dur="15s"
-                      values="
+                  >
+                    <linearGradient id="shape_1" x1="100%" x2="0%" y1="100%" y2="0%" />
+                    <path fill="white">
+                      <animate
+                        repeatCount="indefinite"
+                        attributeName="d"
+                        dur="15s"
+                        values="
                   M37.5,186c-12.1-10.5-11.8-32.3-7.2-46.7c4.8-15,13.1-17.8,30.1-36.7C91,68.8,83.5,56.7,103.4,45 
                   c22.2-13.1,51.1-9.5,69.6-1.6c18.1,7.8,15.7,15.3,43.3,33.2c28.8,18.8,37.2,14.3,46.7,27.9c15.6,22.3,6.4,53.3,4.4,60.2 
                   c-3.3,11.2-7.1,23.9-18.5,32c-16.3,11.5-29.5,0.7-48.6,11c-16.2,8.7-12.6,19.7-28.2,33.2c-22.7,19.7-63.8,25.7-79.9,9.7 
@@ -301,34 +315,100 @@ function Home() {
                   c22.2-13.1,51.1-9.5,69.6-1.6c18.1,7.8,15.7,15.3,43.3,33.2c28.8,18.8,37.2,14.3,46.7,27.9c15.6,22.3,6.4,53.3,4.4,60.2 
                   c-3.3,11.2-7.1,23.9-18.5,32c-16.3,11.5-29.5,0.7-48.6,11c-16.2,8.7-12.6,19.7-28.2,33.2c-22.7,19.7-63.8,25.7-79.9,9.7 
                   c-15.2-15.1,0.3-41.7-16.6-54.9C63,186,49.7,196.7,37.5,186z"
-                    />
-                  </path>
-                </svg>
+                      />
+                    </path>
+                  </svg>
+                </div>
               </div>
+
             </div>
 
-          </div>
+
+          </SwiperSlide>
 
 
-        </SwiperSlide>
+        </Swiper >
+        {/* slider 2.0 */}
+      </div>
 
-
-      </Swiper >
-      
-      {/* slider 2.0 */}
-
-       <div className='grid grid-cols-2 h-screen w-full'>
+      <div className='grid grid-cols-2 h-screen 2xl:h-[70%] relative'>
         <div className='h-full w-full rounded-xl flex justify-center items-center relative'>
           <div className='h-[70%] relative'>
-  <img src="./category.jpg" alt="" className='h-full rounded-3xl img-clip' />
-  <span className='p-1 px-4 bg-[rgba(0,0,0,0.86)] rounded-full text-white opacity-80 absolute top-5 right-5'>
-    50% off
-  </span>
-     </div>
-</div>
-         <div><SlickSliderComponent/>
-         </div>
-       </div>
+            <img src="./category.jpg" alt="" className='h-full rounded-3xl img-clip' />
+
+            <img src="./top-shape.png" className='right-0 absolute top-[65%]' alt="" />
+            <img src="./top-shape.png" className='right-[87px]  absolute bottom-0 ' alt="" />
+
+            {/* <div className="shape-radius"></div> */}
+
+            <span className='p-1 px-4 bg-[rgba(0,0,0,0.86)] rounded-full text-white opacity-80 absolute top-5 right-5'>
+              50% off
+            </span>
+          </div>
+        </div>
+
+        <div className='h-full '>
+          <div className='h-[60%] flex justify-center items-center'>
+            <svg width="100%" height="100%" viewBox="0 0 800 200" className="w-full group ">
+              <defs>
+                <linearGradient id="light-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="white" stopOpacity="0" />
+                  <stop offset="50%" stopColor="white" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="white" stopOpacity="0" />
+                </linearGradient>
+
+                <mask id="light-mask">
+                  <rect x="0" y="0" width="800" height="200" fill="url(#light-gradient)">
+                    <animateTransform
+                      attributeName="transform"
+                      type="translate"
+                      from="-800 0"
+                      to="800 0"
+                      dur="2s"
+                      repeatCount="1"
+                      fill="freeze"
+                      begin="indefinite"
+                    />
+                  </rect>
+                </mask>
+              </defs>
+
+              <text
+                textAnchor="middle"
+                x="50%"
+                y="80"
+                className="fill-white xl:text-[140px] stroke-black stroke-[1px] font-bold transition-all duration-500"
+                fontFamily="Arial"
+                id="mainText"
+              >
+                <tspan x="30%" dy="40">Explore</tspan>
+                <tspan x="46%" dy="130">Categories</tspan>
+              </text>
+
+              {/* Lighting Layer */}
+              <text
+                textAnchor="middle"
+                x="50%"
+                y="80"
+                className="xl:text-[140px] font-bold pointer-events-none"
+                fontFamily="Arial"
+                fill="white"
+                mask="url(#light-mask)"
+              >
+                <tspan x="30%" dy="40">Explore</tspan>
+                <tspan x="46%" dy="130">Categories</tspan>
+              </text>
+            </svg>
+
+          </div>
+
+
+          <div className='absolute left-[29%] mt-7 w-[70%]'>
+
+            <SlickSliderComponent />
+          </div>
+        </div>
+      </div>
       {/* slider 2.0 */}
 
 

@@ -1,4 +1,4 @@
-import React from "react";
+
 import Slider from "react-slick";
 
 const SlickSliderComponent = () => {
@@ -34,40 +34,40 @@ const SlickSliderComponent = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container h-full w-[75%] mx-auto p-4 ">
       <Slider {...settings}>
         <div>
-        <div className="h-[200px] w-[100%] border flex justify-center items-center flex-col group">
-          <img src="./1.svg" alt="Slide 1" className="w-[70%] h-[36%] group-hover:animate-bounce" />
-           <div className="font-semibold">vegetables</div>
-           <span className="text-sm text-gray-500">291 items</span>
-        </div>
-        </div>
-        <div>
-        <div className="h-[200px] w-[100%] border flex justify-center items-center flex-col group">
-          <img src="./2.svg" alt="Slide 1" className="w-[70%] h-[36%]  group-hover:animate-bounce" />
-           <div className="font-semibold">vegetables</div>
-           <span className="text-sm text-gray-500">291 items</span>
-        </div>
+          <div className="h-[200px] w-[90%]  border flex justify-center items-center flex-col rounded-2xl bg-[rgb(225_252_242)] group">
+            <img src="./1.svg" alt="Slide 1" className="w-[70%] h-[36%] group-hover:animate-bounce" />
+            <div className="font-semibold">vegetables</div>
+            <span className="text-sm text-gray-500">291 items</span>
+          </div>
         </div>
         <div>
-        <div className="h-[200px] w-[100%] border flex justify-center items-center flex-col group">
-          <img src="./3.svg" alt="Slide 1" className="w-[70%] h-[36%]  group-hover:animate-bounce" />
-           <div className="font-semibold">vegetables</div>
-           <span className="text-sm text-gray-500">291 items</span>
-        </div>
+          <div className="h-[200px] w-[90%] border flex justify-center items-center flex-col rounded-2xl bg-[rgb(244_241_254)] group">
+            <img src="./2.svg" alt="Slide 1" className="w-[70%] h-[36%]  group-hover:animate-bounce" />
+            <div className="font-semibold">vegetables</div>
+            <span className="text-sm text-gray-500">291 items</span>
+          </div>
         </div>
         <div>
-        <div className="h-[200px] w-[100%] border flex justify-center items-center flex-col group">
-          <img src="./4.svg" alt="Slide 1" className="w-[70%] h-[36%]  group-hover:animate-bounce" />
-           <div className="font-semibold">vegetables</div>
-           <span className="text-sm text-gray-500">291 items</span>
+          <div className="h-[200px] w-[90%] border flex justify-center items-center flex-col rounded-2xl bg-[rgb(251_249_228)] group">
+            <img src="./3.svg" alt="Slide 1" className="w-[70%] h-[36%]  group-hover:animate-bounce" />
+            <div className="font-semibold">vegetables</div>
+            <span className="text-sm text-gray-500">291 items</span>
+          </div>
         </div>
+        <div>
+          <div className="h-[200px] w-[90%] border flex justify-center items-center flex-col rounded-2xl bg-[rgb(225_252_242)] group">
+            <img src="./4.svg" alt="Slide 1" className="w-[70%] h-[36%]  group-hover:animate-bounce" />
+            <div className="font-semibold">vegetables</div>
+            <span className="text-sm text-gray-500">291 items</span>
+          </div>
         </div>
-        
-        
-        
-        
+
+
+
+
       </Slider>
     </div>
   );
