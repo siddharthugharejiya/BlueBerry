@@ -331,7 +331,7 @@ function Home() {
         {/* slider 2.0 */}
       </div>
 
-      <div className='grid grid-cols-2 h-screen 2xl:h-[70%] relative'>
+      <div className='grid xl:grid-cols-2 grid-cols-1 h-[120vh] 2xl:h-[70%] relative'>
         <div className='h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
           <div className='h-[70%] relative'>
             <img src="./category.jpg" alt="" className='h-full rounded-3xl img-clip' />
@@ -348,7 +348,7 @@ function Home() {
 
         <div className='h-full'>
           <div className='h-[60%] flex justify-center items-center'>
-            <svg width="100%" height="100%" viewBox="0 0 800 200" className="w-full group ">
+            <svg width="100%" height="100%" viewBox="0 0 800 200" className="w-full group md:h-screen ">
               <defs>
                 <linearGradient id="light-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="white" stopOpacity="0" />
@@ -378,7 +378,7 @@ function Home() {
                 y="80"
                 className="fill-white xl:text-[140px] md:text-[140px] sm:text-[140px] stroke-black stroke-[1px] font-bold transition-all duration-500"
                 fontFamily="Arial"
-                style={{fontSize:"140px"}}
+                style={{ fontSize: "140px" }}
                 id="mainText"
               >
                 <tspan x="30%" dy="40">Explore</tspan>
@@ -403,7 +403,15 @@ function Home() {
           </div>
 
 
-          <div className='absolute left-[29%] mt-7 w-[70%]'>
+          <div className='absolute 
+          xl:left-[27%] 
+          xl:w-[70%]
+          md:left-[4%] 
+          md:w-[100%]
+          sm:left-[4%] left-[0%] 
+          sm:w-full
+          mt-7
+          w-[99%]'>
 
             <SlickSliderComponent />
           </div>
