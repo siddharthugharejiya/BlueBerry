@@ -10,9 +10,7 @@
 @tailwind components;
 @tailwind utilities;
 .swiper-pagination{
-
   text-align: start !important;
-
 }
 .img-clip {
 
@@ -43,12 +41,12 @@ clip-path:polygon(
 
 .shape-radius {
   position: absolute;
-  bottom: 124px;             /* बिलकुल bottom पर लाओ */
-  right: 45px;               /* बिलकुल right पर लाओ */
-  width: 36px;              /* width को थोड़ा बढ़ाओ */
-  height: 38px;             /* height बराबर रखो */
-  background-color: white;  /* अब white करेंगे */
-  border-top-left-radius: 100px;
+  bottom: 124px;             
+  right: 45px;               
+  width: 36px;         
+  height: 38px;             
+  background-color: white;  
+   border-top-left-radius: 100px;
   z-index: 10;
 }
 

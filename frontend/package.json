@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "animate.css": "^4.1.1",
+    "aos": "^2.3.4",
     "jquery": "^3.7.1",
     "owl.carousel": "^2.3.4",
     "react": "^19.0.0",

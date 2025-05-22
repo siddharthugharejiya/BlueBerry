@@ -9,6 +9,14 @@ const SlickSliderComponent = () => {
     slidesToShow: 4,
     slidesToScroll: 3,
     responsive: [
+          
+      {
+        breakpoint: 1224, // For screens with width <= 1024px
+        settings: {
+          slidesToShow: 3, // Show 2 slides
+          slidesToScroll: 3, // Scroll 2 slides at a time
+        },
+      },
       {
         breakpoint: 1024, // For screens with width <= 1024px
         settings: {

@@ -11,7 +11,9 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import SlickSliderComponent from './SlickSliderComponent';
 import { useEffect } from 'react';
 
+
 function Home() {
+
 
   useEffect(() => {
     const mainText = document.getElementById("mainText");
@@ -328,16 +330,16 @@ function Home() {
 
 
         </Swiper >
-        {/* slider 2.0 */}
+
       </div>
 
-      <div className='grid xl:grid-cols-2 grid-cols-1 h-[120vh] 2xl:h-[70%] relative'>
+      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 2xl:border-red-800 lg:grid-cols-2 grid-cols-1 lg:h-[170vh] md:h-[160vh] sm:h-[160vh] h-[110vh] relative'>
         <div className='h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
-          <div className='h-[70%] relative'>
-            <img src="./category.jpg" alt="" className='h-full rounded-3xl img-clip' />
+          <div className='h-[70%] 2xl:h-[63%] xl:h-[88%] lg:h-[90%] relative'>
+            <img src="./category.jpg" alt="" className='h-full rounded-3xl img-clip object-cover' />
 
-            <img src="./top-shape.png" className='right-0 absolute top-[65%]' alt="" />
-            <img src="./top-shape.png" className='2xl:right-[88px] xl:right-[73px] lg:right-[58px] md:right-[54px] sm:right-[69px]  absolute bottom-0 ' alt="" />
+            <img src="./top-shape.png" className='right-0 absolute 2xl:top-[66%] xl:top-[62%] xl:right-[-1px] lg:top-[61%] top-[65%]' alt="" />
+            <img src="./top-shape.png" className='2xl:right-[212px]  xl:right-[184px] lg:right-[143px] md:right-[54px] sm:right-[69px]  absolute bottom-0 ' alt="" />
 
 
             <span className='p-1 px-4 bg-[rgba(0,0,0,0.86)] rounded-full text-white opacity-80 absolute top-5 right-5'>
@@ -347,8 +349,8 @@ function Home() {
         </div>
 
         <div className='h-full'>
-          <div className='h-[60%] flex justify-center items-center'>
-            <svg width="100%" height="100%" viewBox="0 0 800 200" className="w-full group md:h-screen ">
+          <div className='sm:h-[60%] h-[50%] flex justify-center items-center'>
+            <svg width="100%" height="100%" viewBox="0 0 800 200" className="w-full group lg:h-[165vh] md:h-screen sm:h-[70vh] h-[66vh] ">
               <defs>
                 <linearGradient id="light-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="white" stopOpacity="0" />
@@ -399,15 +401,14 @@ function Home() {
                 <tspan x="46%" dy="130">Categories</tspan>
               </text>
             </svg>
-
           </div>
-
-
           <div className='absolute 
           xl:left-[27%] 
-          xl:w-[70%]
+          xl:w-[72%]
+          lg:left-[27%] 
+          lg:w-[78%]
           md:left-[4%] 
-          md:w-[100%]
+          md:w-[99%]
           sm:left-[4%] left-[0%] 
           sm:w-full
           mt-7
@@ -417,8 +418,8 @@ function Home() {
           </div>
         </div>
       </div>
-      {/* slider 2.0 */}
 
+      <div className="border bg-red-700 size-96"></div>
 
 
     </>
