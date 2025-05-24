@@ -28,7 +28,7 @@ function Home() {
   }, []);
   const products = useSelector(state => state.Products.data.data || [])
   console.log(products);
- 
+
 
 
 
@@ -433,7 +433,52 @@ function Home() {
 
       <div className="h-screen">
 
-        {products.length === 0 ? "1" : "0"}
+        {
+          products.length === 0 ? ("0") :
+            <>
+              <div className='flex'>
+                {products.map((el) => (
+                  <div
+                    key={el.id}
+                    className="card w-[18rem] flex flex-col justify-between rounded-2xl  overflow-hidden shadow-md border  hover:shadow-lg transition-shadow duration-300"
+                  >
+
+                    <div className="h-[240px] w-full group relative">
+                      <img
+                        src={el.image}
+                        alt={el.name}
+                        className="h-full w-full object-cover border"
+                      />
+                      <div className='hidden group-hover:block absolute bottom-0 right-20'><i className="fa-solid fa-heart p-2 rounded-lg shadow-md border"></i> <i className="fa-solid fa-eye p-2 rounded-lg shadow-md border"></i><i class="fa-solid fa-recycle p-2 rounded-lg shadow-md border"></i><i class="fa-solid fa-bag-shopping p-2 rounded-lg shadow-md border"></i></div>
+                    </div>
+
+
+                    <div className="p-3 flex flex-col gap-2">
+                      <div className="flex items-center justify-between">
+                        <h2 className="text-lg font-semibold text-gray-800">{el.name}</h2>
+                        <div className="text-yellow-500 text-sm">
+                          {'★'.repeat(Math.floor(el.rating || 0))}
+                        </div>
+                      </div>
+                      <p className="text-sm text-gray-600">{el.des}</p>
+
+                      <div className="flex justify-between items-center mt-2">
+                        <span className="text-gray-800 font-bold text-base">
+                          ${el.price}
+                          <strike className="text-sm text-gray-400 ms-2">${el.strike}</strike>
+                        </span>
+                        <span className="text-sm text-gray-500">{el.weight}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+              </div>
+
+
+
+            </>
+        }
       </div>
 
 
