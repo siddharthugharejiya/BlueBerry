@@ -10,11 +10,14 @@ import { Autoplay, Pagination } from 'swiper/modules';
 
 import SlickSliderComponent from './SlickSliderComponent';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Product } from '../Redux/action';
+import { useLayoutEffect } from 'react';
 
 
 function Home() {
 
-
+  const dispatch = useDispatch()
   useEffect(() => {
     const mainText = document.getElementById("mainText");
     const anim = document.querySelector("animateTransform");
@@ -23,6 +26,15 @@ function Home() {
       anim.beginElement();
     });
   }, []);
+  const products = useSelector(state => state.Products.data.data || [])
+  console.log(products);
+ 
+
+
+
+  useLayoutEffect(() => {
+    dispatch(Product())
+  }, [dispatch])
 
   return (
     <>
@@ -333,13 +345,13 @@ function Home() {
 
       </div>
 
-      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 2xl:border-red-800 lg:grid-cols-2 grid-cols-1 lg:h-[170vh] md:h-[160vh] sm:h-[160vh] h-[65vh] relative overflow-hidden'>
+      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 2xl:border-red-800 lg:grid-cols-2 grid-cols-1 lg:h-[170vh] md:h-[160vh] sm:h-[160vh] h-screen relative overflow-hidden'>
         <div className='h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
           <div className='h-[70%] 2xl:h-[63%] xl:h-[88%] lg:h-[90%] relative'>
             <img src="./category.jpg" alt="" className='h-full rounded-3xl img-clip object-cover' />
 
             <img src="./top-shape.png" className='right-0 absolute 2xl:top-[66%] xl:top-[62%] xl:right-[-1px] lg:top-[61%] top-[65%]' alt="" />
-            <img src="./top-shape.png" className='2xl:right-[212px]  xl:right-[283px] lg:right-[235px] md:right-[54px] sm:right-[69px]  absolute bottom-0 ' alt="" />
+            <img src="./top-shape.png" className='2xl:right-[235px] xl:right-[283px] lg:right-[235px] md:right-[54px] sm:right-[69px]  absolute bottom-0 ' alt="" />
 
 
             <span className='p-1 px-4 bg-[rgba(0,0,0,0.86)] rounded-full text-white opacity-80 absolute top-5 right-5'>
@@ -419,7 +431,10 @@ function Home() {
         </div>
       </div>
 
-      {/* <div className="border bg-red-700 size-96"></div> */}
+      <div className="h-screen">
+
+        {products.length === 0 ? "1" : "0"}
+      </div>
 
 
     </>

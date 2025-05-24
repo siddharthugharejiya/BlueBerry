@@ -6,10 +6,10 @@ const ProductSchema = new mongoose.Schema({
     rating: { type: Number, default: 0 },
     des: { type: String },
     price: { type: Number, required: true },
-    discount: { type: String },
+    strike: { type: String },
     weight: { type: String },
     tag: { type: String },
     user: { type: mongoose.Schema.ObjectId, ref: "user" }
-});
+})
 
 export const ProductModel = mongoose.model("product", ProductSchema);

@@ -16,8 +16,10 @@ export const AddProduct = async (req, res) => {
 }
 export const All_product = async (req, res) => {
     try {
-        const userId = req.user.userId;
-        console.log("Logged in user:", userId);
+
+
+        // const userId = req.user.userId;
+        // console.log("Logged in user:", userId);
 
         const data = await ProductModel.find()
 

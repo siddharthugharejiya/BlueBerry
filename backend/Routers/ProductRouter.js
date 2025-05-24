@@ -4,5 +4,5 @@ import { AddProduct, All_product, cart } from "../Controller/Product.js"
 
 export const ProductRouter = express.Router()
 ProductRouter.post("/add", adminValidation, AddProduct)
-ProductRouter.get("/get", All_product)
-ProductRouter.get("/get", cart)
+ProductRouter.get("/product", All_product)
+ProductRouter.get("/cart", cart)
