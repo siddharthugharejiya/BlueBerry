@@ -16,7 +16,7 @@ function Nav() {
     return () => clearInterval(interval);
   }, [])
   useEffect(() => {
-    // जैसे ही page refresh होगा, popclose को हटा दो
+
     sessionStorage.removeItem("popclose");
   }, []);
 

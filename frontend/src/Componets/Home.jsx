@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 
 import SlickSliderComponent from './SlickSliderComponent';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Product } from '../Redux/action';
 import { useLayoutEffect } from 'react';
@@ -18,6 +18,9 @@ import { useLayoutEffect } from 'react';
 function Home() {
 
   const dispatch = useDispatch()
+  const [eye, seteye] = useState([])
+  const [open, setopen] = useState(false)
+
   useEffect(() => {
     const mainText = document.getElementById("mainText");
     const anim = document.querySelector("animateTransform");
@@ -28,6 +31,17 @@ function Home() {
   }, []);
   const products = useSelector(state => state.Products.data.data || [])
   console.log(products);
+
+  const handleEye = (product) => {
+
+    seteye(product)
+
+
+    setopen(true)
+
+  }
+  console.log(open);
+  console.log(eye);
 
 
 
@@ -440,8 +454,10 @@ function Home() {
                 {products.map((el) => (
                   <div
                     key={el.id}
-                    className="card w-[18rem] flex flex-col justify-between rounded-2xl  overflow-hidden shadow-md border  hover:shadow-lg transition-shadow duration-300"
+                    className="relative card w-[18rem] flex flex-col justify-between rounded-2xl  overflow-hidden shadow-md border  hover:shadow-lg transition-shadow duration-300"
                   >
+                    <span className="absolute z-50 top-3 left-2 " style={{ writingMode: "vertical-rl", textOrientation: "upright" }}>{el.tag}</span>
+
 
                     <div className="h-[240px] w-full group relative">
                       <img
@@ -449,7 +465,7 @@ function Home() {
                         alt={el.name}
                         className="h-full w-full object-cover border"
                       />
-                      <div className='hidden group-hover:block absolute bottom-0 right-20'><i className="fa-solid fa-heart p-2 rounded-lg shadow-md border"></i> <i className="fa-solid fa-eye p-2 rounded-lg shadow-md border"></i><i class="fa-solid fa-recycle p-2 rounded-lg shadow-md border"></i><i class="fa-solid fa-bag-shopping p-2 rounded-lg shadow-md border"></i></div>
+                      <div className='hidden group-hover:block absolute bottom-0 right-20'><i className="fa-solid fa-heart p-2 rounded-lg shadow-md border bg-white"></i> <i className="bg-white fa-solid fa-eye p-2 rounded-lg shadow-md border" onClick={() => handleEye(el)}></i><i className="bg-white fa-solid fa-recycle p-2 rounded-lg shadow-md border"></i><i className="bg-white fa-solid fa-bag-shopping p-2 rounded-lg shadow-md border"></i></div>
                     </div>
 
 
@@ -460,7 +476,7 @@ function Home() {
                           {'★'.repeat(Math.floor(el.rating || 0))}
                         </div>
                       </div>
-                      <p className="text-sm text-gray-600">{el.des}</p>
+                      <p className="text-sm text-gray-600 ">{el.des}</p>
 
                       <div className="flex justify-between items-center mt-2">
                         <span className="text-gray-800 font-bold text-base">
@@ -479,7 +495,46 @@ function Home() {
 
             </>
         }
+
       </div>
+
+      {/* offcanvas */}
+
+      {
+        open &&
+        <>
+          <div className="fixed inset-0 bg-red-700 opacity-40 z-50"></div>
+          <div className="fixed top-0 left-0 h-screen w-full z-50 flex justify-center items-center ">
+            <div className="grid grid-cols-2 h-[70%] min-w-[50%] bg-white">
+              <div className='h-3/5 w-full'>
+                <img src={eye.image} alt={eye.name} className='h-full w-full object-cover' />
+              </div>
+              <div>
+                <h1>{eye.des}</h1>
+                <span><div className="text-yellow-500 text-sm">
+                  {'★'.repeat(Math.floor(eye.rating || 0))}
+                </div></span>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1900s,</p>
+                <div className="flex justify-between items-center mt-2">
+                  <span className="text-gray-800 font-bold text-base">
+                    ${eye.price}
+                    <strike className="text-sm text-gray-400 ms-2">${eye.strike}</strike>
+                  </span>
+                  <span className="text-sm text-gray-500">{eye.weight}</span>
+                </div>
+                <div>
+
+                <button className='p-2 bg-[#777]'>250g</button>
+                <button className='p-2 bg-[#777]'>500g</button>
+                <button className='p-2 bg-[#777]'>1kg</button>
+                <button className='p-2 bg-[#777]'>2kg</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      }
+
 
 
     </>
