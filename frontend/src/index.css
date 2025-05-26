@@ -50,3 +50,9 @@ clip-path:polygon(
   z-index: 10;
 }
 
+@media(min-width:1500px) {
+  .img-clip {
+    clip-path: none;
+    width: 100%;
+  }
+}

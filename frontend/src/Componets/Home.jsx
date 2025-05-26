@@ -67,9 +67,9 @@ function Home() {
           loop={true} autoplay={{ delay: 7000 }}
           style={{ height: "100%", width: "100%" }}
         >
-          <SwiperSlide>
-            <div className="h-full w-full bg-[#F8F8FB] relative overflow-hidden">
-              <div className="grid grid-cols-1 sm:grid-cols-2 h-full w-full">
+        <SwiperSlide>
+            <div className="h-screen w-full bg-[#F8F8FB] relative overflow-hidden">
+              <div className="grid grid-col sm:grid-cols-2 h-full w-full">
                 <div className=" h-full w-full ">
                   <div className="flex text-qu flex-col justify-center h-full sm:ms-28 ms-2 mb-2">
                     <span
@@ -85,7 +85,7 @@ function Home() {
                     >
                       Explore
                       <div className="relative inline-block text-[#6c7fd8]">
-                        Healthy
+                        Warm
                         <img
                           src="./shape.png"
                           alt="shape"
@@ -361,11 +361,11 @@ function Home() {
 
       <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 2xl:border-red-800 lg:grid-cols-2 grid-cols-1 lg:h-[170vh] md:h-[160vh] sm:h-[160vh] h-screen relative overflow-hidden'>
         <div className='h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
-          <div className='h-[70%] 2xl:h-[63%] xl:h-[88%] lg:h-[90%] relative'>
-            <img src="./category.jpg" alt="" className='h-full rounded-3xl img-clip object-cover' />
+          <div className='h-[70%] 2xl:h-[52%] xl:h-[88%] lg:h-[90%] relative'>
+            <img src="./category.jpg" alt="" className=' h-full rounded-3xl img-clip object-cover' />
 
-            <img src="./top-shape.png" className='right-0 absolute 2xl:top-[66%] xl:top-[62%] xl:right-[-1px] lg:top-[61%] top-[65%]' alt="" />
-            <img src="./top-shape.png" className='2xl:right-[235px] xl:right-[283px] lg:right-[235px] md:right-[54px] sm:right-[69px]  absolute bottom-0 ' alt="" />
+            <img src="./top-shape.png" className='right-0 absolute 2xl:top-[69%] xl:top-[62%] xl:right-[-1px] lg:top-[61%] top-[65%]' alt="" />
+            <img src="./top-shape.png" className='2xl:right-[350px] xl:right-[283px] lg:right-[235px] md:right-[54px] sm:right-[69px]  absolute bottom-0 ' alt="" />
 
 
             <span className='p-1 px-4 bg-[rgba(0,0,0,0.86)] rounded-full text-white opacity-80 absolute top-5 right-5'>
@@ -503,36 +503,64 @@ function Home() {
       {
         open &&
         <>
-          <div className="fixed inset-0 bg-red-700 opacity-40 z-50"></div>
-          <div className="fixed top-0 left-0 h-screen w-full z-50 flex justify-center items-center ">
-            <div className="grid grid-cols-2 h-[70%] min-w-[50%] bg-white">
-              <div className='h-3/5 w-full'>
-                <img src={eye.image} alt={eye.name} className='h-full w-full object-cover' />
-              </div>
-              <div>
-                <h1>{eye.des}</h1>
-                <span><div className="text-yellow-500 text-sm">
-                  {'★'.repeat(Math.floor(eye.rating || 0))}
-                </div></span>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1900s,</p>
-                <div className="flex justify-between items-center mt-2">
-                  <span className="text-gray-800 font-bold text-base">
-                    ${eye.price}
-                    <strike className="text-sm text-gray-400 ms-2">${eye.strike}</strike>
-                  </span>
-                  <span className="text-sm text-gray-500">{eye.weight}</span>
-                </div>
-                <div>
+<>
 
-                <button className='p-2 bg-[#777]'>250g</button>
-                <button className='p-2 bg-[#777]'>500g</button>
-                <button className='p-2 bg-[#777]'>1kg</button>
-                <button className='p-2 bg-[#777]'>2kg</button>
-                </div>
-              </div>
-            </div>
+  <div className="fixed inset-0 bg-red-700 opacity-40 z-50"></div>
+
+  <div className="fixed top-0 left-0 h-screen w-full z-50 flex justify-center items-center overflow-auto p-4 animate-fade-in">
+    
+    <div className="grid sm:grid-cols-2 grid-cols-1 bg-white rounded-xl shadow-2xl overflow-hidden w-full max-w-4xl max-h-[95vh]">
+      
+
+      <div className="h-full w-full flex justify-center items-center bg-gray-50 p-4">
+        <div className="h-64 w-64 sm:h-4/5 sm:w-4/5">
+          <img
+            src={eye.image}
+            alt={eye.name}
+            className="h-full w-full object-contain rounded-lg"
+          />
+        </div>
+      </div>
+
+      <div className="p-6 flex flex-col justify-between overflow-y-auto max-h-[95vh]">
+        <div>
+          <h1 className="text-2xl font-semibold text-gray-800 mb-2">{eye.des}</h1>
+          <div className="text-yellow-500 text-lg mb-2">
+            {'★'.repeat(Math.floor(eye.rating || 0))}
           </div>
-        </>
+          <p className="text-gray-600 text-sm mb-4">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+          </p>
+        </div>
+
+        <div>
+
+          <div className="flex justify-between items-center mb-4">
+            <span className="text-gray-800 font-bold text-xl">
+              ${eye.price}
+              <strike className="text-sm text-gray-400 ml-2">${eye.strike}</strike>
+            </span>
+            <span className="text-sm text-gray-500">{eye.weight}</span>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {['250g', '500g', '1kg', '2kg'].map((size) => (
+              <button
+                key={size}
+                className="p-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition"
+              >
+                {size}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</>
+
+</>
+
       }
 
 
