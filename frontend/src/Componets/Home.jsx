@@ -15,11 +15,29 @@ import { Product } from '../Redux/action';
 import { useLayoutEffect } from 'react';
 
 
+
 function Home() {
 
   const dispatch = useDispatch()
   const [eye, seteye] = useState([])
   const [open, setopen] = useState(false)
+  const [seconds, setSeconds] = useState(60)
+
+  useEffect(() => {
+    if (seconds <= 0) return;
+
+    const interval = setInterval(() => {
+      setSeconds(prev => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [seconds]);
+
+  const formatTime = () => {
+    // const mins = String(Math.floor(seconds / 60)).padStart(2, "0");
+    const secs = String(seconds % 60).padStart(2, "0");
+    return `${secs}`;
+  };
 
   useEffect(() => {
     const mainText = document.getElementById("mainText");
@@ -446,52 +464,79 @@ function Home() {
       </div>
 
       <div className="h-screen">
-
+        <div className="grid 2xl:grid-cols-2 xl:grid-cols-2">
+          <div className=''>
+            <b className='font-bold text-2xl'>Day of the <span className='text-them'> Deal </span> </b>
+            <p className='text-text'>Don't wait. The time will never be just right.</p>
+          </div>
+          <div className='flex justify-end items-center me-1'>
+            <div className=' bg-[#F8F8FB] p-3 rounded-xl font-bold'>
+              695
+              <span className='text-text px-2' >
+                Days
+              </span>
+              18: 
+              {formatTime()}
+            </div>
+          </div>
+        </div>
         {
           products.length === 0 ? ("0") :
             <>
-              <div className='flex'>
-                {products.map((el) => (
-                  <div
-                    key={el.id}
-                    className="relative card w-[18rem] flex flex-col justify-between rounded-2xl  overflow-hidden shadow-md border  hover:shadow-lg transition-shadow duration-300"
-                  >
-                    <span className="absolute z-50 top-3 left-2 " style={{ writingMode: "vertical-rl", textOrientation: "upright" }}>{el.tag}</span>
+              <div className='flex mt-5 '>
+
+                {
+                  products.map((el) => (
+                    <div
+                      key={el.id}
+                      className="relative card w-[18rem] flex flex-col justify-between rounded-2xl  overflow-hidden shadow-md border  hover:shadow-lg transition-shadow duration-300"
+                    >
 
 
-                    <div className="h-[240px] w-full group relative">
-                      <img
-                        src={el.image}
-                        alt={el.name}
-                        className="h-full w-full object-cover border"
-                      />
-                      <div className='hidden group-hover:block absolute bottom-0 right-16 '>
-                        <i className="fa-solid fa-heart p-2 rounded-lg shadow-md border bg-white hover:bg-[#6c7fd8] m-1"></i>
-                        <i className="bg-white hover:bg-[#6c7fd8] fa-solid fa-eye p-2 rounded-lg shadow-md border m-1" onClick={() => handleEye(el)}></i>
-                        <i className="bg-white fa-solid fa-recycle p-2 rounded-lg shadow-md border hover:bg-[#6c7fd8] m-1"></i>
-                        <i className="bg-white fa-solid fa-bag-shopping p-2 rounded-lg shadow-md border hover:bg-[#6c7fd8] m-1"></i></div>
-                    </div>
+                      <div className="h-[240px] w-full group relative">
+                        <span className="absolute z-10 top-3 left-2 group-hover:hidden  " style={{ writingMode: "vertical-rl", textOrientation: "upright" }}>{el.tag}</span>
+                        <div className='h-full w-full relative duration-700 '>
+
+                          <img
+                            src={el.image[0]}
+                            alt={el.name}
+                            className="h-full w-full object-cover border group-hover:hidden "
+                          />
+                          <img
+                            src={el.image[1]}
+                            alt={`${el.name} back`}
+                            className="h-full w-full object-cover hidden group-hover:block absolute top-0"
+                          />
+                        </div>
+
+                        <div className='hidden group-hover:block absolute bottom-0 right-16 '>
+                          <i className="fa-solid fa-heart p-2 rounded-lg shadow-md border bg-white hover:bg-[#6c7fd8] m-1"></i>
+                          
+                          <i className="bg-white hover:bg-[#6c7fd8] fa-solid fa-eye p-2 rounded-lg shadow-md border m-1" onClick={() => handleEye(el)}></i>
+                          <i className="bg-white fa-solid fa-recycle p-2 rounded-lg shadow-md border hover:bg-[#6c7fd8] m-1"></i>
+                          <i className="bg-white fa-solid fa-bag-shopping p-2 rounded-lg shadow-md border hover:bg-[#6c7fd8] m-1"></i></div>
+                      </div>
 
 
-                    <div className="p-3 flex flex-col gap-2">
-                      <div className="flex items-center justify-between">
-                        <h2 className="text-lg font-semibold text-gray-800">{el.name}</h2>
-                        <div className="text-yellow-500 text-sm">
-                          {'★'.repeat(Math.floor(el.rating || 0))}
+                      <div className="p-3 flex flex-col gap-2">
+                        <div className="flex items-center justify-between">
+                          <h2 className="text-lg font-semibold text-gray-800">{el.name}</h2>
+                          <div className="text-yellow-500 text-sm">
+                            {'★'.repeat(Math.floor(el.rating || 0))}
+                          </div>
+                        </div>
+                        <p className="text-sm text-gray-600 ">{el.des}</p>
+
+                        <div className="flex justify-between items-center mt-2">
+                          <span className="text-gray-800 font-bold text-base">
+                            ${el.price}
+                            <strike className="text-sm text-gray-400 ms-2">${el.strike}</strike>
+                          </span>
+                          <span className="text-sm text-gray-500">{el.weight}</span>
                         </div>
                       </div>
-                      <p className="text-sm text-gray-600 ">{el.des}</p>
-
-                      <div className="flex justify-between items-center mt-2">
-                        <span className="text-gray-800 font-bold text-base">
-                          ${el.price}
-                          <strike className="text-sm text-gray-400 ms-2">${el.strike}</strike>
-                        </span>
-                        <span className="text-sm text-gray-500">{el.weight}</span>
-                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
 
               </div>
 
@@ -513,15 +558,23 @@ function Home() {
 
             <div className="transition-all duration-700 fixed top-0 left-0 h-screen w-full z-50 flex justify-center items-center overflow-auto p-4 animate-fade-in">
               <div className="grid sm:grid-cols-2 grid-cols-1 bg-white rounded-xl shadow-2xl overflow-auto w-full max-w-4xl max-h-[95vh] relative ">
-                <button className='absolute right-3 top-0 p-2 text-[20px]' onClick={handleClose}>x</button>
+                <div className='absolute right-5 top-0 overflow-hidden p-4'>
+
+                  <button className='text-[20px] hover:animate-ping mt-0' onClick={handleClose}>x</button>
+                </div>
 
 
                 <div className="h-full w-full flex justify-center items-center bg-gray-50 p-4">
-                  <div className="h-64 w-64 sm:h-4/5 sm:w-4/5">
+                  <div className="h-64 w-64 sm:h-4/5 sm:w-4/5 group ">
                     <img
-                      src={eye.image}
+                      src={eye.image[0]}
                       alt={eye.name}
-                      className="h-full w-full object-contain rounded-lg"
+                      className="h-full w-full object-contain rounded-lg group-hover:hidden"
+                    />
+                    <img
+                      src={eye.image[1]}
+                      alt={eye.name}
+                      className="h-full w-full object-contain rounded-lg hidden group-hover:block"
                     />
                   </div>
                 </div>
