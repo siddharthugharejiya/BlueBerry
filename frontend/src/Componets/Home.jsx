@@ -518,7 +518,7 @@ function Home() {
               <div className='mt-5 overflow-hidden'>
                 <Slider {...settings1}>
                   {products.map((el) => (
-                    <div key={el.id} className="px-2"> 
+                    <div key={el.id} className="px-2">
                       <div className="relative group card w-[80%] h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
 
                         {/* Image Container */}
@@ -585,10 +585,46 @@ function Home() {
             </>
         }
 
+        <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 h-auto justify-center items-start w-full'>
+          <div className='h-full w-full flex justify-center'>
+            <div className="2xl:w-[85%] xl:w-[85%]  relative grid grid-cols-1 md:grid-cols-2 group justify-center items-center bg-[#F4DAB4] rounded-2xl overflow-hidden">
+              <div className='absolute top-0 left-1/2 -translate-x-[40%] h-full w-[60%] bg-[#FBF2E5] transform skew-x-[-30deg] z-0 transition-all duration-500 ease-in-out group-hover:w-[70%]'></div>
+              <div className="relative z-10 flex justify-end items-start p-6">
+                <img src="./one.png" alt="" className='h-[280px] w-[280px] object-cover' />
+              </div>
+              <div className='relative z-10 p-8 px-[56px]'>
+                <h1 className='text-[25px] font-bold'>Tasty Snack & Fast Food</h1>
+                <p className='text-text'>The flavour of something special</p>
+                <button className="text-text mt-2 px-6 py-3 border border-black hover:bg-[#6c7fd8] hover:border-[#6c7fd8] hover:text-white transition duration-500 rounded-xl w-fit">
+                  Shop Now
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className='h-full w-full flex justify-center'>
+            <div className="w-[85%] relative grid grid-cols-1 md:grid-cols-2 group justify-center items-center bg-[#FFC6CE] rounded-2xl overflow-hidden">
+              <div className='absolute top-0 left-1/2 -translate-x-[40%] h-full w-[60%] bg-[#FBF2E5] transform skew-x-[-30deg] z-0 transition-all duration-500 ease-in-out group-hover:w-[70%]'></div>
+              <div className="relative z-10 flex justify-end items-start p-6">
+                <img src="./two.png" alt="" className='h-[280px] w-[280px] object-cover' />
+              </div>
+
+
+              <div className='relative z-10 p-8 px-[56px]'>
+                <h1 className='text-[25px] font-bold'>Fresh Fruits & Vegetables</h1>
+                <p className='text-text'>The flavour of something special</p>
+                <button className="text-text mt-2 px-6 py-3 border border-black hover:bg-[#6c7fd8] hover:border-[#6c7fd8] hover:text-white transition duration-500 rounded-xl w-fit">
+                  Shop Now
+                </button>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+
       </div>
-
-      {/* offcanvas */}
-
       {
         open &&
         <>
