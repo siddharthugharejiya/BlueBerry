@@ -49,6 +49,33 @@ clip-path:polygon(
    border-top-left-radius: 100px;
   z-index: 10;
 }
+/* Add this to your global CSS file */
+.slick-slider {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.slick-list {
+  overflow: hidden;
+  padding: 10px 0 !important; /* Add some padding for hover effects */
+}
+
+.slick-track {
+  display: flex;
+  align-items: stretch;
+}
+
+/* .slick-slide {
+  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  padding: 0 10px;
+} */
+
+/* .slick-slide:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+} */
 
 @media(min-width:1500px) {
   .img-clip {

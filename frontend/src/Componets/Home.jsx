@@ -7,12 +7,13 @@ import "../index.css"
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
-
+import Slider from "react-slick";
 import SlickSliderComponent from './SlickSliderComponent';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Product } from '../Redux/action';
 import { useLayoutEffect } from 'react';
+
 
 
 
@@ -48,13 +49,9 @@ function Home() {
     });
   }, []);
   const products = useSelector(state => state.Products.data.data || [])
-  console.log(products);
 
   const handleEye = (product) => {
-
     seteye(product)
-
-
     setopen(true)
 
   }
@@ -67,7 +64,42 @@ function Home() {
 
   useLayoutEffect(() => {
     dispatch(Product())
-  }, [dispatch])
+  }, [])
+
+  const settings1 = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    cssEase: "cubic-bezier(0.645, 0.045, 0.355, 1)", // Smooth easing function
+    swipeToSlide: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
 
   return (
     <>
@@ -383,7 +415,7 @@ function Home() {
           <div className='h-[auto] 2xl:h-[80%] xl:h-[88%] lg:h-[90%] relative'>
             <img src="./category.jpg" alt="" className='relative h-full rounded-3xl img-clip object-cover' />
             <img src="./top-shape.png" className='right-0 absolute 2xl:top-[71%] xl:top-[64%] xl:right-[-1px] lg:top-[61%] top-[65%]' alt="" />
-            <img src="./top-shape.png" className='2xl:right-[276px] xl:right-[293px] lg:right-[235px] md:right-[54px] sm:right-[69px]  absolute bottom-0 ' alt="" />
+            <img src="./top-shape.png" className='2xl:right-[350px] xl:right-[293px] lg:right-[235px] md:right-[54px] sm:right-[69px]  absolute bottom-0 ' alt="" />
 
 
             <span className='p-1 px-4 bg-[rgba(0,0,0,0.86)] rounded-full text-white opacity-80 absolute top-5 right-5'>
@@ -475,7 +507,7 @@ function Home() {
               <span className='text-text px-2' >
                 Days
               </span>
-              18: 
+              18:
               {formatTime()}
             </div>
           </div>
@@ -483,61 +515,69 @@ function Home() {
         {
           products.length === 0 ? ("0") :
             <>
-              <div className='flex mt-5 '>
+              <div className='mt-5 overflow-hidden'>
+                <Slider {...settings1}>
+                  {products.map((el) => (
+                    <div key={el.id} className="px-2"> 
+                      <div className="relative group card w-[80%] h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
 
-                {
-                  products.map((el) => (
-                    <div
-                      key={el.id}
-                      className="relative card w-[18rem] flex flex-col justify-between rounded-2xl  overflow-hidden shadow-md border  hover:shadow-lg transition-shadow duration-300"
-                    >
+                        {/* Image Container */}
+                        <div className="h-[240px] w-full relative overflow-hidden">
+                          <span className="absolute z-10 top-3 left-2 group-hover:hidden" style={{ writingMode: "vertical-rl", textOrientation: "upright" }}>
+                            {el.tag}
+                          </span>
 
-
-                      <div className="h-[240px] w-full group relative">
-                        <span className="absolute z-10 top-3 left-2 group-hover:hidden  " style={{ writingMode: "vertical-rl", textOrientation: "upright" }}>{el.tag}</span>
-                        <div className='h-full w-full relative duration-700 '>
-
-                          <img
-                            src={el.image[0]}
-                            alt={el.name}
-                            className="h-full w-full object-cover border group-hover:hidden "
-                          />
-                          <img
-                            src={el.image[1]}
-                            alt={`${el.name} back`}
-                            className="h-full w-full object-cover hidden group-hover:block absolute top-0"
-                          />
-                        </div>
-
-                        <div className='hidden group-hover:block absolute bottom-0 right-16 '>
-                          <i className="fa-solid fa-heart p-2 rounded-lg shadow-md border bg-white hover:bg-[#6c7fd8] m-1"></i>
-                          
-                          <i className="bg-white hover:bg-[#6c7fd8] fa-solid fa-eye p-2 rounded-lg shadow-md border m-1" onClick={() => handleEye(el)}></i>
-                          <i className="bg-white fa-solid fa-recycle p-2 rounded-lg shadow-md border hover:bg-[#6c7fd8] m-1"></i>
-                          <i className="bg-white fa-solid fa-bag-shopping p-2 rounded-lg shadow-md border hover:bg-[#6c7fd8] m-1"></i></div>
-                      </div>
+                          {/* Images with smooth transition */}
+                          <div className='relative h-full w-full'>
+                            <img
+                              src={el.image[0]}
+                              alt={el.name}
+                              className="absolute h-full w-full object-cover border transition-opacity duration-500 group-hover:opacity-0"
+                            />
+                            <img
+                              src={el.image[1]}
+                              alt={`${el.name} back`}
+                              className="absolute h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            />
+                          </div>
 
 
-                      <div className="p-3 flex flex-col gap-2">
-                        <div className="flex items-center justify-between">
-                          <h2 className="text-lg font-semibold text-gray-800">{el.name}</h2>
-                          <div className="text-yellow-500 text-sm">
-                            {'★'.repeat(Math.floor(el.rating || 0))}
+                          <div className="hidden group-hover:block absolute bottom-0 right-24">
+                            <i className="fa-solid fa-heart p-2 rounded-lg shadow-md border bg-white hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
+                            <i
+                              className="bg-white hover:bg-[#6c7fd8] hover:border-[#6c7fd8] fa-solid fa-eye p-2 rounded-lg shadow-md border m-1 hover:text-white"
+                              onClick={() => handleEye(el)}
+                            ></i>
+                            <i className="bg-white fa-solid fa-recycle p-2 rounded-lg shadow-md border hover:border-[#6c7fd8] hover:bg-[#6c7fd8] hover:text-white m-1"></i>
+                            <i className="bg-white fa-solid fa-bag-shopping p-2 rounded-lg shadow-md border hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
                           </div>
                         </div>
-                        <p className="text-sm text-gray-600 ">{el.des}</p>
 
-                        <div className="flex justify-between items-center mt-2">
-                          <span className="text-gray-800 font-bold text-base">
-                            ${el.price}
-                            <strike className="text-sm text-gray-400 ms-2">${el.strike}</strike>
-                          </span>
-                          <span className="text-sm text-gray-500">{el.weight}</span>
+                        {/* Product Info */}
+                        <div className="p-4 flex flex-col gap-2">
+                          <div className="flex justify-between items-center">
+                            <h3 className="text-lg font-semibold truncate">{el.name}</h3>
+                            <div className="text-yellow-500 text-sm">
+                              {'★'.repeat(Math.floor(el.rating || 0))}
+                            </div>
+                          </div>
+                          <p className="text-sm text-gray-600 line-clamp-2">{el.des}</p>
+                          <div className="flex justify-between items-center mt-2">
+                            <span className="text-gray-800 font-bold">
+                              ${el.price}
+                              {el.strike && (
+                                <span className="text-sm text-gray-400 ms-2 line-through">
+                                  ${el.strike}
+                                </span>
+                              )}
+                            </span>
+                            <span className="text-sm text-gray-500">{el.weight}</span>
+                          </div>
                         </div>
                       </div>
                     </div>
                   ))}
-
+                </Slider>
               </div>
 
 
@@ -554,7 +594,7 @@ function Home() {
         <>
           <>
 
-            <div className="fixed inset-0 bg-red-700 opacity-40 z-50"></div>
+            <div className="fixed inset-0 bg-black opacity-40 z-50"></div>
 
             <div className="transition-all duration-700 fixed top-0 left-0 h-screen w-full z-50 flex justify-center items-center overflow-auto p-4 animate-fade-in">
               <div className="grid sm:grid-cols-2 grid-cols-1 bg-white rounded-xl shadow-2xl overflow-auto w-full max-w-4xl max-h-[95vh] relative ">
@@ -632,8 +672,6 @@ function Home() {
         </>
 
       }
-
-
 
     </>
   )
