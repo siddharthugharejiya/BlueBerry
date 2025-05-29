@@ -23,6 +23,7 @@ function Home() {
   const [eye, seteye] = useState([])
   const [open, setopen] = useState(false)
   const [seconds, setSeconds] = useState(60)
+  const [activeTab, setactiveTab] = useState("overview")
 
   useEffect(() => {
     if (seconds <= 0) return;
@@ -410,7 +411,7 @@ function Home() {
 
       </div>
 
-      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 2xl:border-red-800 lg:grid-cols-2 grid-cols-1 lg:h-[170vh] md:h-[160vh] sm:h-[160vh] h-screen relative overflow-hidden'>
+      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 lg:h-[170vh] md:h-auto sm:h-[160vh] h-[60vh] relative overflow-hidden'>
         <div className='2xl:h-[90%] lg:h-[96%] h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
           <div className='h-[auto] 2xl:h-[80%] xl:h-[88%] lg:h-[90%] relative'>
             <img src="./category.jpg" alt="" className='relative h-full rounded-3xl img-clip object-cover' />
@@ -495,9 +496,9 @@ function Home() {
         </div>
       </div>
 
-      <div className="h-screen">
-        <div className="grid 2xl:grid-cols-2 xl:grid-cols-2">
-          <div className=''>
+      <div className=" h-auto w-auto">
+        <div className="grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-2 ">
+          <div >
             <b className='font-bold text-2xl'>Day of the <span className='text-them'> Deal </span> </b>
             <p className='text-text'>Don't wait. The time will never be just right.</p>
           </div>
@@ -542,7 +543,7 @@ function Home() {
                           </div>
 
 
-                          <div className="hidden group-hover:block absolute bottom-0 right-24">
+                          <div className="hidden group-hover:block absolute bottom-0 right-[4rem]">
                             <i className="fa-solid fa-heart p-2 rounded-lg shadow-md border bg-white hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
                             <i
                               className="bg-white hover:bg-[#6c7fd8] hover:border-[#6c7fd8] fa-solid fa-eye p-2 rounded-lg shadow-md border m-1 hover:text-white"
@@ -585,9 +586,9 @@ function Home() {
             </>
         }
 
-        <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 h-auto justify-center items-start w-full'>
+        <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 h-auto justify-center items-start w-ful gap-5 mt-4'>
           <div className='h-full w-full flex justify-center'>
-            <div className="2xl:w-[85%] xl:w-[85%]  relative grid grid-cols-1 md:grid-cols-2 group justify-center items-center bg-[#F4DAB4] rounded-2xl overflow-hidden">
+            <div className="2xl:w-[85%] xl:w-[85%] w-full  relative grid grid-cols-1 md:grid-cols-2 group justify-center items-center bg-[#F4DAB4] rounded-2xl overflow-hidden">
               <div className='absolute top-0 left-1/2 -translate-x-[40%] h-full w-[60%] bg-[#FBF2E5] transform skew-x-[-30deg] z-0 transition-all duration-500 ease-in-out group-hover:w-[70%]'></div>
               <div className="relative z-10 flex justify-end items-start p-6">
                 <img src="./one.png" alt="" className='h-[280px] w-[280px] object-cover' />
@@ -603,9 +604,9 @@ function Home() {
           </div>
 
           <div className='h-full w-full flex justify-center'>
-            <div className="w-[85%] relative grid grid-cols-1 md:grid-cols-2 group justify-center items-center bg-[#FFC6CE] rounded-2xl overflow-hidden">
+            <div className="2xl:w-[85%] xl:w-[85%] w-full relative grid grid-cols-1 md:grid-cols-2 group justify-center items-center bg-[#FFC6CE] rounded-2xl overflow-hidden">
               <div className='absolute top-0 left-1/2 -translate-x-[40%] h-full w-[60%] bg-[#FBF2E5] transform skew-x-[-30deg] z-0 transition-all duration-500 ease-in-out group-hover:w-[70%]'></div>
-              <div className="relative z-10 flex justify-end items-start p-6">
+              <div className="relative z-10 flex justify-end items-start sm:p-6 p-6">
                 <img src="./two.png" alt="" className='h-[280px] w-[280px] object-cover' />
               </div>
 
@@ -708,6 +709,48 @@ function Home() {
         </>
 
       }
+
+      <div className="h-screen sm:h-[90vh] bg-[url('/banner.jpg')] bg-center bg-no-repeat bg-cover mt-4 relative">
+        <div className="absolute bottom-0 right-4 sm:right-10 md:right-20 lg:right-28 xl:right-40 2xl:right-60 w-[90%] sm:w-[370px]">
+          <div className="bg-white p-5 rounded-t-3xl relative h-[245px] ">
+            <h1 className="text-[#6c7fd8] font-bold text-xl">25% Off</h1>
+            <p className="text-2xl sm:text-3xl font-semibold">Fresh & Organic vegetables</p>
+
+            <button className="mt-4 px-6 py-3 border border-black hover:bg-[#6c7fd8] hover:border-[#6c7fd8] hover:text-white transition duration-500 rounded-xl w-fit">
+              Shop Now
+            </button>
+
+
+            <img src="/left-shape.png" alt="Left Decoration" className="absolute bottom-0 left-[-20px] lg:left-[-38px] md:left-[-38px] sm:left-[-29px] w-[40px] " />
+            <img src="/right-shape.png" alt="Right Decoration" className="absolute bottom-0 right-[-20px]  lg:right-[-38px] md:right-[-38px] sm:right-[-29px] w-[40px] " />
+          </div>
+        </div>
+      </div>
+
+      <div className='h-screen'>
+        <div className="grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-2 ">
+          <div >
+            <b className='font-bold text-2xl'>New <span className='text-them'> Arrivals </span> </b>
+            <p className='text-text'>Shop online for new arrivals and get free shipping!</p>
+          </div>
+          <div className='flex justify-end items-center me-1'>
+            <div>
+              <button className='px-3 relative' onClick={() => setactiveTab("All")}>All <span className=' absolute top-[5px] right-0 h-[13px] border-r-2 border-[rgb(108_127_216)] transform skew-x-[-22deg]'></span></button>
+              <button className='px-3 relative' onClick={() => setactiveTab("Snack")}>Snack & Spices <span className=' absolute top-[5px] right-0 h-[13px] border-r-2 border-[rgb(108_127_216)] transform skew-x-[-22deg]'></span></button>
+              <button className='px-3 relative' onClick={() => setactiveTab("Fruits")}>Fruits <span className=' absolute top-[5px] right-0 h-[13px] border-r-2 border-[rgb(108_127_216)] transform skew-x-[-22deg]'></span></button>
+              <button className='px-3 relative' onClick={() => setactiveTab("veg")}>Vegetables </button>
+            </div>
+          </div>
+        </div>
+
+        {
+          activeTab === "All" && <h1>All</h1>
+
+        }
+        {activeTab === "Snack" && <h1>Snack</h1>}
+        {activeTab === "Fruits" && <h1>Fruits</h1>}
+        {activeTab === "veg" && <h1>vegetables</h1>}
+      </div>
 
     </>
   )

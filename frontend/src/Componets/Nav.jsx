@@ -51,7 +51,7 @@ function Nav() {
                   </svg>
                 </button>
 
-                {/* Dropdown */}
+
                 <div className="absolute hidden group-hover:block bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 mt-2 z-10">
                   <ul className="py-1 text-sm text-gray-700">
                     {["Mockups", "Templates", "Design", "Logos"].map((item) => (
@@ -82,7 +82,7 @@ function Nav() {
           </form>
         </div>
 
-        {/* Icons */}
+
         <div className="w-full sm:w-fit flex justify-center m-auto">
           <div className="flex sm:flex-row  flex-col  justify-center  mt-2 gap-5 md:mt-0 flex-wrap ">
             {[
@@ -97,11 +97,13 @@ function Nav() {
                   <b className="text-gray-600 text-sm">{subtitle}</b>
                 </div>
                 <div className="absolute left-0 top-10 w-40 bg-white border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform group-hover:translate-y-2 z-50">
-                  {["Item 1", "Item 2", "Item 3"].map((item) => (
-                    <Link key={item} to="/" className="block px-4 py-2 hover:bg-gray-100">
-                      {item}
-                    </Link>
-                  ))}
+                  <Link to="/register" className="block px-4 py-2 hover:bg-gray-100">
+                    register
+                  </Link>
+                  <Link to="/login" className="block px-4 py-2 hover:bg-gray-100">
+                    Login
+                  </Link>
+
 
                 </div>
 
@@ -113,7 +115,6 @@ function Nav() {
         </div>
       </nav>
 
-      {/* Second Navbar */}
       <div className="md:flex flex-col md:flex-row justify-between py-3 border-b hidden ">
         <ul className="flex flex-wrap space-x-6 items-center">
           {["Home", "Category", "Product", "Pages", "Blog", "Offers"].map((menu) => (
@@ -158,7 +159,6 @@ function Nav() {
       </div>
 
 
-      {/* Offcanvas Menu */}
       <div
         className={`lg:hidden fixed bg-white shadow-2xl transform duration-700 ease-in-out z-50 h-full top-0 left-0 w-64 ${state ? "translate-x-0" : "-translate-x-full"
           }`}

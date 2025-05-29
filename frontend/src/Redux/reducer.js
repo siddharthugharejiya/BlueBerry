@@ -1,5 +1,4 @@
-import { GET } from "./actionType"
-
+import { GET,  Posted } from "./actionType"
 
 const Product = {
     data : []
