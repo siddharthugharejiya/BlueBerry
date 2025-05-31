@@ -49,6 +49,7 @@ export const Product = () => {
 }
 
 
+
 export const product_add_action = (state) => {
     const token = localStorage.getItem("token");
 
@@ -65,3 +66,32 @@ export const product_add_action = (state) => {
             console.error("❌ Error adding product:", err.response?.data || err.message);
         });
 };
+export const Product_del = (id) => async (dispatch) =>
+    await fetch(`http://localhost:9595/del/${id}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+            console.error("Delete error:", err);
+        });
+
+export const Product_edite_get = (id) => async (dispatch) => {
+
+    fetch(`http://localhost:9595/edite/${id}`, {
+        method: "GET",
+    })
+        .then(res => res.json())
+        .then(res => {
+            dispatch({
+                type : "GETTING_PRODUCT",
+                payload : res
+            })
+
+        })
+
+}

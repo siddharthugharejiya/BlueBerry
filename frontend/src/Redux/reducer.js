@@ -1,18 +1,31 @@
-import { GET,  Posted } from "./actionType"
+import { GET, Posted } from "./actionType"
 
 const Product = {
-    data : []
+    data: []
 }
 
-export const Product_reducer = (state = Product , {type,payload}) =>{
-    switch(type)
-    {
+export const Product_reducer = (state = Product, { type, payload }) => {
+    switch (type) {
         case GET:
-        return {
-            ...state,
-            data : payload
-        }
-        default : return state
+            return {
+                ...state,
+                data: payload
+            }
+        default: return state
     }
 
+}
+const p_e_g = {
+    data: []
+}
+export const Product_Editing_Getted = (state = p_e_g, { type, payload }) => {
+    switch (type) {
+        case "GETTING_PRODUCT":
+            return {
+                ...state,
+                data: payload
+
+            }
+        default: return state
+    }
 }

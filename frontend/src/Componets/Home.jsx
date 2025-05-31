@@ -1,5 +1,6 @@
 
 import 'animate.css';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Nav from './Nav';
@@ -544,13 +545,13 @@ function Home() {
 
 
                           <div className="hidden group-hover:block absolute bottom-0 right-[4rem]">
-                            <i className="fa-solid fa-heart p-2 rounded-lg shadow-md border bg-white hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
+                            <i className="fa-regular  fa-heart p-2 text-[#777] rounded-lg shadow-md border bg-white hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
                             <i
-                              className="bg-white hover:bg-[#6c7fd8] hover:border-[#6c7fd8] fa-solid fa-eye p-2 rounded-lg shadow-md border m-1 hover:text-white"
+                              className="bg-white text-[#777] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] fa-regular fa-eye p-2 rounded-lg shadow-md border m-1 hover:text-white"
                               onClick={() => handleEye(el)}
                             ></i>
-                            <i className="bg-white fa-solid fa-recycle p-2 rounded-lg shadow-md border hover:border-[#6c7fd8] hover:bg-[#6c7fd8] hover:text-white m-1"></i>
-                            <i className="bg-white fa-solid fa-bag-shopping p-2 rounded-lg shadow-md border hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
+                            <i className="bg-white text-[#777] fa-solid fa-recycle p-2 rounded-lg shadow-md border hover:border-[#6c7fd8] hover:bg-[#6c7fd8] hover:text-white m-1"></i>
+                            <i className="bg-white text-[#777] fa-solid fa-bag-shopping p-2 rounded-lg shadow-md border hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
                           </div>
                         </div>
 
