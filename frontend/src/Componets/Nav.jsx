@@ -26,6 +26,16 @@ function Nav() {
   };
 
 
+  const handleLogOut = () => {
+    localStorage.removeItem("UserRole")
+    localStorage.removeItem("Token")
+    localStorage.removeItem("token")
+    localStorage.removeItem("login")
+    localStorage.removeItem("UserId")
+  }
+
+
+
 
   return (
     <div className="container mx-auto ">
@@ -103,6 +113,13 @@ function Nav() {
                   <Link to="/login" className="block px-4 py-2 hover:bg-gray-100">
                     Login
                   </Link>
+                  <Link onClick={handleLogOut} className="block px-4 py-2 hover:bg-gray-100">
+                    LoginOut
+                  </Link>
+                  {/* {
+                    UserRole === "admin" && <Link to="/admin" className="block px-4 py-2 hover:bg-gray-100">
+                      AdminPenal
+                    </Link>} */}
 
 
                 </div>

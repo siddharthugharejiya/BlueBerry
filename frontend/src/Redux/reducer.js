@@ -29,3 +29,18 @@ export const Product_Editing_Getted = (state = p_e_g, { type, payload }) => {
         default: return state
     }
 }
+
+// const e_e_g = {
+//     data: []
+// }
+// export const Product_Editing_Edited = (state = e_e_g, { type, payload }) => {
+//     switch (type) {
+//         case "Edite_Pro":
+//             return {
+//                 ...state,
+//                 data: payload
+
+//             }
+//         default: return state
+//     }
+// }

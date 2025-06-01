@@ -41,10 +41,19 @@ export const edite_get = async (req, res) => {
         const { id } = req.params
 
         const data = await ProductModel.findById(id)
+        console.log(data);
+
         res.status(200).json({ message: data })
     } catch (error) {
         return res.status(500).send({ message: "Something went wrong", error: err });
     }
+
+}
+
+export const edite_post = async (req, res) => {
+    const { id } = req.params
+    const message = await ProductModel.findByIdAndUpdate(id, req.body)
+    res.status(200).json({ message: message })
 
 }
 
