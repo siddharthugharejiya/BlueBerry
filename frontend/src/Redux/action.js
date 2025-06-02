@@ -2,6 +2,8 @@ import axios from "axios"
 import { GET, Posted } from "./actionType"
 import { jwtDecode } from "jwt-decode";
 
+
+// register
 export const register_action = (state, nav) => async (dispatch) => {
     try {
         await axios.post("http://localhost:9595/signup", state);
@@ -12,13 +14,16 @@ export const register_action = (state, nav) => async (dispatch) => {
     }
 };
 
+// login
 export const login_action = (state, nav) => async (dispatch) => {
     try {
         const res = await axios.post("http://localhost:9595/login", state);
-        const token = res.data.token || res.data.Token; 
+        const token = res.data.token || res.data.Token;
         const decoded = jwtDecode(token);
         console.log(decoded);
-        console.log(decoded.userRole);
+        console.log(decoded.userRole)
+        localStorage.setItem("Token", token)
+        localStorage.setItem("UserRole", decoded.userRole)
         if (decoded.userRole == "admin") {
             nav("/admin");
         } else if (decoded.userRole == "user") {
@@ -35,6 +40,7 @@ export const login_action = (state, nav) => async (dispatch) => {
     }
 };
 
+//Product Get
 export const Product = () => {
     return async (dispatch) => {
         try {
@@ -48,9 +54,9 @@ export const Product = () => {
         }
     }
 };
-
+//Product Post
 export const product_add_action = (state) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("Token");
     axios.post("http://localhost:9595/add", state, {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -58,13 +64,17 @@ export const product_add_action = (state) => {
         },
     })
         .then(res => {
+            dispatch({
+                type: "Posted_Product",
+                payload: res.data
+            })
             console.log("✅ Product added successfully:", res.data);
         })
         .catch(err => {
             console.error("❌ Error adding product:", err.response?.data || err.message);
         });
 };
-
+//Product Delete
 export const Product_del = (id) => async (dispatch) => {
     try {
         const res = await axios.post(`http://localhost:9595/del/${id}`, {}, {
@@ -77,7 +87,7 @@ export const Product_del = (id) => async (dispatch) => {
         console.error("Delete error:", err);
     }
 };
-
+//Product Edite_Get_product
 export const Product_edite_get = (id) => async (dispatch) => {
     try {
         const res = await axios.get(`http://localhost:9595/edite/${id}`);
@@ -90,7 +100,7 @@ export const Product_edite_get = (id) => async (dispatch) => {
         console.error("Error getting product for edit:", err);
     }
 };
-
+//Product Edite_Post_product
 export const product_edite_action = (id, state) => async (dispatch) => {
     try {
         console.log(id);
@@ -109,3 +119,19 @@ export const product_edite_action = (id, state) => async (dispatch) => {
         console.error("Error while editing product:", err);
     }
 };
+
+//Product Filter
+export const Prodcuer_Filter_Action = (category) => (dispatch) => {
+    const url = category === "All"? `http://localhost:9595/product`
+            : `http://localhost:9595/product?category=${category}`;
+
+    fetch(url)
+        .then((res) => res.json())
+        .then((res) => {
+            dispatch({
+                type: "FILTER_PRODUCTS_BY_CATEGORY",
+                payload: res.data, 
+            });
+        })
+        .catch((err) => console.error("Error fetching category:", err));
+}

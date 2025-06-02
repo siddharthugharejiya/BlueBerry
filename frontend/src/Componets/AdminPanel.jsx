@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Product, Product_del, Product_edite_get } from '../Redux/action';
 import { useNavigate } from 'react-router-dom';
+import Product_add from './Product_add';
 
 const AdminPanel = () => {
   const dispatch = useDispatch()
@@ -17,13 +18,13 @@ const AdminPanel = () => {
     dispatch(Product_del(el))
 
   }
- const nav = useNavigate()
-    const handleEdite = (el) => {
-          // nav("/product")
-   console.log(el);
-   dispatch(Product_edite_get(el))
-   nav("/product")
-   
+  const nav = useNavigate()
+  const handleEdite = (el) => {
+    // nav("/product")
+    console.log(el);
+    dispatch(Product_edite_get(el))
+    nav("/product")
+
   }
   useEffect(() => {
     dispatch(Product())
@@ -41,6 +42,9 @@ const AdminPanel = () => {
           </div>
           <div>
             <button onClick={() => handleClick("prod")}>Product</button>
+          </div>
+          <div>
+            <button onClick={() => handleClick("add")}>Product Add</button>
           </div>
         </aside>
         <div>
@@ -118,6 +122,11 @@ const AdminPanel = () => {
                   ))}
 
 
+              </>
+            }
+            {
+              state === "add" && <>
+                <Product_add />
               </>
             }
           </div>

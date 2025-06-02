@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { FaCity, FaUser, FaStar, FaShoppingCart } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { FaUser, FaStar, FaShoppingCart } from "react-icons/fa";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
 function Nav() {
   const [state, setstate] = useState(false);
+  const nav = useNavigate()
   const [offcanvas, setoffcanvas] = useState(false)
   useEffect(() => {
     const interval = setInterval(() => {
@@ -32,7 +33,18 @@ function Nav() {
     localStorage.removeItem("token")
     localStorage.removeItem("login")
     localStorage.removeItem("UserId")
+
+    nav("/login")
   }
+  const [UserRole, setUserRole] = useState(null);
+
+  useEffect(() => {
+    const role = localStorage.getItem("UserRole");
+    console.log(role);
+
+    setUserRole(role);
+  }, []);
+
 
 
 
@@ -113,13 +125,18 @@ function Nav() {
                   <Link to="/login" className="block px-4 py-2 hover:bg-gray-100">
                     Login
                   </Link>
-                  <Link onClick={handleLogOut} className="block px-4 py-2 hover:bg-gray-100">
-                    LoginOut
-                  </Link>
-                  {/* {
-                    UserRole === "admin" && <Link to="/admin" className="block px-4 py-2 hover:bg-gray-100">
-                      AdminPenal
-                    </Link>} */}
+                  {
+                    UserRole === "admin" && <>
+                      <Link to="/admin" className="block px-4 py-2 hover:bg-gray-100">
+                        AdminPanel
+                      </Link>
+
+                    </>
+                  }
+
+                  <span onClick={handleLogOut} className="block px-4 py-2 hover:bg-gray-100">Login out</span>
+
+                
 
 
                 </div>
