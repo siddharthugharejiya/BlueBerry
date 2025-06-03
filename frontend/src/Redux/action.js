@@ -122,15 +122,18 @@ export const product_edite_action = (id, state) => async (dispatch) => {
 
 //Product Filter
 export const Prodcuer_Filter_Action = (category) => (dispatch) => {
-    const url = category === "All"? `http://localhost:9595/product`
-            : `http://localhost:9595/product?category=${category}`;
+    console.log(category);
+    
+    const url = category === "All" ?
+           `http://localhost:9595/product`
+        : `http://localhost:9595/product?category=${category}`;
 
     fetch(url)
         .then((res) => res.json())
         .then((res) => {
             dispatch({
                 type: "FILTER_PRODUCTS_BY_CATEGORY",
-                payload: res.data, 
+                payload: res.data,
             });
         })
         .catch((err) => console.error("Error fetching category:", err));

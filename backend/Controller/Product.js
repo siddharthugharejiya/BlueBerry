@@ -17,14 +17,14 @@ export const AddProduct = async (req, res) => {
 export const All_product = async (req, res) => {
     try {
         const { category } = req.query
-        console.log(category) 
+        // console.log(category)
         if (category) {
-          const  data = await ProductModel.find({ category: category });
+            const data = await ProductModel.find({ category: category });
             console.log(data);
             return res.send({ message: "Products Filtered", data: data });
         }
         else {
-            const data = await ProductModel.find()
+            const data = await ProductModel.find().limit(8)
             return res.send({ message: "Products fetched", data: data });
         }
     } catch (err) {

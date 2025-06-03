@@ -24,7 +24,7 @@ function Home() {
   const [eye, seteye] = useState([])
   const [open, setopen] = useState(false)
   const [seconds, setSeconds] = useState(60)
-  const [activeTab, setactiveTab] = useState("all")
+  const [activeTab, setactiveTab] = useState("All")
 
   useEffect(() => {
     if (seconds <= 0) return;
@@ -62,14 +62,14 @@ function Home() {
   }
 
   const filtered = useSelector(state => state.Product_Filtered.data || [])
-  // console.log(filtered);
+  console.log(filtered);
 
 
 
 
 
   const HandleCategoryes = (category) => {
-    // console.log(category);
+    console.log(category);
 
     dispatch(Prodcuer_Filter_Action(category))
     setactiveTab(category)
@@ -77,6 +77,7 @@ function Home() {
 
   useLayoutEffect(() => {
     dispatch(Product())
+    dispatch(Prodcuer_Filter_Action("All"))
   }, [])
 
   const settings1 = {
@@ -726,42 +727,39 @@ function Home() {
           <div className="bg-white p-5 rounded-t-3xl relative h-[245px] ">
             <h1 className="text-[#6c7fd8] font-bold text-xl">25% Off</h1>
             <p className="text-2xl sm:text-3xl font-semibold">Fresh & Organic vegetables</p>
-
             <button className="mt-4 px-6 py-3 border border-black hover:bg-[#6c7fd8] hover:border-[#6c7fd8] hover:text-white transition duration-500 rounded-xl w-fit">
               Shop Now
             </button>
-
-
             <img src="/left-shape.png" alt="Left Decoration" className="absolute bottom-0 left-[-20px] lg:left-[-38px] md:left-[-38px] sm:left-[-29px] w-[40px] " />
             <img src="/right-shape.png" alt="Right Decoration" className="absolute bottom-0 right-[-20px]  lg:right-[-38px] md:right-[-38px] sm:right-[-29px] w-[40px] " />
           </div>
         </div>
       </div>
 
-      <div className='h-screen'>
-        <div className="grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-2 ">
-          <div>
+      <div className='h-auto sm:p-9 p-0 mt-5'>
+        <div className="grid 2xl:grid-cols-2 gap-4 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1  grid-cols-1  ">
+          <div className='md:text-start  text-center'>
             <b className='font-bold text-2xl'>New <span className='text-them'> Arrivals </span> </b>
             <p className='text-text'>Shop online for new arrivals and get free shipping!</p>
           </div>
-          <div className='flex justify-end items-center me-1'>
+          <div className='flex md:justify-end justify-center items-center me-1 text-center'>
             <div>
-              <button className='px-3 relative' onClick={() => HandleCategoryes("All")}>All <span className=' absolute top-[5px] right-0 h-[13px] border-r-2 border-[rgb(108_127_216)] transform skew-x-[-22deg]'></span></button>
-              <button className='px-3 relative' onClick={() => HandleCategoryes("snack")}>Snack & Spices <span className=' absolute top-[5px] right-0 h-[13px] border-r-2 border-[rgb(108_127_216)] transform skew-x-[-22deg]'></span></button>
-              <button className='px-3 relative' onClick={() => HandleCategoryes("fruit")}>Fruits <span className=' absolute top-[5px] right-0 h-[13px] border-r-2 border-[rgb(108_127_216)] transform skew-x-[-22deg]'></span></button>
-              <button className='px-3 relative' onClick={() => HandleCategoryes("veg")}>Vegetables </button>
+              <button className={`px-3 text-xl relative ${activeTab === "All" && "text-them"}`} onClick={() => HandleCategoryes("All")}>All <span className=' absolute top-[8px] right-0 h-[13px] border-r-2 border-[rgb(108_127_216)] transform skew-x-[-22deg]'></span></button>
+              <button className={`px-3 text-xl relative ${activeTab === "snack" && "text-them"}`} onClick={() => HandleCategoryes("snack")}>Snack & Spices <span className=' absolute top-[8px] right-0 h-[13px] border-r-2 border-[rgb(108_127_216)] transform skew-x-[-22deg]'></span></button>
+              <button className={`px-3 text-xl relative ${activeTab === "fruit" && "text-them"}`} onClick={() => HandleCategoryes("fruit")}>Fruits <span className=' absolute top-[8px] right-0 h-[13px] border-r-2 border-[rgb(108_127_216)] transform skew-x-[-22deg]'></span></button>
+              <button className={`px-3 text-xl relative ${activeTab === "vegetable" && "text-them"}`} onClick={() => HandleCategoryes("vegetable")}>Vegetables </button>
             </div>
           </div>
         </div>
-        <div className=''>
+        <div className='flex'>
           {
             activeTab === "All" && <>
-              <div>
-                <div className='flex h-auto w-full flex-wrap gap-3'>
+              <div className='flex'>
+                <div className='flex flex-wrap gap-5 lg:justify-between md:justify-between justify-evenly items-center mt-2 mx-auto'>
                   {
                     filtered.map((el) => (
                       <div key={el.id} >
-                        <div className="relative group card w-[18rem] h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
+                        <div className="relative group card sm:w-[19rem] w-[14rem] h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
 
                           <div className="h-[240px] w-full relative overflow-hidden">
                             <span
@@ -786,7 +784,7 @@ function Home() {
                             </div>
 
 
-                            <div className="hidden group-hover:block absolute bottom-0 right-[4rem]">
+                            <div className="hidden group-hover:block absolute bottom-0 sm:right-[4rem] right-[2rem]">
                               <i className="fa-regular fa-heart p-2 text-[#777] rounded-lg shadow-md border bg-white hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
                               <i
                                 className="bg-white text-[#777] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] fa-regular fa-eye p-2 rounded-lg shadow-md border m-1 hover:text-white"
@@ -824,155 +822,283 @@ function Home() {
                     )
                   }
                 </div>
+
+
               </div>
             </>
 
           }
           {
             activeTab === "snack" &&
-            <div className='flex h-auto w-full flex-wrap gap-3'>
-              {
-                filtered.map((el) => (
-                  <div key={el.id} >
-                    <div className="relative group card w-[18rem] h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
+            <div className='flex'>
+              <div className='flex flex-wrap gap-5 lg:justify-between md:justify-between justify-evenly items-center mt-2 mx-auto'>
+                {
+                  filtered.map((el) => (
+                    <div key={el.id} >
+                      <div className="relative group card sm:w-[19rem] w-[14rem] h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
 
-                      <div className="h-[240px] w-full relative overflow-hidden">
-                        <span
-                          className="absolute z-10 top-3 left-2 group-hover:hidden"
-                          style={{ writingMode: "vertical-rl", textOrientation: "upright" }}
-                        >
-                          {el.tag}
-                        </span>
-
-
-                        <div className="relative h-full w-full">
-                          <img
-                            src={el.image[0]}
-                            alt={el.name}
-                            className="absolute h-full w-full object-cover border transition-opacity duration-500 group-hover:opacity-0"
-                          />
-                          <img
-                            src={el.image[1]}
-                            alt={`${el.name} back`}
-                            className="absolute h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                          />
-                        </div>
+                        <div className="h-[240px] w-full relative overflow-hidden">
+                          <span
+                            className="absolute z-10 top-3 left-2 group-hover:hidden"
+                            style={{ writingMode: "vertical-rl", textOrientation: "upright" }}
+                          >
+                            {el.tag}
+                          </span>
 
 
-                        <div className="hidden group-hover:block absolute bottom-0 right-[4rem]">
-                          <i className="fa-regular fa-heart p-2 text-[#777] rounded-lg shadow-md border bg-white hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
-                          <i
-                            className="bg-white text-[#777] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] fa-regular fa-eye p-2 rounded-lg shadow-md border m-1 hover:text-white"
-                            onClick={() => handleEye(el)}
-                          ></i>
-                          <i className="bg-white text-[#777] fa-solid fa-recycle p-2 rounded-lg shadow-md border hover:border-[#6c7fd8] hover:bg-[#6c7fd8] hover:text-white m-1"></i>
-                          <i className="bg-white text-[#777] fa-solid fa-bag-shopping p-2 rounded-lg shadow-md border hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
-                        </div>
-                      </div>
+                          <div className="relative h-full w-full">
+                            <img
+                              src={el.image[0]}
+                              alt={el.name}
+                              className="absolute h-full w-full object-cover border transition-opacity duration-500 group-hover:opacity-0"
+                            />
+                            <img
+                              src={el.image[1]}
+                              alt={`${el.name} back`}
+                              className="absolute h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            />
+                          </div>
 
 
-                      <div className="p-4 flex flex-col gap-2">
-                        <div className="flex justify-between items-center">
-                          <h3 className="text-lg font-semibold truncate">{el.name}</h3>
-                          <div className="text-yellow-500 text-sm">
-                            {"★".repeat(Math.floor(el.rating || 0))}
+                          <div className="hidden group-hover:block absolute bottom-0 sm:right-[4rem] right-[2rem]">
+                            <i className="fa-regular fa-heart p-2 text-[#777] rounded-lg shadow-md border bg-white hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
+                            <i
+                              className="bg-white text-[#777] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] fa-regular fa-eye p-2 rounded-lg shadow-md border m-1 hover:text-white"
+                              onClick={() => handleEye(el)}
+                            ></i>
+                            <i className="bg-white text-[#777] fa-solid fa-recycle p-2 rounded-lg shadow-md border hover:border-[#6c7fd8] hover:bg-[#6c7fd8] hover:text-white m-1"></i>
+                            <i className="bg-white text-[#777] fa-solid fa-bag-shopping p-2 rounded-lg shadow-md border hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
                           </div>
                         </div>
-                        <p className="text-sm text-gray-600 line-clamp-2">{el.des}</p>
-                        <div className="flex justify-between items-center mt-2">
-                          <span className="text-gray-800 font-bold">
-                            ${el.price}
-                            {el.strike && (
-                              <span className="text-sm text-gray-400 ms-2 line-through">
-                                ${el.strike}
-                              </span>
-                            )}
-                          </span>
-                          <span className="text-sm text-gray-500">{el.weight}</span>
+
+
+                        <div className="p-4 flex flex-col gap-2">
+                          <div className="flex justify-between items-center">
+                            <h3 className="text-lg font-semibold truncate">{el.name}</h3>
+                            <div className="text-yellow-500 text-sm">
+                              {"★".repeat(Math.floor(el.rating || 0))}
+                            </div>
+                          </div>
+                          <p className="text-sm text-gray-600 line-clamp-2">{el.des}</p>
+                          <div className="flex justify-between items-center mt-2">
+                            <span className="text-gray-800 font-bold">
+                              ${el.price}
+                              {el.strike && (
+                                <span className="text-sm text-gray-400 ms-2 line-through">
+                                  ${el.strike}
+                                </span>
+                              )}
+                            </span>
+                            <span className="text-sm text-gray-500">{el.weight}</span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )
-                )
-              }
+                  )
+                  )
+                }
+              </div>
+
+
             </div>
           }
 
           {
             activeTab === "fruit" &&
-            <div className='flex h-auto w-full flex-wrap gap-3'>
-              {
-                filtered.map((el) => (
-                  <div key={el.id} >
+            <div className='flex'>
+              <div className='flex flex-wrap gap-5 lg:justify-between md:justify-between justify-evenly items-center mt-2 mx-auto'>
+                {
+                  filtered.map((el) => (
+                    <div key={el.id} >
+                      <div className="relative group card sm:w-[19rem] w-[14rem] h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
 
-                    <div className="relative group card w-[18rem] h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
-
-                      <div className="h-[240px] w-full relative overflow-hidden">
-                        <span
-                          className="absolute z-10 top-3 left-2 group-hover:hidden"
-                          style={{ writingMode: "vertical-rl", textOrientation: "upright" }}
-                        >
-                          {el.tag}
-                        </span>
-
-
-                        <div className="relative h-full w-full">
-                          <img
-                            src={el.image[0]}
-                            alt={el.name}
-                            className="absolute h-full w-full object-cover border transition-opacity duration-500 group-hover:opacity-0"
-                          />
-                          <img
-                            src={el.image[1]}
-                            alt={`${el.name} back`}
-                            className="absolute h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                          />
-                        </div>
+                        <div className="h-[240px] w-full relative overflow-hidden">
+                          <span
+                            className="absolute z-10 top-3 left-2 group-hover:hidden"
+                            style={{ writingMode: "vertical-rl", textOrientation: "upright" }}
+                          >
+                            {el.tag}
+                          </span>
 
 
-                        <div className="hidden group-hover:block absolute bottom-0 right-[4rem]">
-                          <i className="fa-regular fa-heart p-2 text-[#777] rounded-lg shadow-md border bg-white hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
-                          <i
-                            className="bg-white text-[#777] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] fa-regular fa-eye p-2 rounded-lg shadow-md border m-1 hover:text-white"
-                            onClick={() => handleEye(el)}
-                          ></i>
-                          <i className="bg-white text-[#777] fa-solid fa-recycle p-2 rounded-lg shadow-md border hover:border-[#6c7fd8] hover:bg-[#6c7fd8] hover:text-white m-1"></i>
-                          <i className="bg-white text-[#777] fa-solid fa-bag-shopping p-2 rounded-lg shadow-md border hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
-                        </div>
-                      </div>
+                          <div className="relative h-full w-full">
+                            <img
+                              src={el.image[0]}
+                              alt={el.name}
+                              className="absolute h-full w-full object-cover border transition-opacity duration-500 group-hover:opacity-0"
+                            />
+                            <img
+                              src={el.image[1]}
+                              alt={`${el.name} back`}
+                              className="absolute h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            />
+                          </div>
 
 
-                      <div className="p-4 flex flex-col gap-2">
-                        <div className="flex justify-between items-center">
-                          <h3 className="text-lg font-semibold truncate">{el.name}</h3>
-                          <div className="text-yellow-500 text-sm">
-                            {"★".repeat(Math.floor(el.rating || 0))}
+                          <div className="hidden group-hover:block absolute bottom-0 sm:right-[4rem] right-[2rem]">
+                            <i className="fa-regular fa-heart p-2 text-[#777] rounded-lg shadow-md border bg-white hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
+                            <i
+                              className="bg-white text-[#777] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] fa-regular fa-eye p-2 rounded-lg shadow-md border m-1 hover:text-white"
+                              onClick={() => handleEye(el)}
+                            ></i>
+                            <i className="bg-white text-[#777] fa-solid fa-recycle p-2 rounded-lg shadow-md border hover:border-[#6c7fd8] hover:bg-[#6c7fd8] hover:text-white m-1"></i>
+                            <i className="bg-white text-[#777] fa-solid fa-bag-shopping p-2 rounded-lg shadow-md border hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
                           </div>
                         </div>
-                        <p className="text-sm text-gray-600 line-clamp-2">{el.des}</p>
-                        <div className="flex justify-between items-center mt-2">
-                          <span className="text-gray-800 font-bold">
-                            ${el.price}
-                            {el.strike && (
-                              <span className="text-sm text-gray-400 ms-2 line-through">
-                                ${el.strike}
-                              </span>
-                            )}
-                          </span>
-                          <span className="text-sm text-gray-500">{el.weight}</span>
+
+
+                        <div className="p-4 flex flex-col gap-2">
+                          <div className="flex justify-between items-center">
+                            <h3 className="text-lg font-semibold truncate">{el.name}</h3>
+                            <div className="text-yellow-500 text-sm">
+                              {"★".repeat(Math.floor(el.rating || 0))}
+                            </div>
+                          </div>
+                          <p className="text-sm text-gray-600 line-clamp-2">{el.des}</p>
+                          <div className="flex justify-between items-center mt-2">
+                            <span className="text-gray-800 font-bold">
+                              ${el.price}
+                              {el.strike && (
+                                <span className="text-sm text-gray-400 ms-2 line-through">
+                                  ${el.strike}
+                                </span>
+                              )}
+                            </span>
+                            <span className="text-sm text-gray-500">{el.weight}</span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )
-                )
-              }
+                  )
+                  )
+                }
+              </div>
             </div>
           }
-          {activeTab === "veg" && <h1>vegetables</h1>}
+          {activeTab === "vegetable" &&
+            <div className='flex'>
+              <div className='flex flex-wrap gap-5 lg:justify-between md:justify-between justify-evenly items-center mt-2 mx-auto'>
+                {
+                  filtered.map((el) => (
+                    <div key={el.id} >
+                      <div className="relative group card sm:w-[19rem] w-[14rem] h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
+
+                        <div className="h-[240px] w-full relative overflow-hidden">
+                          <span
+                            className="absolute z-10 top-3 left-2 group-hover:hidden"
+                            style={{ writingMode: "vertical-rl", textOrientation: "upright" }}
+                          >
+                            {el.tag}
+                          </span>
+
+
+                          <div className="relative h-full w-full">
+                            <img
+                              src={el.image[0]}
+                              alt={el.name}
+                              className="absolute h-full w-full object-cover border transition-opacity duration-500 group-hover:opacity-0"
+                            />
+                            <img
+                              src={el.image[1]}
+                              alt={`${el.name} back`}
+                              className="absolute h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            />
+                          </div>
+
+
+                          <div className="hidden group-hover:block absolute bottom-0 sm:right-[4rem] right-[2rem]">
+                            <i className="fa-regular fa-heart p-2 text-[#777] rounded-lg shadow-md border bg-white hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
+                            <i
+                              className="bg-white text-[#777] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] fa-regular fa-eye p-2 rounded-lg shadow-md border m-1 hover:text-white"
+                              onClick={() => handleEye(el)}
+                            ></i>
+                            <i className="bg-white text-[#777] fa-solid fa-recycle p-2 rounded-lg shadow-md border hover:border-[#6c7fd8] hover:bg-[#6c7fd8] hover:text-white m-1"></i>
+                            <i className="bg-white text-[#777] fa-solid fa-bag-shopping p-2 rounded-lg shadow-md border hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
+                          </div>
+                        </div>
+
+
+                        <div className="p-4 flex flex-col gap-2">
+                          <div className="flex justify-between items-center">
+                            <h3 className="text-lg font-semibold truncate">{el.name}</h3>
+                            <div className="text-yellow-500 text-sm">
+                              {"★".repeat(Math.floor(el.rating || 0))}
+                            </div>
+                          </div>
+                          <p className="text-sm text-gray-600 line-clamp-2">{el.des}</p>
+                          <div className="flex justify-between items-center mt-2">
+                            <span className="text-gray-800 font-bold">
+                              ${el.price}
+                              {el.strike && (
+                                <span className="text-sm text-gray-400 ms-2 line-through">
+                                  ${el.strike}
+                                </span>
+                              )}
+                            </span>
+                            <span className="text-sm text-gray-500">{el.weight}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                  )
+                }
+              </div>
+
+
+            </div>
+          }
         </div>
 
+      </div>
+
+      <div className='p-3 flex justify-center items-center overflow-hidden'>
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2  gap-4 justify-center items-center">
+          <div className='card w-[18rem] text-center border p-5 rounded-2xl shadow-md'>
+            <div className='flex justify-center items-center'>
+
+              <img src="./1.png" alt="" className='w-[20%] mb-2' />
+            </div>
+            <div className="body text-center">
+              <h1 className='font-bold mt-2'>Free Shipping</h1>
+              <p className='text-center text-text mb-2'>Free shipping on all Us order or above $200</p>
+            </div>
+          </div>
+
+          <div className='card w-[18rem] text-center border p-5 rounded-2xl shadow-md'>
+            <div className='flex justify-center items-center'>
+
+              <img src="./2.png" alt="" className='w-[20%] mb-2' />
+            </div>
+            <div className="body text-center">
+              <h1 className='font-bold mt-2'>24x7 Support</h1>
+              <p className='text-center text-text mb-2'>Contact us 24 hours a day, 7 days a week</p>
+            </div>
+          </div>
+
+          <div className='card w-[18rem] text-center border p-5 rounded-2xl shadow-md'>
+            <div className='flex justify-center items-center'>
+
+              <img src="./3.png" alt="" className='w-[20%] mb-2' />
+            </div>
+            <div className="body text-center">
+              <h1 className='font-bold mt-2'>30 Days Return</h1>
+              <p className='text-center text-text mb-2'>Simply return it within 30 days for an exchange</p>
+            </div>
+          </div>
+
+          <div className='card w-[18rem] text-center border p-5 rounded-2xl shadow-md'>
+            <div className='flex justify-center items-center'>
+
+              <img src="./4.png" alt="" className='w-[20%] mb-2' />
+            </div>
+            <div className="body text-center">
+              <h1 className='font-bold mt-2'>Payment Secure</h1>
+              <p className='text-center text-text mb-2'>Contact us 24 hours a day, 7 days a week</p>
+            </div>
+          </div>
+
+        </div>
       </div>
 
     </>
