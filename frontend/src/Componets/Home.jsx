@@ -25,6 +25,7 @@ function Home() {
   const [open, setopen] = useState(false)
   const [seconds, setSeconds] = useState(60)
   const [activeTab, setactiveTab] = useState("All")
+  const [fashion, setfashion] = useState("Miria")
 
   useEffect(() => {
     if (seconds <= 0) return;
@@ -35,6 +36,9 @@ function Home() {
 
     return () => clearInterval(interval);
   }, [seconds]);
+  useLayoutEffect(() => {
+    setfashion("Maria")
+  }, [])
 
   const formatTime = () => {
     // const mins = String(Math.floor(seconds / 60)).padStart(2, "0");
@@ -113,7 +117,7 @@ function Home() {
         }
       }
     ]
-  };
+  }
 
   return (
     <>
@@ -428,8 +432,8 @@ function Home() {
         <div className='2xl:h-[90%] lg:h-[96%] h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
           <div className='h-[auto] 2xl:h-[80%] xl:h-[88%] lg:h-[90%] relative'>
             <img src="./category.jpg" alt="" className='relative h-full rounded-3xl img-clip object-cover' />
-            <img src="./top-shape.png" className='right-0 absolute 2xl:top-[71%] xl:top-[64%] xl:right-[-1px] lg:top-[61%] top-[65%]' alt="" />
-            <img src="./top-shape.png" className='2xl:right-[350px] xl:right-[293px] lg:right-[235px] md:right-[54px] sm:right-[69px]  absolute bottom-0 ' alt="" />
+            <img src="./top-shape.png" className='right-0 absolute 2xl:top-[71%] xl:top-[64%] xl:right-[-1px] lg:top-[64%] top-[65%]' alt="" />
+            <img src="./top-shape.png" className='2xl:right-[45%] xl:right-[45%] lg:right-[235px] md:right-[54px] sm:right-[69px]  absolute bottom-0 ' alt="" />
 
 
             <span className='p-1 px-4 bg-[rgba(0,0,0,0.86)] rounded-full text-white opacity-80 absolute top-5 right-5'>
@@ -722,7 +726,7 @@ function Home() {
 
       }
 
-      <div className="h-screen sm:h-[90vh] bg-[url('/banner.jpg')] bg-center bg-no-repeat bg-cover mt-4 relative">
+      <div className="overflow-hidden h-screen sm:h-[90vh] bg-[url('/banner.jpg')] bg-center bg-no-repeat bg-cover mt-4 relative">
         <div className="absolute bottom-0 right-4 sm:right-10 md:right-20 lg:right-28 xl:right-40 2xl:right-60 w-[90%] sm:w-[370px]">
           <div className="bg-white p-5 rounded-t-3xl relative h-[245px] ">
             <h1 className="text-[#6c7fd8] font-bold text-xl">25% Off</h1>
@@ -736,7 +740,7 @@ function Home() {
         </div>
       </div>
 
-      <div className='h-auto sm:p-9 p-0 mt-5'>
+      <div className='h-auto sm:p-9 p-0 mt-5 overflow-hidden'>
         <div className="grid 2xl:grid-cols-2 gap-4 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1  grid-cols-1  ">
           <div className='md:text-start  text-center'>
             <b className='font-bold text-2xl'>New <span className='text-them'> Arrivals </span> </b>
@@ -1052,54 +1056,179 @@ function Home() {
 
       </div>
 
-      <div className='p-3 flex justify-center items-center overflow-hidden'>
-        <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2  gap-4 justify-center items-center">
-          <div className='card w-[18rem] text-center border p-5 rounded-2xl shadow-md'>
-            <div className='flex justify-center items-center'>
 
-              <img src="./1.png" alt="" className='w-[20%] mb-2' />
-            </div>
-            <div className="body text-center">
-              <h1 className='font-bold mt-2'>Free Shipping</h1>
-              <p className='text-center text-text mb-2'>Free shipping on all Us order or above $200</p>
-            </div>
+      <div className="px-4 sm:px-8 py-10  overflow-hidden">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="bg-white border rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition-shadow">
+            <img src="./1.png" alt="Free Shipping" className="w-12 mx-auto mb-4" />
+            <h2 className="text-lg font-semibold mb-2">Free Shipping</h2>
+            <p className="text-gray-600 text-sm">Free shipping on all US orders above $200</p>
           </div>
 
-          <div className='card w-[18rem] text-center border p-5 rounded-2xl shadow-md'>
-            <div className='flex justify-center items-center'>
-
-              <img src="./2.png" alt="" className='w-[20%] mb-2' />
-            </div>
-            <div className="body text-center">
-              <h1 className='font-bold mt-2'>24x7 Support</h1>
-              <p className='text-center text-text mb-2'>Contact us 24 hours a day, 7 days a week</p>
-            </div>
+          <div className="bg-white border rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition-shadow">
+            <img src="./2.png" alt="24x7 Support" className="w-12 mx-auto mb-4" />
+            <h2 className="text-lg font-semibold mb-2">24x7 Support</h2>
+            <p className="text-gray-600 text-sm">Contact us 24 hours a day, 7 days a week</p>
           </div>
 
-          <div className='card w-[18rem] text-center border p-5 rounded-2xl shadow-md'>
-            <div className='flex justify-center items-center'>
-
-              <img src="./3.png" alt="" className='w-[20%] mb-2' />
-            </div>
-            <div className="body text-center">
-              <h1 className='font-bold mt-2'>30 Days Return</h1>
-              <p className='text-center text-text mb-2'>Simply return it within 30 days for an exchange</p>
-            </div>
+          <div className="bg-white border rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition-shadow">
+            <img src="./3.png" alt="30 Days Return" className="w-12 mx-auto mb-4" />
+            <h2 className="text-lg font-semibold mb-2">30 Days Return</h2>
+            <p className="text-gray-600 text-sm">Simply return it within 30 days for an exchange</p>
           </div>
 
-          <div className='card w-[18rem] text-center border p-5 rounded-2xl shadow-md'>
-            <div className='flex justify-center items-center'>
-
-              <img src="./4.png" alt="" className='w-[20%] mb-2' />
-            </div>
-            <div className="body text-center">
-              <h1 className='font-bold mt-2'>Payment Secure</h1>
-              <p className='text-center text-text mb-2'>Contact us 24 hours a day, 7 days a week</p>
-            </div>
+          <div className="bg-white border rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition-shadow">
+            <img src="./4.png" alt="Payment Secure" className="w-12 mx-auto mb-4" />
+            <h2 className="text-lg font-semibold mb-2">Payment Secure</h2>
+            <p className="text-gray-600 text-sm">Your payment information is processed securely</p>
           </div>
 
         </div>
       </div>
+
+      <div className="py-10">
+        <div className="text-center px-4 py-6">
+          <b className="text-3xl">
+            Top <span className="text-them font-bold">Vendors</span>
+          </b>
+          <p className="text-text max-w-[26rem] mx-auto mt-2">
+            Discover Our Trusted Partners: Excellence & Reliability in Every choice
+          </p>
+        </div>
+        <div className="grid xl:grid-cols-2 gap-5">
+          <div className='flex xl:justify-end justify-center items-center xl:me-10 me-0'>
+            {
+              fashion === "Mira" &&
+              <div className='relative'>
+                <img src="./newsletter.jpg" alt="" className='w-[33rem] rounded-2xl ' />
+                <i className="fa-solid fa-arrow-up-right-from-square absolute top-5 hover:bg-[#000000cc] transition-all duration-200 text-white right-6 bg-[#00000080] p-2 rounded-lg"></i>
+                <div className='bg-white relative w-full h-250px rounded-3xl z-auto'>
+                  <img src="./vendor-1.jpg" alt="" className='rounded-tl-lg   absolute bottom-0 right-0 w-[6rem] z-auto' />
+                  <img src="./left-shape.png" alt="" className='absolute top-[-125px] right-0 ' />
+                  <img src="./left-shape.png" alt="" className='absolute top-[-30px] right-[95px]' />
+                </div>
+              </div>
+            }
+            {
+              fashion === "Eelna" &&
+              <div className='relative cursor-pointer'>
+                <img src="./img-2.jpg" alt="" className='w-[33rem] rounded-2xl ' />
+                <i className="fa-solid fa-arrow-up-right-from-square absolute top-5 hover:bg-[#000000cc] transition-all duration-200 text-white right-6 bg-[#00000080] p-2 rounded-lg"></i>
+                <div className='bg-white relative w-full h-250px rounded-3xl z-auto'>
+                  <img src="./vendor-1.jpg" alt="" className='rounded-tl-lg   absolute bottom-0 right-0 w-[6rem] z-auto' />
+                  <img src="./left-shape.png" alt="" className='absolute top-[-125px] right-0 ' />
+                  <img src="./left-shape.png" alt="" className='absolute top-[-30px] right-[95px]' />
+                </div>
+              </div>
+            }
+
+            {
+              fashion === "Mario" &&
+              <div className='relative cursor-pointer'>
+                <img src="./img-3.jpg" alt="" className='w-[33rem] rounded-2xl ' />
+                <i className="fa-solid fa-arrow-up-right-from-square absolute top-5 hover:bg-[#000000cc] transition-all duration-200 text-white right-6 bg-[#00000080] p-2 rounded-lg"></i>
+                <div className='bg-white relative w-full h-250px rounded-3xl z-auto'>
+                  <img src="./vendor-3.jpg" alt="" className='rounded-tl-lg   absolute bottom-0 right-0 w-[6rem] z-auto' />
+                  <img src="./left-shape.png" alt="" className='absolute top-[-125px] right-0 ' />
+                  <img src="./left-shape.png" alt="" className='absolute top-[-30px] right-[95px]' />
+                </div>
+              </div>
+            }
+
+            {
+              fashion === "Maria" &&
+              <div className='relative cursor-pointer'>
+                <img src="./img-4.jpg" alt="" className='w-[33rem] rounded-2xl ' />
+                <i className="fa-solid fa-arrow-up-right-from-square absolute top-5 hover:bg-[#000000cc] transition-all duration-200 text-white right-6 bg-[#00000080] p-2 rounded-lg"></i>
+                <div className='bg-white relative w-full h-250px rounded-3xl z-auto'>
+                  <img src="./vendor-4.jpg" alt="" className='rounded-tl-lg   absolute bottom-0 right-0 w-[6rem] z-auto' />
+                  <img src="./left-shape.png" alt="" className='absolute top-[-125px] right-0 ' />
+                  <img src="./left-shape.png" alt="" className='absolute top-[-30px] right-[95px]' />
+                </div>
+              </div>
+            }
+          </div>
+          <div>
+            <div className='gap-3 flex flex-col'>
+              <div className={`p-6 max-w-[40rem] bg-[#f8f8fb] rounded-2xl border ${fashion === "Mira" ? 'border-1 border-them shadow-md' : ""}  `} onClick={() => setfashion("Mira")}>
+                <div className="flex  justify-between items-center flex-wrap text-center">
+                  <h1 className='text-them font-semibold text-xl'>Mira Fashion Pvt. Ltd.</h1>
+                  <span className='text-text'>Sales - 587</span>
+                </div>
+                <div className='text-text mt-1'>Fruits (5) | Vegetables (30) | Snacks (09) </div>
+              </div>
+
+              <div className={`p-6 max-w-[40rem] bg-[#f8f8fb] rounded-2xl border ${fashion === "Eelna" ? 'border-1 border-them shadow-md' : ""}  `} onClick={() => setfashion("Eelna")}>
+                <div className="flex  justify-between items-center flex-wrap text-center">
+                  <h1 className='text-them font-semibold text-xl'>Eelna Fashion Pvt. Ltd.</h1>
+                  <span className='text-text'>Sales - 1024</span>
+                </div>
+                <div className='text-text mt-1'>Fruits (8) | Vegetables (15) | Snacks (04)  </div>
+              </div>
+
+              <div className={`p-6 max-w-[40rem] bg-[#f8f8fb] rounded-2xl border ${fashion === "Mario" ? 'border-1 border-them shadow-md' : ""}  `} onClick={() => setfashion("Mario")}>
+                <div className="flex  justify-between items-center flex-wrap text-center">
+                  <h1 className='text-them font-semibold text-xl'>Mario Fashion Pvt. Ltd.</h1>
+                  <span className='text-text'>Sales - 1024</span>
+                </div>
+                <div className='text-text mt-1'>Fruits (8) | Vegetables (15) | Snacks (04)  </div>
+              </div>
+
+              <div className={`p-6 max-w-[40rem] bg-[#f8f8fb] rounded-2xl border ${fashion === "Maria" ? 'border-1 border-them shadow-md' : ""}  `} onClick={() => setfashion("Maria")}>
+                <div className="flex  justify-between items-center flex-wrap text-center">
+                  <h1 className='text-them font-semibold text-xl'>Maria Fashion Pvt. Ltd.</h1>
+                  <span className='text-text'>Sales - 999</span>
+                </div>
+                <div className='text-text mt-1'>Fruits (8) | Vegetables (15) | Snacks (04)  </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div className='min-h-screen w-full '>
+        <div className='relative h-screen w-full'>
+          {/* <img
+            src="./img-1.png"
+            alt=""
+            className='rounded-xl size-16 absolute top-10 left-10 rotate-[-12deg]'
+          />
+          <img
+            src="./img-2.png"
+            alt=""
+            className='rounded-xl size-16 absolute bottom-10 right-10 rotate-[12deg] blur-[2px]'
+          /> */}
+
+          <div>
+
+
+            <div className="card grid grid-cols-2 gap-5 w-[55%]">
+              <div className='flex justify-end items-start'>
+                <img src="./1.jpg" alt="" className='h-[290px] rounded-3xl' />
+              </div>
+
+
+              <div className='flex flex-col justify-end items-start'>
+                <h1 className='font-bold'>Isabella Oliver</h1>
+                <p className='text-text mb-3'>(Team Leader)</p>
+                <p className='rounded-2xl border p-4'>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
+                  at sint eligendi possimus perspiciatis asperiores reiciendis hic
+                  amet alias aut quaerat maiores blanditiis."</p>
+
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+
 
     </>
   )
