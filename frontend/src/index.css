@@ -7,6 +7,8 @@
 
 body{
    background-color: rgba(249, 250, 251, 0.185);
+   overflow: hidden;
+   overflow-x: hidden;
 }
 @tailwind base;
 @tailwind components;
@@ -84,4 +86,10 @@ clip-path:polygon(
     clip-path: none;
     width: 100%;
   }
+}
+
+/* For outlined text (like your image) */
+.outlined-text {
+  color: transparent;
+  -webkit-text-stroke: 1px #0c0101;
 }

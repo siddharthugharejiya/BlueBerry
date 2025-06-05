@@ -92,7 +92,7 @@ function Home() {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    cssEase: "cubic-bezier(0.645, 0.045, 0.355, 1)", // Smooth easing function
+    cssEase: "cubic-bezier(0.645, 0.045, 0.355, 1)",
     swipeToSlide: true,
     responsive: [
       {
@@ -118,6 +118,43 @@ function Home() {
       }
     ]
   }
+
+  const settings2 = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
+
+
+
+  const settings3 = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        }
+      }
+    ]
+  }
+
+
 
   return (
     <>
@@ -1095,7 +1132,7 @@ function Home() {
             Discover Our Trusted Partners: Excellence & Reliability in Every choice
           </p>
         </div>
-        <div className="grid xl:grid-cols-2 gap-5">
+        <div className="grid xl:grid-cols-2 gap-5 justify-center">
           <div className='flex xl:justify-end justify-center items-center xl:me-10 me-0'>
             {
               fashion === "Mira" &&
@@ -1149,7 +1186,7 @@ function Home() {
             }
           </div>
           <div>
-            <div className='gap-3 flex flex-col'>
+            <div className=' flex flex-col md:justify-grid xl:grid-cols-2 gap-5'>
               <div className={`p-6 max-w-[40rem] bg-[#f8f8fb] rounded-2xl border ${fashion === "Mira" ? 'border-1 border-them shadow-md' : ""}  `} onClick={() => setfashion("Mira")}>
                 <div className="flex  justify-between items-center flex-wrap text-center">
                   <h1 className='text-them font-semibold text-xl'>Mira Fashion Pvt. Ltd.</h1>
@@ -1190,41 +1227,120 @@ function Home() {
 
       </div>
 
-
-      <div className='min-h-screen w-full '>
-        <div className='relative h-screen w-full'>
-          {/* <img
+      <div className='min-h-[80vh]  h-auto w-full flex justify-center items-center '>
+        <div className='w-full max-w-6xl px-4 relative'>
+          <img
             src="./img-1.png"
             alt=""
-            className='rounded-xl size-16 absolute top-10 left-10 rotate-[-12deg]'
+            className='rounded-xl size-16 absolute md:visible invisible -top-20 left-10 rotate-[-12deg]'
           />
           <img
             src="./img-2.png"
             alt=""
-            className='rounded-xl size-16 absolute bottom-10 right-10 rotate-[12deg] blur-[2px]'
-          /> */}
+            className='rounded-xl size-16 absolute md:visible invisible bottom-10 right-10 rotate-[12deg] blur-[2px]'
+          />
 
-          <div>
+          <img
+            src="./img-3.png"
+            alt=""
+            className='rounded-xl size-16 absolute md:visible invisible top-0 right-10 rotate-[12deg] '
+          />
+
+          <img
+            src="./img-4.png"
+            alt=""
+            className='rounded-xl size-16 absolute md:visible invisible bottom-0 -left-20 rotate-[12deg] '
+          />
+
+          <img
+            src="./img-5.png"
+            alt=""
+            className='rounded-xl size-16 absolute md:visible invisible top-10 -left-20 rotate-[12deg] blur-[2px] '
+          />
+
+          <img
+            src="./img-6.png"
+            alt=""
+            className='rounded-xl size-16 absolute md:visible invisible -top-10 right-96 rotate-[12deg] blur-[2px] '
+          />
+          <h4 class="outlined-text md:visible invisible opacity-30 absolute -rotate-90 lg:left-[-6rem] md:left-[-4rem] -left-16 top-32 text-[42px] font-bold leading-[1.2] tracking-[0.03rem] max-[1399px]:text-[38px] max-[1199px]:text-[34px]">
+            Testimonials
+          </h4>
 
 
-            <div className="card grid grid-cols-2 gap-5 w-[55%]">
-              <div className='flex justify-end items-start'>
-                <img src="./1.jpg" alt="" className='h-[290px] rounded-3xl' />
-              </div>
-
-
-              <div className='flex flex-col justify-end items-start'>
-                <h1 className='font-bold'>Isabella Oliver</h1>
-                <p className='text-text mb-3'>(Team Leader)</p>
-                <p className='rounded-2xl border p-4'>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
-                  at sint eligendi possimus perspiciatis asperiores reiciendis hic
-                  amet alias aut quaerat maiores blanditiis."</p>
-
+          <Slider {...settings2}>
+            <div className="flex justify-center items-center w-full flex-wrap ">
+              <div className="card grid md:grid-cols-2 grid-cols-1 gap-5 lg:w-[68%] w-full ">
+                <div className="flex md:justify-end justify-center items-start">
+                  <img src="./1.jpg" alt="" className="h-[290px] rounded-3xl" />
+                </div>
+                <div className="flex flex-col justify-end md:items-start text-center">
+                  <h1 className="font-bold">Isabella Oliver</h1>
+                  <p className="text-text mb-3">(Team Leader)</p>
+                  <p className="rounded-2xl border p-4">
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
+                    at sint eligendi possimus perspiciatis asperiores reiciendis hic
+                    amet alias aut quaerat maiores blanditiis."
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
 
+            <div className="flex justify-center items-center w-full flex-wrap ">
+              <div className="card grid md:grid-cols-2 grid-cols-1 gap-5 lg:w-[68%] w-full ">
+                <div className="flex md:justify-end justify-center items-start">
+                  <img src="./2.jpg" alt="" className="h-[290px] rounded-3xl" />
+                </div>
+                <div className="flex flex-col justify-end md:items-start text-center">
+                  <h1 className="font-bold">Isabella Oliver</h1>
+                  <p className="text-text mb-3">(Team Leader)</p>
+                  <p className="rounded-2xl border p-4">
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
+                    at sint eligendi possimus perspiciatis asperiores reiciendis hic
+                    amet alias aut quaerat maiores blanditiis."
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+            <div className="flex justify-center items-center w-full flex-wrap ">
+              <div className="card grid md:grid-cols-2 grid-cols-1 gap-5 lg:w-[68%] w-full ">
+                <div className="flex md:justify-end justify-center items-start">
+                  <img src="./1.jpg" alt="" className="h-[290px] rounded-3xl" />
+                </div>
+                <div className="flex flex-col justify-end md:items-start text-center">
+                  <h1 className="font-bold">Isabella Oliver</h1>
+                  <p className="text-text mb-3">(Team Leader)</p>
+                  <p className="rounded-2xl border p-4">
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
+                    at sint eligendi possimus perspiciatis asperiores reiciendis hic
+                    amet alias aut quaerat maiores blanditiis."
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+            <div className="flex justify-center items-center w-full flex-wrap ">
+              <div className="card grid md:grid-cols-2 grid-cols-1 gap-5 lg:w-[68%] w-full ">
+                <div className="flex md:justify-end justify-center items-start">
+                  <img src="./slider-img-1.jpg" alt="" className="h-[290px] rounded-3xl" />
+                </div>
+                <div className="flex flex-col justify-end md:items-start text-center">
+                  <h1 className="font-bold">Isabella Oliver</h1>
+                  <p className="text-text mb-3">(Team Leader)</p>
+                  <p className="rounded-2xl border p-4">
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
+                    at sint eligendi possimus perspiciatis asperiores reiciendis hic
+                    amet alias aut quaerat maiores blanditiis."
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </Slider>
         </div>
       </div>
 

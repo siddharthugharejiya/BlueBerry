@@ -8,7 +8,7 @@ export default {
     extend: {
       colors: {
         them: "#6c7fd8",
-        text:"#686e7d"
+        text: "#686e7d"
       }
     },
   },
