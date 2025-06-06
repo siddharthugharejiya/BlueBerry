@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Prodcuer_Filter_Action, Product } from '../Redux/action';
 import { useLayoutEffect } from 'react';
+import Footer from './Footer';
 
 
 
@@ -131,29 +132,45 @@ function Home() {
   };
 
 
-
   const settings3 = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 1280,
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 1024,
         settings: {
           slidesToShow: 2,
-        }
+        },
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-        }
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 320,
+        settings: {
+          slidesToShow: 1,
+        },
       }
-    ]
-  }
-
+    ],
+  };
 
 
   return (
@@ -1346,6 +1363,106 @@ function Home() {
 
 
 
+      <div className="min-h-[50vh] m-auto h-auto py-1 ">
+        <Slider {...settings3} className='m-auto overflow-hidden '>
+          <div className='flex justify-center items-center gap-8' style={{ display: "flex" }}>
+            <div className='flex xl:justify-center lg:justify-center  justify-center items-center gap-3 mx-1'>
+              <div className="card w-[20rem] group rounded-2xl relative overflow-hidden duration-1000 transition">
+                <img src="./7.jpg" alt="image" className='transition  duration-500  h-full w-full rounded-2xl group-hover:rotate-6 group-hover:scale-[1.1]' />
+                <div className="body bg-[#ffffffe6] opacity-95 absolute bottom-2 group-hover:bg-white   left-3 w-[90%] text-start px-4 py-2 rounded-2xl">
+                  <h4 className='text-text text-[15px]'>June 30,2024 - organic</h4>
+                  <p className='text-[18px] font-medium'>Marketing Guide: 5 Steps to Success.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className='flex justify-center items-center' style={{ display: "flex" }}>
+            <div className='flex xl:justify-center lg:justify-center  justify-center items-center gap-3 mx-1'>
+              <div className="card w-[20rem] group rounded-2xl relative overflow-hidden duration-1000 transition">
+                <img src="./8 (1).jpg" alt="image" className='transition  duration-500  h-full w-full rounded-2xl group-hover:rotate-6 group-hover:scale-[1.1]' />
+                <div className="body bg-[#ffffffe6] opacity-95 absolute bottom-2 group-hover:bg-white   left-3 w-[90%] text-start px-4 py-2 rounded-2xl">
+                  <h4 className='text-text text-[15px]'>June 30,2024 - organic</h4>
+                  <p className='text-[18px] font-medium'>Best way to solve business deal issue.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div className='flex justify-center items-center' style={{ display: "flex" }}>
+            <div className='flex xl:justify-center lg:justify-center  justify-center items-center gap-3 mx-1' >
+              <div className="card w-[20rem] group rounded-2xl relative overflow-hidden duration-1000 transition">
+                <img src="./9 (1).jpg" alt="image" className='transition  duration-500  h-full w-full rounded-2xl group-hover:rotate-6 group-hover:scale-[1.1]' />
+                <div className="body bg-[#ffffffe6] opacity-95 absolute bottom-2 group-hover:bg-white   left-3 w-[90%] text-start px-4 py-2 rounded-2xl">
+                  <h4 className='text-text text-[15px]'>June 30,2024 - organic</h4>
+                  <p className='text-[18px] font-medium'>Best way to solve business deal issue.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div className='flex justify-center items-center' style={{ display: "flex" }}>
+            <div className='flex xl:justify-center lg:justify-center  justify-center items-center gap-3 mx-1'>
+              <div className="card w-[20rem] group rounded-2xl relative overflow-hidden duration-1000 transition">
+                <img src="./10 (1).jpg" alt="image" className='transition  duration-500  h-full w-full rounded-2xl group-hover:rotate-6 group-hover:scale-[1.1]' />
+                <div className="body bg-[#ffffffe6] opacity-95 absolute bottom-2 group-hover:bg-white   left-3 w-[90%] text-start px-4 py-2 rounded-2xl">
+                  <h4 className='text-text text-[15px]'>June 30,2024 - organic</h4>
+                  <p className='text-[18px] font-medium'>Best way to solve business deal issue.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Slider>
+      </div>
+
+      {/* insta */}
+      <div className="grid 2xl:grid-cols-6 xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1  gap-3 relative justify-items-center items-center">
+        <div className="absolute top-14 lg:right-[42%] right-[45%] z-50 bg-white lg:block hidden py-4 px-12 rounded-3xl text-3xl font-bold" >#insta</div>
+        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center">
+          <img src="./1 (1).jpg" alt="" className="h-full w-full object-cover rounded-2xl" />
+          <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-500 rounded-2xl"></div>
+          <i className="fa-brands fa-instagram absolute text-white text-3xl opacity-0  group-hover:opacity-100 transform scale-[5.1] rotate-12 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500"></i>
+        </div>
+
+        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center">
+          <img src="./2 (1).jpg" alt="" className="h-full w-full object-cover rounded-2xl" />
+          <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-500 rounded-2xl"></div>
+          <i className="fa-brands fa-instagram absolute text-white text-3xl opacity-0  group-hover:opacity-100 transform scale-[5.1] rotate-12 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500"></i>
+        </div>
+
+        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center">
+          <img src="./5.jpg" alt="" className="h-full w-full object-cover rounded-2xl" />
+          <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-500 rounded-2xl"></div>
+          <i className="fa-brands fa-instagram absolute text-white text-3xl opacity-0  group-hover:opacity-100 transform scale-[5.1] rotate-12 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500"></i>
+        </div>
+
+        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center">
+          <img src="./4.jpg" alt="" className="h-full w-full object-cover rounded-2xl" />
+          <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-500 rounded-2xl"></div>
+          <i className="fa-brands fa-instagram absolute text-white text-3xl opacity-0  group-hover:opacity-100 transform scale-[5.1] rotate-12 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500"></i>
+        </div>
+
+
+        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center">
+          <img src="./5.jpg" alt="" className="h-full w-full object-cover rounded-2xl" />
+          <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-500 rounded-2xl"></div>
+          <i className="fa-brands fa-instagram absolute text-white text-3xl opacity-0  group-hover:opacity-100 transform scale-[5.1] rotate-12 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500"></i>
+        </div>
+
+
+        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center">
+          <img src="./2 (1).jpg" alt="" className="h-full w-full object-cover rounded-2xl" />
+          <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-500 rounded-2xl"></div>
+          <i className="fa-brands fa-instagram absolute text-white text-3xl opacity-0  group-hover:opacity-100 transform scale-[5.1] rotate-12 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500"></i>
+        </div>
+      </div>
+      {/* insta */}
+
+      <Footer />
     </>
   )
 }
