@@ -67,12 +67,6 @@ function Home() {
   }
 
   const filtered = useSelector(state => state.Product_Filtered.data || [])
-  console.log(filtered);
-
-
-
-
-
   const HandleCategoryes = (category) => {
     console.log(category);
 
@@ -170,7 +164,12 @@ function Home() {
         },
       }
     ],
-  };
+  }
+  const AddToCart = (prod) => {
+    console.log(prod)
+    console.log(eye);
+
+  }
 
 
   return (
@@ -482,7 +481,7 @@ function Home() {
 
       </div>
 
-      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 lg:h-[170vh] md:h-auto sm:h-[160vh] h-[60vh] relative overflow-hidden'>
+      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 lg:h-[166vh] md:h-auto sm:h-[160vh] h-[60vh] relative overflow-hidden'>
         <div className='2xl:h-[90%] lg:h-[96%] h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
           <div className='h-[auto] 2xl:h-[80%] xl:h-[88%] lg:h-[90%] relative'>
             <img src="./category.jpg" alt="" className='relative h-full rounded-3xl img-clip object-cover' />
@@ -624,7 +623,6 @@ function Home() {
                           </div>
                         </div>
 
-                        {/* Product Info */}
                         <div className="p-4 flex flex-col gap-2">
                           <div className="flex justify-between items-center">
                             <h3 className="text-lg font-semibold truncate">{el.name}</h3>
@@ -700,16 +698,13 @@ function Home() {
         open &&
         <>
           <>
-
             <div className="fixed inset-0 bg-black opacity-40 z-50"></div>
-
             <div className="transition-all duration-700 fixed top-0 left-0 h-screen w-full z-50 flex justify-center items-center overflow-auto p-4 animate-fade-in">
               <div className="grid sm:grid-cols-2 grid-cols-1 bg-white rounded-xl shadow-2xl overflow-auto w-full max-w-4xl max-h-[95vh] relative ">
                 <div className='absolute right-5 top-0 overflow-hidden p-4'>
 
                   <button className='text-[20px] hover:animate-ping mt-0' onClick={handleClose}>x</button>
                 </div>
-
 
                 <div className="h-full w-full flex justify-center items-center bg-gray-50 p-4">
                   <div className="h-64 w-64 sm:h-4/5 sm:w-4/5 group ">
@@ -764,8 +759,8 @@ function Home() {
                         <span>0</span>
                         <span className='cursor-pointer px-2'>+</span>
                       </div>
-                      <button className='p-2 border rounded-lg hover:bg-[#6c7fd8] hover:text-white duration-500'>
-                        <i className="fa-solid fa-bag-shopping px-2 t"></i>
+                      <button className='p-2 border rounded-lg hover:bg-[#6c7fd8] hover:text-white duration-500' onClick={() => AddToCart(eye)}>
+                        <i className="fa-solid fa-bag-shopping px-2 t"  ></i>
                         Add To Cart
                       </button>
                     </div>
