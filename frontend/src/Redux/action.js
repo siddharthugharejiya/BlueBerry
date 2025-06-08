@@ -122,12 +122,9 @@ export const product_edite_action = (id, state) => async (dispatch) => {
 
 //Product Filter
 export const Prodcuer_Filter_Action = (category) => (dispatch) => {
-    console.log(category);
-    
     const url = category === "All" ?
-           `http://localhost:9595/product`
+        `http://localhost:9595/product`
         : `http://localhost:9595/product?category=${category}`;
-
     fetch(url)
         .then((res) => res.json())
         .then((res) => {
@@ -138,3 +135,32 @@ export const Prodcuer_Filter_Action = (category) => (dispatch) => {
         })
         .catch((err) => console.error("Error fetching category:", err));
 }
+
+export const Cart_action = (product, quantity) => async (dispatch) => {
+    console.log(product, quantity);
+    const Token = localStorage.getItem("Token");
+
+    try {
+        const response = await fetch("http://localhost:9595/cart", {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${Token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                Product: product,
+                quantity: quantity
+            })
+        });
+
+        const res = await response.json();
+
+        dispatch({
+            type: "Cart_ADD",
+            payload: res
+        });
+
+    } catch (err) {
+        console.error("Error adding to cart:", err);
+    }
+};

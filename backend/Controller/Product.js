@@ -1,3 +1,4 @@
+import { CartModel } from "../modules/CartModel.js";
 import { ProductModel } from "../modules/ProductModel.js"
 
 
@@ -73,6 +74,19 @@ export const edite_post = async (req, res) => {
 
 
 export const cart = async (req, res) => {
+    const userId = req.user.userId;
+    const { Product, quantity } = req.body;
+    console.log(Product._id);
+    const id = Product._id
+    console.log(id);
+
+    const exist = await CartModel.findOne({ "Product._id": Product._id });
+    console.log(exist, "this is  exisiting cart");
+
+}
+
+
+export const cart_particular = async (req, res) => {
     const userId = req.user.userId
     console.log("Logged in user:", userId)
 

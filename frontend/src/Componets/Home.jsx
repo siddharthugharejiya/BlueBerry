@@ -1,6 +1,5 @@
 
 import 'animate.css';
-
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Nav from './Nav';
@@ -12,7 +11,7 @@ import Slider from "react-slick";
 import SlickSliderComponent from './SlickSliderComponent';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Prodcuer_Filter_Action, Product } from '../Redux/action';
+import { Cart_action, Prodcuer_Filter_Action, Product } from '../Redux/action';
 import { useLayoutEffect } from 'react';
 import Footer from './Footer';
 
@@ -27,6 +26,28 @@ function Home() {
   const [seconds, setSeconds] = useState(60)
   const [activeTab, setactiveTab] = useState("All")
   const [fashion, setfashion] = useState("Miria")
+  const [quantity, setquantity] = useState({
+    price: 0,
+    Quantity: 0
+  })
+
+
+  const handleMinus = (price) => {
+    setquantity(pre => ({
+      price: price,
+      Quantity: pre.Quantity - 1
+
+    }))
+  }
+
+  const handlePlus = (price) => {
+    setquantity(pre => ({
+      price: price,
+      Quantity: pre.Quantity + 1
+    }))
+  }
+
+
 
   useEffect(() => {
     if (seconds <= 0) return;
@@ -165,9 +186,10 @@ function Home() {
       }
     ],
   }
-  const AddToCart = (prod) => {
-    console.log(prod)
-    console.log(eye);
+  const AddToCart = (cart) => {
+    console.log(cart)
+    console.log(quantity.Quantity)
+    dispatch(Cart_action(cart, quantity.Quantity))
 
   }
 
@@ -591,25 +613,31 @@ function Home() {
                   {products.map((el) => (
                     <div key={el.id} className="px-2">
                       <div className="relative group card w-[80%] h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
-
                         <div className="h-[240px] w-full relative overflow-hidden">
                           <span className="absolute z-10 top-3 left-2 group-hover:hidden" style={{ writingMode: "vertical-rl", textOrientation: "upright" }}>
                             {el.tag}
                           </span>
 
-                          {/* Images with smooth transition */}
-                          <div className='relative h-full w-full'>
+
+                          <div className="relative h-full w-full overflow-hidden group">
+                            {/* Front Image */}
                             <img
                               src={el.image[0]}
                               alt={el.name}
-                              className="absolute h-full w-full object-cover border transition-opacity duration-500 group-hover:opacity-0"
+                              className="absolute z-10 h-full w-full object-cover transform transition-all duration-700 group-hover:-translate-x-full"
                             />
+
+                            {/* Back Image */}
                             <img
                               src={el.image[1]}
                               alt={`${el.name} back`}
-                              className="absolute h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                              className="absolute z-0 h-full w-full object-cover transform translate-x-full scale-100 transition-all duration-700 group-hover:translate-x-0 group-hover:scale-110"
                             />
+
+                            {/* Optional: Glass Shine Effect */}
+                            <div className="absolute z-20 top-0 left-[-75%] w-[200%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent rotate-12 transition-all duration-700 group-hover:left-[100%] pointer-events-none" />
                           </div>
+
 
 
                           <div className="hidden group-hover:block absolute bottom-0 right-[4rem]">
@@ -755,9 +783,9 @@ function Home() {
                     </div>
                     <div className='grid grid-cols-1 2xl:grid-cols-[auto_auto] mt-2 justify-start items-center gap-4'>
                       <div className='p-2 border w-fit h-auto flex justify-evenly rounded-lg items-center  '>
-                        <span className='cursor-pointer px-2'>-</span>
-                        <span>0</span>
-                        <span className='cursor-pointer px-2'>+</span>
+                        <span className='cursor-pointer px-2' onClick={() => handleMinus(eye.price)} >-</span>
+                        <span>{quantity.Quantity}</span>
+                        <span className='cursor-pointer px-2' onClick={() => handlePlus(eye.price)}>+</span>
                       </div>
                       <button className='p-2 border rounded-lg hover:bg-[#6c7fd8] hover:text-white duration-500' onClick={() => AddToCart(eye)}>
                         <i className="fa-solid fa-bag-shopping px-2 t"  ></i>
@@ -811,68 +839,79 @@ function Home() {
                 <div className='flex flex-wrap gap-5 lg:justify-between md:justify-between justify-evenly items-center mt-2 mx-auto'>
                   {
                     filtered.map((el) => (
-                      <div key={el.id} >
-                        <div className="relative group card sm:w-[19rem] w-[14rem] h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
+                      <div key={el.id}>
+                        <div className="relative group sm:w-[19rem] w-[14rem] h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-lg border backdrop-blur-md transition-all duration-500 hover:shadow-xl hover:scale-[1.1]">
 
                           <div className="h-[240px] w-full relative overflow-hidden">
+
                             <span
-                              className="absolute z-10 top-3 left-2 group-hover:hidden"
+                              className="absolute z-10 top-3 left-2 text-xs font-semibold  backdrop-blur-md px-1 py-3 rounded-md text-black"
                               style={{ writingMode: "vertical-rl", textOrientation: "upright" }}
                             >
                               {el.tag}
                             </span>
 
-
-                            <div className="relative h-full w-full">
+                            <div className="relative h-full w-full overflow-hidden group">
+                              {/* Front Image */}
                               <img
                                 src={el.image[0]}
                                 alt={el.name}
-                                className="absolute h-full w-full object-cover border transition-opacity duration-500 group-hover:opacity-0"
+                                className="absolute z-10 h-full w-full object-cover transform transition-all duration-700 group-hover:-translate-x-full"
                               />
+
+                              {/* Back Image */}
                               <img
                                 src={el.image[1]}
                                 alt={`${el.name} back`}
-                                className="absolute h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                                className="absolute z-10 h-full w-full object-cover transform translate-x-full transition-all duration-700 group-hover:translate-x-0"
                               />
+
+                              {/* Gradient Shine (Top Layer) */}
+                              <div className="absolute z-20 top-0 left-[-75%] w-[200%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent rotate-12 transition-all duration-700 group-hover:left-[100%] pointer-events-none" />
                             </div>
 
 
-                            <div className="hidden group-hover:block absolute bottom-0 sm:right-[4rem] right-[2rem]">
-                              <i className="fa-regular fa-heart p-2 text-[#777] rounded-lg shadow-md border bg-white hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
-                              <i
-                                className="bg-white text-[#777] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] fa-regular fa-eye p-2 rounded-lg shadow-md border m-1 hover:text-white"
-                                onClick={() => handleEye(el)}
-                              ></i>
-                              <i className="bg-white text-[#777] fa-solid fa-recycle p-2 rounded-lg shadow-md border hover:border-[#6c7fd8] hover:bg-[#6c7fd8] hover:text-white m-1"></i>
-                              <i className="bg-white text-[#777] fa-solid fa-bag-shopping p-2 rounded-lg shadow-md border hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
+
+                            <div className="hidden group-hover:flex gap-2 absolute bottom-2 left-1/2 -translate-x-1/2 transition-all duration-500">
+                              {[
+                                { icon: "fa-heart", handler: null },
+                                { icon: "fa-eye", handler: () => handleEye(el) },
+                                { icon: "fa-recycle", handler: null },
+                                { icon: "fa-bag-shopping", handler: null },
+                              ].map(({ icon, handler }, i) => (
+                                <i
+                                  key={i}
+                                  className={`fa-regular ${icon.includes("solid") ? icon : `fa-${icon}`} p-2 text-[#777] rounded-full shadow-md border bg-white/80 hover:bg-[#6c7fd8] hover:border-[#6c7fd8] hover:text-white cursor-pointer transition-all duration-300`}
+                                  onClick={handler}
+                                ></i>
+                              ))}
                             </div>
                           </div>
 
-
-                          <div className="p-4 flex flex-col gap-2">
+                          <div className="p-4 flex flex-col gap-2 bg-white/30 backdrop-blur-lg rounded-b-2xl transition-all duration-500">
                             <div className="flex justify-between items-center">
-                              <h3 className="text-lg font-semibold truncate">{el.name}</h3>
+                              <h3 className="text-lg font-semibold truncate text-black">{el.name}</h3>
                               <div className="text-yellow-500 text-sm">
                                 {"★".repeat(Math.floor(el.rating || 0))}
                               </div>
                             </div>
-                            <p className="text-sm text-gray-600 line-clamp-2">{el.des}</p>
+                            <p className="text-sm text-gray-700 line-clamp-2">{el.des}</p>
                             <div className="flex justify-between items-center mt-2">
-                              <span className="text-gray-800 font-bold">
+                              <span className="text-gray-900 font-bold">
                                 ${el.price}
                                 {el.strike && (
-                                  <span className="text-sm text-gray-400 ms-2 line-through">
+                                  <span className="text-sm text-gray-500 ms-2 line-through">
                                     ${el.strike}
                                   </span>
                                 )}
                               </span>
-                              <span className="text-sm text-gray-500">{el.weight}</span>
+                              <span className="text-sm text-gray-700">{el.weight}</span>
                             </div>
                           </div>
                         </div>
                       </div>
-                    )
-                    )
+                    ))
+
                   }
                 </div>
 
@@ -903,12 +942,12 @@ function Home() {
                             <img
                               src={el.image[0]}
                               alt={el.name}
-                              className="absolute h-full w-full object-cover border transition-opacity duration-500 group-hover:opacity-0"
+                              className="absolute h-full w-full object-cover border  duration-500 group-hover:-translate-x-full"
                             />
                             <img
                               src={el.image[1]}
                               alt={`${el.name} back`}
-                              className="absolute h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                              className="absolute h-full w-full object-cover  duration-500 translate-x-full group-hover:translate-x-0"
                             />
                           </div>
 

@@ -90,3 +90,21 @@ export const Product_filter_reducer = (state = product_filter, { type, payload }
         default: return state
     }
 }
+
+
+const Cart_added = {
+    quantity: 0,
+    product: []
+}
+
+export const Cart_Add_reducer = (state = Cart_added, { type, payload }) => {
+    switch (type) {
+        case "Cart_ADD":
+            return {
+                ...state,
+                quantity: payload,
+                product: payload
+            }
+        default: return state
+    }
+}
