@@ -17,7 +17,6 @@ body{
   text-align: start !important;
 }
 .img-clip {
-
 clip-path:polygon(
   0% 15%,
   0 0,
@@ -87,7 +86,43 @@ clip-path:polygon(
     width: 100%;
   }
 }
+@media (min-width: 1400px) {
+  .img-clip {
+    clip-path: polygon(
+      0% 15%,
+  0 0,
+  15% 0%,
+  85% 0%,
+  100% 0,
+  100% 15%,
+  106% 69%,
+  85% 133%,
+  83% 101%,
+  12% 101%,
+  0 102%,
+  0% 85%
+    );
+  }
+}
 
+@media (min-width: 1000px) {
+  .img-clip {
+    clip-path: polygon(
+      0% 15%,
+  0 0,
+  15% 0%,
+  85% 0%,
+  100% 0,
+  100% 15%,
+  106% 69%,
+  85% 133%,
+  83% 101%,
+  12% 101%,
+  0 102%,
+  0% 85%
+    );
+  }
+}
 /* For outlined text (like your image) */
 .outlined-text {
   color: transparent;

@@ -198,9 +198,7 @@ function Home() {
     <>
       <Nav />
       {/* slider */}
-      <div className='h-screen 2xl:h-[50%]'>
-
-
+      <div className='h-[150vh] 2xl:h-screen  xl:h-screen lg:h-screen sm:h-screen '>
         <Swiper
           spaceBetween={50}
           modules={[Autoplay, Pagination]}
@@ -212,7 +210,7 @@ function Home() {
           style={{ height: "100%", width: "100%" }}
         >
           <SwiperSlide>
-            <div className="h-screen w-full bg-[#F8F8FB] relative overflow-hidden">
+            <div className="h-full w-full bg-[#F8F8FB] relative overflow-hidden">
               <div className="grid grid-col sm:grid-cols-2 h-full w-full">
                 <div className=" h-full w-full ">
                   <div className="flex text-qu flex-col justify-center h-full sm:ms-28 ms-2 mb-2">
@@ -302,12 +300,9 @@ function Home() {
               </div>
 
             </div>
-
-
           </SwiperSlide>
-
           <SwiperSlide>
-            <div className="h-screen w-full bg-[#F8F8FB] relative overflow-hidden">
+            <div className="h-full w-full bg-[#F8F8FB] relative overflow-hidden">
               <div className="grid grid-col sm:grid-cols-2 h-full w-full">
                 <div className=" h-full w-full ">
                   <div className="flex text-qu flex-col justify-center h-full sm:ms-28 ms-2 mb-2">
@@ -397,14 +392,9 @@ function Home() {
               </div>
 
             </div>
-
-
           </SwiperSlide>
-
-
-
           <SwiperSlide>
-            <div className="h-screen w-full bg-[#F8F8FB] relative overflow-hidden">
+            <div className="h-full w-full bg-[#F8F8FB] relative overflow-hidden">
               <div className="grid grid-col sm:grid-cols-2 h-full w-full">
                 <div className=" h-full w-full ">
                   <div className="flex text-qu flex-col justify-center h-full sm:ms-28 ms-2 mb-2">
@@ -497,17 +487,14 @@ function Home() {
 
 
           </SwiperSlide>
-
-
         </Swiper >
-
       </div>
 
-      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 lg:h-[166vh] md:h-auto sm:h-[160vh] h-[60vh] relative overflow-hidden'>
-        <div className='2xl:h-[90%] lg:h-[96%] h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
-          <div className='h-[auto] 2xl:h-[80%] xl:h-[88%] lg:h-[90%] relative'>
+      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 2xl:h-[145vh] xl:h-[140vh] lg:h-[166vh] md:h-auto sm:h-[160vh] h-screen relative overflow-hidden'>
+        <div className=' min-h-[76%] 2xl:h-[75%] xl:h-[80%] lg:h-[96%] h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
+          <div className='h-[auto] 2xl:h-[100%] xl:h-[88%] lg:h-[90%] relative'>
             <img src="./category.jpg" alt="" className='relative h-full rounded-3xl img-clip object-cover' />
-            <img src="./top-shape.png" className='right-0 absolute 2xl:top-[71%] xl:top-[64%] xl:right-[-1px] lg:top-[64%] top-[65%]' alt="" />
+            <img src="./top-shape.png" className='right-0 absolute 2xl:top-[79%] xl:top-[79%] xl:right-[-1px] lg:top-[64%] top-[65%]' alt="" />
             <img src="./top-shape.png" className='2xl:right-[45%] xl:right-[45%] lg:right-[235px] md:right-[54px] sm:right-[69px]  absolute bottom-0 ' alt="" />
 
 
@@ -517,8 +504,8 @@ function Home() {
           </div>
         </div>
 
-        <div className='h-full'>
-          <div className='sm:h-[60%] h-[30%] flex justify-center items-center'>
+        <div className='h-full w-full'>
+          <div className='sm:h-[60%] h-[50%] flex justify-center items-center'>
             <svg width="100%" height="100%" viewBox="0 0 800 200" className="w-full group lg:h-[165vh] md:h-screen sm:h-[70vh] h-[66vh] ">
               <defs>
                 <linearGradient id="light-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -571,7 +558,10 @@ function Home() {
               </text>
             </svg>
           </div>
-          <div className='absolute 
+          <div>
+
+
+            <div className='absolute 
           xl:left-[27%] 
           xl:w-[72%]
           lg:left-[27%] 
@@ -583,7 +573,8 @@ function Home() {
           mt-7
           w-[99%]'>
 
-            <SlickSliderComponent />
+              <SlickSliderComponent />
+            </div>
           </div>
         </div>
       </div>
@@ -803,6 +794,9 @@ function Home() {
 
       }
 
+
+      {/* background image */}
+
       <div className="overflow-hidden h-screen sm:h-[90vh] bg-[url('/banner.jpg')] bg-center bg-no-repeat bg-cover mt-4 relative">
         <div className="absolute bottom-0 right-4 sm:right-10 md:right-20 lg:right-28 xl:right-40 2xl:right-60 w-[90%] sm:w-[370px]">
           <div className="bg-white p-5 rounded-t-3xl relative h-[245px] ">
@@ -811,11 +805,12 @@ function Home() {
             <button className="mt-4 px-6 py-3 border border-black hover:bg-[#6c7fd8] hover:border-[#6c7fd8] hover:text-white transition duration-500 rounded-xl w-fit">
               Shop Now
             </button>
-            <img src="/left-shape.png" alt="Left Decoration" className="absolute bottom-0 left-[-20px] lg:left-[-38px] md:left-[-38px] sm:left-[-29px] w-[40px] " />
-            <img src="/right-shape.png" alt="Right Decoration" className="absolute bottom-0 right-[-20px]  lg:right-[-38px] md:right-[-38px] sm:right-[-29px] w-[40px] " />
+            <img src="/left-shape.png" alt="Left Decoration" className="absolute bottom-0 left-[-35px] lg:left-[-38px] md:left-[-38px] sm:left-[-29px] w-[40px] " />
+            <img src="/right-shape.png" alt="Right Decoration" className="absolute bottom-0 right-[-35px]  lg:right-[-38px] md:right-[-38px] sm:right-[-29px] w-[40px] " />
           </div>
         </div>
       </div>
+      {/* background image */}
 
       <div className='h-auto sm:p-9 p-0 mt-5 overflow-hidden'>
         <div className="grid 2xl:grid-cols-2 gap-4 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1  grid-cols-1  ">
@@ -1278,7 +1273,7 @@ function Home() {
 
       </div>
 
-      <div className='min-h-[80vh]  h-auto w-full flex justify-center items-center '>
+      <div className='min-h-[100vh] max-h-[130vh]  h-auto w-full flex justify-center items-center overflow-hidden '>
         <div className='w-full max-w-6xl px-4 relative'>
           <img
             src="./img-1.png"

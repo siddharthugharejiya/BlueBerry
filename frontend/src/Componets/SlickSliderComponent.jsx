@@ -42,7 +42,7 @@ const SlickSliderComponent = () => {
   };
 
   return (
-    <div className="w-full max-w-[1200px] mx-auto p-4 z-50 bg-white rounded-xl overflow-hidden]">
+    <div className="w-full max-w-[1200px] mx-auto sm:p-4 p-0 z-50 bg-white rounded-xl overflow-hidden]">
       <div >
         <Slider {...settings}>
           <div className="px-2">
