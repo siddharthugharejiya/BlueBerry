@@ -10,7 +10,8 @@ const ProductSchema = new mongoose.Schema({
     strike: { type: String },
     weight: { type: String },
     tag: { type: String },
-    user: { type: mongoose.Schema.ObjectId, ref: "user" }
-})
+    user: { type: mongoose.Schema.ObjectId, ref: "user" },
+
+});
 
 export const ProductModel = mongoose.model("product", ProductSchema);

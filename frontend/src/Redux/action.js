@@ -164,3 +164,33 @@ export const Cart_action = (product, quantity) => async (dispatch) => {
         console.error("Error adding to cart:", err);
     }
 };
+
+export const cart_get_Acation = () => async (dispatch) => {
+    const token = localStorage.getItem("Token");
+
+    try {
+        const response = await fetch("http://localhost:9595/cart_get", {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+        });
+
+        const res = await response.json();
+        console.log(res);
+
+
+        if (response.ok) {
+            dispatch({
+                type: "Cart_Get",
+                payload: res.data,
+            });
+        } else {
+            console.error("Cart fetch error:", res.message);
+        }
+
+    } catch (error) {
+        console.error("Error fetching cart:", error);
+    }
+};

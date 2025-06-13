@@ -72,24 +72,65 @@ export const edite_post = async (req, res) => {
 
 // }
 
-
 export const cart = async (req, res) => {
     const userId = req.user.userId;
     const { Product, quantity } = req.body;
-    console.log(Product._id);
-    const id = Product._id
-    console.log(id);
 
-    const exist = await CartModel.findOne({ "Product._id": Product._id });
-    console.log(exist, "this is  exisiting cart");
+    try {
 
-}
+        const exist = await CartModel.findOne({
+            "Product._id": Product._id,
+            user: userId
+        });
+
+        if (exist) {
+
+            const updated = await CartModel.findByIdAndUpdate(
+                exist._id,
+                { $inc: { quantity: quantity || 1 } },
+                { new: true }
+            );
+
+            return res.status(200).send({
+                message: "Product quantity updated in cart",
+                data: updated
+            });
+
+        } else {
+
+            const newCart = await CartModel.create({
+                Product,
+                quantity: quantity || 1,
+                user: userId
+            });
+
+            return res.status(201).send({
+                message: "Product added to cart",
+                data: newCart
+            });
+        }
+
+    } catch (error) {
+        console.error("Error in cart controller:", error);
+        return res.status(500).send({ message: "Internal Server Error", error });
+    }
+};
+
+
 
 
 export const cart_particular = async (req, res) => {
-    const userId = req.user.userId
-    console.log("Logged in user:", userId)
+    const userId = req.user.userId;
 
-    const data = await ProductModel.find({ user: userId }).populate("user")
-    res.send(data)
-}
+    try {
+        const cartData = await CartModel.find({ user: userId })
+
+        res.status(200).send({
+            message: "User specific cart fetched",
+            data: cartData
+        });
+    } catch (err) {
+        console.error("Error fetching cart:", err);
+        res.status(500).send({ message: "Internal Server Error", error: err });
+    }
+};

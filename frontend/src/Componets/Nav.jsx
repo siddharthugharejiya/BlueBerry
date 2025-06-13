@@ -40,7 +40,7 @@ function Nav() {
 
   useEffect(() => {
     const role = localStorage.getItem("UserRole");
-    console.log(role);
+    // console.log(role);
 
     setUserRole(role);
   }, []);
@@ -106,47 +106,63 @@ function Nav() {
 
 
         <div className="w-full sm:w-fit flex justify-center m-auto">
-          <div className="flex sm:flex-row  flex-col  justify-center  mt-2 gap-5 md:mt-0 flex-wrap ">
-            {[
-              { icon: <FaUser size={24} />, title: "Account", subtitle: "Login" },
-              { icon: <FaStar size={24} />, title: "Items", subtitle: "Wishlist" },
-              { icon: <FaShoppingCart size={24} />, title: "Items", subtitle: "Cart" },
-            ].map(({ icon, title, subtitle }, idx) => (
-              <div key={idx} className="relative group flex items-center space-x-2 cursor-pointer">
-                <div className="text-blue-400">{icon}</div>
-                <div className="flex flex-col">
-                  <span className="text-sm text-gray-600">{title}</span>
-                  <b className="text-gray-600 text-sm">{subtitle}</b>
-                </div>
-                <div className="absolute left-0 top-10 w-40 bg-white border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform group-hover:translate-y-2 z-50">
-                  <Link to="/register" className="block px-4 py-2 hover:bg-gray-100">
-                    register
-                  </Link>
-                  <Link to="/login" className="block px-4 py-2 hover:bg-gray-100">
-                    Login
-                  </Link>
-                  {
-                    UserRole === "admin" && <>
-                      <Link to="/admin" className="block px-4 py-2 hover:bg-gray-100">
-                        AdminPanel
-                      </Link>
-
-                    </>
-                  }
-
-                  <span onClick={handleLogOut} className="block px-4 py-2 hover:bg-gray-100">Login out</span>
-
-                
-
-
-                </div>
-
-
+          <div className="flex sm:flex-row flex-col justify-center mt-2 gap-5 md:mt-0 flex-wrap">
+            <div className="relative group flex items-center space-x-2 cursor-pointer">
+              <div className="text-blue-400">
+                <FaUser size={24} />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-sm text-gray-600">Account</span>
+                <b className="text-gray-600 text-sm">Login</b>
               </div>
 
-            ))}
+              <div className="absolute left-0 top-10 w-40 bg-white border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform group-hover:translate-y-2 z-50">
+                <Link to="/register" className="block px-4 py-2 hover:bg-gray-100">Register</Link>
+                <Link to="/login" className="block px-4 py-2 hover:bg-gray-100">Login</Link>
+                {UserRole === "admin" && (
+                  <Link to="/admin" className="block px-4 py-2 hover:bg-gray-100">Admin Panel</Link>
+                )}
+                <span onClick={handleLogOut} className="block px-4 py-2 hover:bg-gray-100">Log out</span>
+              </div>
+            </div>
+
+            {/* Wishlist */}
+            <div className="relative group flex items-center space-x-2 cursor-pointer">
+              <div className="text-blue-400">
+                <FaStar size={24} />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-sm text-gray-600">Items</span>
+                <b className="text-gray-600 text-sm">Wishlist</b>
+              </div>
+
+              <div className="absolute left-0 top-10 w-40 bg-white border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform group-hover:translate-y-2 z-50">
+                <Link to="/wishlist" className="block px-4 py-2 hover:bg-gray-100">View Wishlist</Link>
+                <span className="block px-4 py-2 hover:bg-gray-100">Remove All</span>
+              </div>
+            </div>
+
+            {/* Cart */}
+            <div className="relative group flex items-center space-x-2 cursor-pointer">
+              <div className="text-blue-400">
+                <FaShoppingCart size={24} />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-sm text-gray-600">Items</span>
+                <b className="text-gray-600 text-sm">Cart</b>
+              </div>
+
+              {/* Dropdown */}
+              <div className="absolute left-0 top-10 w-40 bg-white border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform group-hover:translate-y-2 z-50">
+                <Link to="/cart" className="block px-4 py-2 hover:bg-gray-100">View Cart</Link>
+                <Link to="/checkout" className="block px-4 py-2 hover:bg-gray-100">Checkout</Link>
+              </div>
+            </div>
+
           </div>
         </div>
+
+
       </nav>
 
       <div className="md:flex flex-col md:flex-row justify-between py-3 border-b hidden ">

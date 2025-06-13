@@ -6,7 +6,7 @@ const Product_add = () => {
     const dispatch = useDispatch();
     const product_edite = useSelector(state => state.Product_Edite_getting?.data || {});
     console.log(product_edite);
-    
+
     const [update, setupdate] = useState(false);
     const [state, setstate] = useState({
         id: "",
@@ -17,6 +17,7 @@ const Product_add = () => {
         category: "",
         price: "",
         strike: "",
+        quantity: "",
         weight: "",
         tag: "",
     });

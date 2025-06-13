@@ -108,3 +108,20 @@ export const Cart_Add_reducer = (state = Cart_added, { type, payload }) => {
         default: return state
     }
 }
+
+const initialState = {
+    cartItems: [],
+};
+
+export const cartReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case "Cart_Get":
+            return {
+                ...state,
+                cartItems: action.payload,
+            };
+
+        default:
+            return state;
+    }
+};

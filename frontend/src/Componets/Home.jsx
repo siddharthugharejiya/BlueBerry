@@ -11,12 +11,9 @@ import Slider from "react-slick";
 import SlickSliderComponent from './SlickSliderComponent';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Cart_action, Prodcuer_Filter_Action, Product } from '../Redux/action';
+import { Cart_action, cart_get_Acation, Prodcuer_Filter_Action, Product } from '../Redux/action';
 import { useLayoutEffect } from 'react';
 import Footer from './Footer';
-
-
-
 
 function Home() {
 
@@ -26,48 +23,7 @@ function Home() {
   const [seconds, setSeconds] = useState(60)
   const [activeTab, setactiveTab] = useState("All")
   const [fashion, setfashion] = useState("Miria")
-  const [quantity, setquantity] = useState({
-    price: 0,
-    Quantity: 0
-  })
-
-
-  const handleMinus = (price) => {
-    setquantity(pre => ({
-      price: price,
-      Quantity: pre.Quantity - 1
-
-    }))
-  }
-
-  const handlePlus = (price) => {
-    setquantity(pre => ({
-      price: price,
-      Quantity: pre.Quantity + 1
-    }))
-  }
-
-
-
-  useEffect(() => {
-    if (seconds <= 0) return;
-
-    const interval = setInterval(() => {
-      setSeconds(prev => prev - 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [seconds]);
-  useLayoutEffect(() => {
-    setfashion("Maria")
-  }, [])
-
-  const formatTime = () => {
-    // const mins = String(Math.floor(seconds / 60)).padStart(2, "0");
-    const secs = String(seconds % 60).padStart(2, "0");
-    return `${secs}`;
-  };
-
+  const [quantity, setquantity] = useState({})
   useEffect(() => {
     const mainText = document.getElementById("mainText");
     const anim = document.querySelector("animateTransform");
@@ -76,28 +32,13 @@ function Home() {
       anim.beginElement();
     });
   }, []);
-  const products = useSelector(state => state.Products.data.data || [])
-
-  const handleEye = (product) => {
-    seteye(product)
-    setopen(true)
-
-  }
-  const handleClose = () => {
-    setopen(false)
-  }
-
-  const filtered = useSelector(state => state.Product_Filtered.data || [])
-  const HandleCategoryes = (category) => {
-    console.log(category);
-
-    dispatch(Prodcuer_Filter_Action(category))
-    setactiveTab(category)
-  }
-
+  const formatTime = () => {
+    // const mins = String(Math.floor(seconds / 60)).padStart(2, "0");
+    const secs = String(seconds % 60).padStart(2, "0");
+    return `${secs}`;
+  };
   useLayoutEffect(() => {
-    dispatch(Product())
-    dispatch(Prodcuer_Filter_Action("All"))
+    setfashion("Maria")
   }, [])
 
   const settings1 = {
@@ -186,10 +127,97 @@ function Home() {
       }
     ],
   }
+
+
+
+
+  //  card 
+
+
+  const cartItems = useSelector(state => state.cart_get_items.cartItems);
+
+
+  useEffect(() => {
+    dispatch(cart_get_Acation());
+  }, [dispatch]);
+
+
+  useEffect(() => {
+    if (cartItems && cartItems.length > 0) {
+      const qtyMap = {};
+      cartItems.forEach((item) => {
+
+        if (item.Product?._id && (quantity[item.Product._id] !== item.quantity)) {
+          qtyMap[item.Product._id] = item.quantity;
+        }
+      });
+
+
+      if (Object.keys(qtyMap).length > 0) {
+        setquantity(prev => ({ ...prev, ...qtyMap }));
+      }
+    } else if (cartItems?.length === 0 && Object.keys(quantity).length > 0) {
+
+      setquantity({});
+    }
+  }, [cartItems])
+
+  const handleMinus = (productId) => {
+    setquantity(prev => ({
+      ...prev,
+      [productId]: Math.max((prev[productId] || 0) - 1, 0)
+    }));
+  };
+
+  const handlePlus = (productId) => {
+    setquantity(prev => ({
+      ...prev,
+      [productId]: (prev[productId] || 0) + 1
+    }));
+  };
+  useEffect(() => {
+    if (seconds <= 0) return;
+
+    const interval = setInterval(() => {
+      setSeconds(prev => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [seconds]);
+
+  const products = useSelector(state => state.Products?.data?.data ? state.Products.data.data : [])
+
+  const handleEye = (product) => {
+    seteye(product)
+    setopen(true)
+
+  }
+  const handleClose = () => {
+    setopen(false)
+  }
+
+  const filtered = useSelector(state => state.Product_Filtered.data || [])
+  const HandleCategoryes = (category) => {
+    console.log(category);
+
+    dispatch(Prodcuer_Filter_Action(category))
+    setactiveTab(category)
+  }
+
+  useLayoutEffect(() => {
+    dispatch(Product())
+    dispatch(Prodcuer_Filter_Action("All"))
+  }, [])
+
+
   const AddToCart = (cart) => {
     console.log(cart)
-    console.log(quantity.Quantity)
-    dispatch(Cart_action(cart, quantity.Quantity))
+    console.log(cart._id)
+    const q = quantity[cart._id] || 1;
+    console.log(q);
+
+
+    dispatch(Cart_action(cart, q))
 
   }
 
@@ -270,7 +298,7 @@ function Home() {
                     className="animate-shape 
                     animate__animated
                 animate__fadeInRight
-                  w-[120%] absolute sm:top-[95px] xl:top-[-20px] lg:top-[-20px] md:top-[40px] top-[10px] right-[-50px] max-[1399px]:right-[-30px] max-[1199px]:w-[125%] max-[991px]:w-[100%] max-[991px]:top-[0px] max-[575px]:right-[0] max-[420px]:w-[110%] max-[420px]:right-[-30px]"
+                  w-[120%] absolute sm:top-[100px] xl:top-[-20px] lg:top-[-20px] md:top-[40px] top-[10px] right-[-50px] max-[1399px]:right-[-30px] max-[1199px]:w-[125%] max-[991px]:w-[100%] max-[991px]:top-[0px] max-[575px]:right-[0] max-[420px]:w-[110%] max-[420px]:right-[-30px]"
                   >
                     <linearGradient id="shape_1" x1="100%" x2="0%" y1="100%" y2="0%" />
                     <path fill="white">
@@ -392,6 +420,7 @@ function Home() {
               </div>
 
             </div>
+
           </SwiperSlide>
           <SwiperSlide>
             <div className="h-full w-full bg-[#F8F8FB] relative overflow-hidden">
@@ -490,7 +519,7 @@ function Home() {
         </Swiper >
       </div>
 
-      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 2xl:h-[145vh] xl:h-[140vh] lg:h-[166vh] md:h-auto sm:h-[160vh] h-screen relative overflow-hidden'>
+      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 2xl:h-[160vh] xl:h-[140vh] lg:h-[166vh] md:h-auto sm:h-[160vh] h-screen relative overflow-hidden'>
         <div className=' min-h-[76%] 2xl:h-[75%] xl:h-[80%] lg:h-[96%] h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
           <div className='h-[auto] 2xl:h-[100%] xl:h-[88%] lg:h-[90%] relative'>
             <img src="./category.jpg" alt="" className='relative h-full rounded-3xl img-clip object-cover' />
@@ -774,9 +803,9 @@ function Home() {
                     </div>
                     <div className='grid grid-cols-1 2xl:grid-cols-[auto_auto] mt-2 justify-start items-center gap-4'>
                       <div className='p-2 border w-fit h-auto flex justify-evenly rounded-lg items-center  '>
-                        <span className='cursor-pointer px-2' onClick={() => handleMinus(eye.price)} >-</span>
-                        <span>{quantity.Quantity}</span>
-                        <span className='cursor-pointer px-2' onClick={() => handlePlus(eye.price)}>+</span>
+                        <span className='cursor-pointer px-2' onClick={() => handleMinus(eye._id)} >-</span>
+                        <span>{quantity[eye._id] || 0}</span>
+                        <span className='cursor-pointer px-2' onClick={() => handlePlus(eye._id)}>+</span>
                       </div>
                       <button className='p-2 border rounded-lg hover:bg-[#6c7fd8] hover:text-white duration-500' onClick={() => AddToCart(eye)}>
                         <i className="fa-solid fa-bag-shopping px-2 t"  ></i>

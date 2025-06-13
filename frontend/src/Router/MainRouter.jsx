@@ -7,6 +7,7 @@ import Register from '../Componets/Register'
 import Login from '../Componets/Login'
 import AdminPanel from '../Componets/AdminPanel'
 import Product_add from '../Componets/Product_add'
+import Cart from '../Componets/Cart'
 
 
 function MainRouter() {
@@ -17,6 +18,7 @@ function MainRouter() {
         <Route path='/register' element={<Register />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/admin' element={<AdminPanel />}></Route>
+        <Route path='/cart' element={<Cart />}></Route>
         <Route path='/product' element={<Product_add />}></Route>
 
 
