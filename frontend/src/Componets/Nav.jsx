@@ -7,9 +7,12 @@ function Nav() {
   const [state, setstate] = useState(false);
   const nav = useNavigate()
   const [offcanvas, setoffcanvas] = useState(false)
+  const [cart, setcart] = useState(false)
+
+
   useEffect(() => {
     const interval = setInterval(() => {
-      const popclosed = sessionStorage.getItem("popclose");
+      // const popclosed = sessionStorage.getItem("popclose");
       if (!popclosed) {
         setoffcanvas(true);
       }
@@ -143,7 +146,7 @@ function Nav() {
             </div>
 
             {/* Cart */}
-            <div className="relative group flex items-center space-x-2 cursor-pointer">
+            <div className="relative group flex items-center space-x-2 cursor-pointer" onClick={() => setcart(true)}>
               <div className="text-blue-400">
                 <FaShoppingCart size={24} />
               </div>
@@ -153,10 +156,10 @@ function Nav() {
               </div>
 
               {/* Dropdown */}
-              <div className="absolute left-0 top-10 w-40 bg-white border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform group-hover:translate-y-2 z-50">
+              {/* <div className="absolute left-0 top-10 w-40 bg-white border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform group-hover:translate-y-2 z-50">
                 <Link to="/cart" className="block px-4 py-2 hover:bg-gray-100">View Cart</Link>
                 <Link to="/checkout" className="block px-4 py-2 hover:bg-gray-100">Checkout</Link>
-              </div>
+              </div> */}
             </div>
 
           </div>
@@ -288,6 +291,18 @@ function Nav() {
               </div>
             </div>
           </div>
+
+        </>
+      }
+      {
+        cart && <>
+          <div className={`fixed bg-red-700 top-0 right-0 h-screen w-[50%] z-50 transition-transform duration-500 
+  ${cart ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div className="relative">
+              <span className="absolute right-0 text-3xl p-3 px-6 cursor-pointer" onClick={() => setcart(false)}>x</span>
+            </div>
+          </div>
+
 
         </>
       }
