@@ -50,9 +50,9 @@ function Nav() {
     setUserRole(role);
   }, []);
   const cartItems = useSelector(state => state.cart_get_items.cartItems || [])
+  console.log(cartItems.length);
 
-  const Product = cartItems
-  console.log(Product);
+
 
 
 
@@ -199,7 +199,7 @@ function Nav() {
                 <FaShoppingCart size={24} />
               </div>
               <div className="flex flex-col">
-                <span className="text-sm text-gray-600">{cartItems.Product}</span>
+                <span className="text-sm font-medium">{cartItems.length} <span className="text-gray-600"> items </span></span>
                 <b className="text-gray-600 text-sm">Cart</b>
               </div>
 
@@ -345,7 +345,7 @@ function Nav() {
 
 
       {/* Sidebar */}
-      <div className={`fixed top-0 right-0 h-full overflow-auto lg:w-[32%] bg-white  md:w-[40%] min-w-[30%]  z-50
+      <div className={`fixed top-0 right-0 h-full overflow-auto  shadow-md bg-white xl:w-[35%] lg:w-[45%]  md:w-[55%] sm:w-[65%] w-[90%]   z-50
         transform transition-transform duration-700 ease-in-out 
         ${cart ? "translate-x-0" : "translate-x-full"}`}>
 
@@ -377,7 +377,7 @@ function Nav() {
 
                   <div className="flex flex-col justify-start items-start col-span-1 md:col-span-2">
                     <h1 className="text-sm font-semibold">{el?.Product?.name}</h1>
-                    <span className="text-gray-600">Price: ₹{el?.Product?.price}</span>
+                    <span className="text-gray-600 font-semibold">${el?.Product?.price} x <span className="font-normal">{el.Product.weight} </span> </span>
 
                     <div className="flex items-center mt-2">
                       <span
@@ -392,7 +392,7 @@ function Nav() {
                     </div>
 
                     <p className="text-sm text-gray-700 mt-2">
-                      Subtotal: ₹{el.Product.price * (quantity[el.Product._id] || 0)}
+                      Subtotal: {el.Product.price * (quantity[el.Product._id] || 0)}
                     </p>
                   </div>
                 </div>
