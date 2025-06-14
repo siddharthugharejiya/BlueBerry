@@ -199,7 +199,7 @@ function Nav() {
                 <FaShoppingCart size={24} />
               </div>
               <div className="flex flex-col">
-                <span className="text-sm text-gray-600">Items</span>
+                <span className="text-sm text-gray-600">{cartItems.Product}</span>
                 <b className="text-gray-600 text-sm">Cart</b>
               </div>
 
@@ -345,24 +345,24 @@ function Nav() {
 
 
       {/* Sidebar */}
-      <div className={`fixed top-0 right-0 h-full overflow-scroll max-w-[50%] min-w-[40%] bg-[#FFFFFF] shadow-2xl z-50
+      <div className={`fixed top-0 right-0 h-full overflow-auto lg:w-[32%] bg-white  md:w-[40%] min-w-[30%]  z-50
         transform transition-transform duration-700 ease-in-out 
         ${cart ? "translate-x-0" : "translate-x-full"}`}>
 
         <div className="relative h-full p-4">
           <span
-            className="absolute top-4 right-4 text-3xl cursor-pointer"
+            className="absolute top-4 right-8 text-3xl cursor-pointer "
             onClick={() => setcart(false)}
           >
             &times;
           </span>
-          <div className="w-full max-w-3xl mx-auto px-4 py-6 bg-[#F8F8FB] rounded-lg shadow">
+          <div className="w-full max-w-3xl mx-auto px-4 py-6  rounded-lg shadow  bg-[#FFFFFF]">
+            <h1>My Cart</h1>
             {cartItems.map((el) => (
-              <div key={el._id} className="cart bg-white text-black my-4 p-3 rounded-md shadow-sm">
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 items-center group">
+              <div key={el._id} className="cart bg-[#F8F8FB]  text-black my-4 p-3 rounded-md shadow-sm">
+                <div className="grid grid-cols-2 lg:grid-cols-3 md:grid-cols-3 gap-4 lg:justify-items-start md:justify-items-center items-center group">
 
-                  {/* IMAGE */}
-                  <div className="relative w-full overflow-hidden h-[100px]">
+                  <div className="relative lg:w-[67%] md:w-full overflow-hidden h-[100px] ms-5">
                     <img
                       src={el.Product.image[0]}
                       alt={el.Product.name}
@@ -375,12 +375,10 @@ function Nav() {
                     />
                   </div>
 
-                  {/* PRODUCT INFO */}
                   <div className="flex flex-col justify-start items-start col-span-1 md:col-span-2">
                     <h1 className="text-sm font-semibold">{el?.Product?.name}</h1>
                     <span className="text-gray-600">Price: ₹{el?.Product?.price}</span>
 
-                    {/* QUANTITY */}
                     <div className="flex items-center mt-2">
                       <span
                         className='cursor-pointer px-2 bg-gray-300 rounded'
@@ -393,7 +391,6 @@ function Nav() {
                       >+</span>
                     </div>
 
-                    {/* INDIVIDUAL SUBTOTAL */}
                     <p className="text-sm text-gray-700 mt-2">
                       Subtotal: ₹{el.Product.price * (quantity[el.Product._id] || 0)}
                     </p>
@@ -402,14 +399,20 @@ function Nav() {
               </div>
             ))}
 
-            {/* GRAND TOTAL */}
-            <div className="flex justify-between items-center font-bold text-lg mt-6 border-t pt-4">
-              <p>Total Amount:</p>
-              <p>₹{cartItems.reduce((total, item) => {
-                const qty = quantity[item.Product._id] || 0;
-                return total + item.Product.price * qty;
-              }, 0)}</p>
+            <div className="border-t">
+              <div className="flex justify-between items-center font-bold text-lg mt-6 ">
+                <p>Total Amount:</p>
+                <p>₹{cartItems.reduce((total, item) => {
+                  const qty = quantity[item.Product._id] || 0;
+                  return total + item.Product.price * qty;
+                }, 0)}</p>
+              </div>
+              <div className="flex  justify-between mt-3 ">
+                <button className="p-2 border rounded-lg hover:bg-them hover:text-white transition duration-300">View Cart</button>
+                <button className="p-2 border text-white rounded-lg bg-them hover:bg-white hover:text-black  transition duration-300">Checkout</button>
+              </div>
             </div>
+
           </div>
 
 
