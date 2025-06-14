@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUser, FaStar, FaShoppingCart } from "react-icons/fa";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import { cart_get_Acation } from "../Redux/action";
+import { useDispatch, useSelector } from "react-redux";
 
 function Nav() {
   const [state, setstate] = useState(false);
   const nav = useNavigate()
   const [offcanvas, setoffcanvas] = useState(false)
   const [cart, setcart] = useState(false)
+  const [quantity, setquantity] = useState({})
 
 
   useEffect(() => {
@@ -41,14 +44,59 @@ function Nav() {
   }
   const [UserRole, setUserRole] = useState(null);
 
+  const dispatch = useDispatch();
   useEffect(() => {
     const role = localStorage.getItem("UserRole");
-    // console.log(role);
-
     setUserRole(role);
   }, []);
+  const cartItems = useSelector(state => state.cart_get_items.cartItems || [])
+
+  const Product = cartItems
+  console.log(Product);
 
 
+
+
+
+  useEffect(() => {
+    dispatch(cart_get_Acation());
+  }, [dispatch]);
+
+
+
+  useEffect(() => {
+    if (cartItems && cartItems.length > 0) {
+      const qtyMap = {};
+      cartItems.forEach((item) => {
+
+        if (item.Product?._id && (quantity[item.Product._id] !== item.quantity)) {
+          qtyMap[item.Product._id] = item.quantity;
+        }
+      });
+
+
+      if (Object.keys(qtyMap).length > 0) {
+        setquantity(prev => ({ ...prev, ...qtyMap }));
+      }
+    } else if (cartItems?.length === 0 && Object.keys(quantity).length > 0) {
+
+      setquantity({});
+    }
+  }, [cartItems])
+
+  const handleMinus = (productId) => {
+    setquantity(prev => ({
+      ...prev,
+      [productId]: Math.max((prev[productId] || 0) - 1, 0)
+    }));
+  };
+
+  const handlePlus = (productId) => {
+    setquantity(prev => ({
+      ...prev,
+      [productId]: (prev[productId] || 0) + 1
+    }));
+  };
 
 
 
@@ -294,19 +342,81 @@ function Nav() {
 
         </>
       }
-      {
-        cart && <>
-          <div className={`fixed bg-red-700 top-0 right-0 h-screen w-[50%] z-50 transition-transform duration-500 
-  ${cart ? 'translate-x-0' : 'translate-x-full'}`}>
-            <div className="relative">
-              <span className="absolute right-0 text-3xl p-3 px-6 cursor-pointer" onClick={() => setcart(false)}>x</span>
+
+
+      {/* Sidebar */}
+      <div className={`fixed top-0 right-0 h-full overflow-scroll max-w-[50%] min-w-[40%] bg-[#FFFFFF] shadow-2xl z-50
+        transform transition-transform duration-700 ease-in-out 
+        ${cart ? "translate-x-0" : "translate-x-full"}`}>
+
+        <div className="relative h-full p-4">
+          <span
+            className="absolute top-4 right-4 text-3xl cursor-pointer"
+            onClick={() => setcart(false)}
+          >
+            &times;
+          </span>
+          <div className="w-full max-w-3xl mx-auto px-4 py-6 bg-[#F8F8FB] rounded-lg shadow">
+            {cartItems.map((el) => (
+              <div key={el._id} className="cart bg-white text-black my-4 p-3 rounded-md shadow-sm">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 items-center group">
+
+                  {/* IMAGE */}
+                  <div className="relative w-full overflow-hidden h-[100px]">
+                    <img
+                      src={el.Product.image[0]}
+                      alt={el.Product.name}
+                      className="absolute z-10 h-full w-28 object-cover transform transition-all duration-700 group-hover:-translate-x-full"
+                    />
+                    <img
+                      src={el.Product.image[1]}
+                      alt={`${el.Product.name} back`}
+                      className="absolute z-0 h-full w-28 object-cover transform translate-x-full scale-100 transition-all duration-700 group-hover:translate-x-0 group-hover:scale-110"
+                    />
+                  </div>
+
+                  {/* PRODUCT INFO */}
+                  <div className="flex flex-col justify-start items-start col-span-1 md:col-span-2">
+                    <h1 className="text-sm font-semibold">{el?.Product?.name}</h1>
+                    <span className="text-gray-600">Price: ₹{el?.Product?.price}</span>
+
+                    {/* QUANTITY */}
+                    <div className="flex items-center mt-2">
+                      <span
+                        className='cursor-pointer px-2 bg-gray-300 rounded'
+                        onClick={() => handleMinus(el?.Product?._id)}
+                      >-</span>
+                      <span className="px-3">{quantity[el?.Product?._id] || 0}</span>
+                      <span
+                        className='cursor-pointer px-2 bg-gray-300 rounded'
+                        onClick={() => handlePlus(el?.Product?._id)}
+                      >+</span>
+                    </div>
+
+                    {/* INDIVIDUAL SUBTOTAL */}
+                    <p className="text-sm text-gray-700 mt-2">
+                      Subtotal: ₹{el.Product.price * (quantity[el.Product._id] || 0)}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* GRAND TOTAL */}
+            <div className="flex justify-between items-center font-bold text-lg mt-6 border-t pt-4">
+              <p>Total Amount:</p>
+              <p>₹{cartItems.reduce((total, item) => {
+                const qty = quantity[item.Product._id] || 0;
+                return total + item.Product.price * qty;
+              }, 0)}</p>
             </div>
           </div>
 
 
-        </>
-      }
+        </div>
+      </div>
     </div>
+
   );
 }
 

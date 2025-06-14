@@ -135,7 +135,7 @@ function Home() {
 
 
   const cartItems = useSelector(state => state.cart_get_items.cartItems);
-
+ 
 
   useEffect(() => {
     dispatch(cart_get_Acation());

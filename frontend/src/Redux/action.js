@@ -179,6 +179,7 @@ export const cart_get_Acation = () => async (dispatch) => {
 
         const res = await response.json();
         console.log(res);
+        console.log(res.data);
 
 
         if (response.ok) {
