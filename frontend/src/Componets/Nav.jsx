@@ -105,7 +105,7 @@ function Nav() {
       <nav className="flex justify-between items-center flex-wrap border-b-2 pb-2 p-3">
         {/* Logo */}
         <div className="logo md:w-[280px]  w-full flex justify-between items-center ">
-          <img src="./logo.png" alt="Logo" className="w-min-[10px] h-auto" />
+          <img src="../logo.png" alt="Logo" className="w-min-[10px] h-auto" />
           <i className="fa-solid fa-bars-staggered text-blue-600 text-2xl md:hidden block" onClick={() => setstate(true)}></i>
         </div>
 
@@ -238,7 +238,7 @@ function Nav() {
           <div className="border w-full md:w-[200px] flex justify-between rounded-xl">
             <div className="relative group w-full">
               <button className="flex w-full justify-around p-2 items-center gap-2 text-gray-700 font-medium">
-                <img src="./icons8-location.gif" alt="location" className="w-5 h-5" />
+                <img src="../icons8-location.gif" alt="location" className="w-5 h-5" />
                 Select City
                 <ChevronDownIcon className="h-4 w-4 text-gray-500" />
               </button>

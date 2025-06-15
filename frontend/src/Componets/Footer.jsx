@@ -150,7 +150,7 @@ function Footer() {
                                     <div class="footer-bottom-right">
                                         <div class="footer-bottom-payment flex justify-center">
                                             <div class="payment-link">
-                                                <img src="./payment.png" alt="payment" class="max-[360px]:w-full" />
+                                                <img src="../payment.png" alt="payment" class="max-[360px]:w-full" />
                                             </div>
                                         </div>
                                     </div>
