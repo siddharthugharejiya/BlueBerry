@@ -125,3 +125,17 @@ export const cartReducer = (state = initialState, action) => {
             return state;
     }
 };
+
+const singlepageinistaial = {
+    data: []
+}
+export const singlepag_reducer = (state = singlepageinistaial, { type, payload }) => {
+    switch (type) {
+        case "single":
+            return {
+                ...state,
+                data: payload
+            }
+        default: return state
+    }
+}

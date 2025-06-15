@@ -117,7 +117,15 @@ export const cart = async (req, res) => {
 };
 
 
+export const singlepage = async (req, res) => {
+    const { id } = req.params
+    console.log(id);
+    const data = await ProductModel.findById(id)
 
+    res.json(data)
+
+
+}
 
 export const cart_particular = async (req, res) => {
     const userId = req.user.userId;

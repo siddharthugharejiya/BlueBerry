@@ -8,6 +8,7 @@ import Login from '../Componets/Login'
 import AdminPanel from '../Componets/AdminPanel'
 import Product_add from '../Componets/Product_add'
 import Cart from '../Componets/Cart'
+import SinglePage from '../Componets/SinglePage'
 
 
 function MainRouter() {
@@ -20,6 +21,7 @@ function MainRouter() {
         <Route path='/admin' element={<AdminPanel />}></Route>
         <Route path='/cart' element={<Cart />}></Route>
         <Route path='/product' element={<Product_add />}></Route>
+        <Route path='/single/:id' element={<SinglePage />}></Route>
 
 
       </Routes>

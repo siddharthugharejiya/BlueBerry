@@ -11,9 +11,10 @@ import Slider from "react-slick";
 import SlickSliderComponent from './SlickSliderComponent';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Cart_action, cart_get_Acation, Prodcuer_Filter_Action, Product } from '../Redux/action';
+import { Cart_action, cart_get_Acation, Prodcuer_Filter_Action, Product, single_action } from '../Redux/action';
 import { useLayoutEffect } from 'react';
 import Footer from './Footer';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
 
@@ -24,6 +25,7 @@ function Home() {
   const [activeTab, setactiveTab] = useState("All")
   const [fashion, setfashion] = useState("Miria")
   const [quantity, setquantity] = useState({})
+  const nav = useNavigate()
   useEffect(() => {
     const mainText = document.getElementById("mainText");
     const anim = document.querySelector("animateTransform");
@@ -135,7 +137,7 @@ function Home() {
 
 
   const cartItems = useSelector(state => state.cart_get_items.cartItems);
- 
+
 
   useEffect(() => {
     dispatch(cart_get_Acation());
@@ -216,8 +218,13 @@ function Home() {
     const q = quantity[cart._id] || 1;
     console.log(q);
 
-
     dispatch(Cart_action(cart, q))
+
+  }
+  const handleSinglePage = (id) => {
+    console.log(id);
+    nav(`/single/${id}`)
+    dispatch(single_action(id))
 
   }
 
@@ -520,7 +527,7 @@ function Home() {
       </div>
 
       <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 2xl:h-[160vh] xl:h-[140vh] lg:h-[166vh] md:h-auto sm:h-[160vh] h-screen relative overflow-hidden'>
-        <div className=' min-h-[76%] 2xl:h-[75%] xl:h-[80%] lg:h-[96%] h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
+        <div className=' min-h-[76%] 2xl:h-[80%] xl:h-[80%] lg:h-[96%] h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
           <div className='h-[auto] 2xl:h-[100%] xl:h-[88%] lg:h-[90%] relative'>
             <img src="./category.jpg" alt="" className='relative h-full rounded-3xl img-clip object-cover' />
             <img src="./top-shape.png" className='right-0 absolute 2xl:top-[79%] xl:top-[79%] xl:right-[-1px] lg:top-[64%] top-[65%]' alt="" />
@@ -671,7 +678,7 @@ function Home() {
                           </div>
                         </div>
 
-                        <div className="p-4 flex flex-col gap-2">
+                        <div className="p-4 flex flex-col gap-2" onClick={() => handleSinglePage(el._id)}>
                           <div className="flex justify-between items-center">
                             <h3 className="text-lg font-semibold truncate">{el.name}</h3>
                             <div className="text-yellow-500 text-sm">

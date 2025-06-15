@@ -50,7 +50,7 @@ function Nav() {
     setUserRole(role);
   }, []);
   const cartItems = useSelector(state => state.cart_get_items.cartItems || [])
-  console.log(cartItems.length);
+  // console.log(cartItems.length);
 
 
 
@@ -345,7 +345,7 @@ function Nav() {
 
 
       {/* Sidebar */}
-      <div className={`fixed top-0 right-0 h-full overflow-auto  shadow-md bg-white xl:w-[35%] lg:w-[45%]  md:w-[55%] sm:w-[65%] w-[90%]   z-50
+      <div className={`fixed top-0 right-0 h-full overflow-auto  shadow-md bg-white 2xl:w-[29%] xl:w-[35%] lg:w-[45%]  md:w-[55%] sm:w-[65%] w-[90%]   z-50
         transform transition-transform duration-700 ease-in-out 
         ${cart ? "translate-x-0" : "translate-x-full"}`}>
 

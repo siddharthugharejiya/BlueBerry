@@ -195,3 +195,24 @@ export const cart_get_Acation = () => async (dispatch) => {
         console.error("Error fetching cart:", error);
     }
 };
+
+
+export const single_action = (id) => (dispatch) => {
+    console.log(id);
+
+    fetch(`http://localhost:9595/single/${id}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(res => res.json())
+        .then(res => {
+            console.log(res);
+            
+            dispatch({
+                type: "single",
+                payload: res
+            })
+        })
+}
