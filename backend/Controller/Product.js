@@ -4,7 +4,7 @@ import { ProductModel } from "../modules/ProductModel.js"
 
 export const AddProduct = async (req, res) => {
     try {
-        console.log(req.body);
+        console.log(req.body, "this is all product addding");
 
         const data = await ProductModel.create({ ...req.body, user: req.user.userId })
 
@@ -20,12 +20,12 @@ export const All_product = async (req, res) => {
         const { category } = req.query
         // console.log(category)
         if (category) {
-            const data = await ProductModel.find({ category: category });
+            const data = await ProductModel.find({ category: category })
             console.log(data);
             return res.send({ message: "Products Filtered", data: data });
         }
         else {
-            const data = await ProductModel.find().limit(8)
+            const data = await ProductModel.find()
             return res.send({ message: "Products fetched", data: data });
         }
     } catch (err) {

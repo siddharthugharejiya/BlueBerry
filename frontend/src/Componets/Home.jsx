@@ -22,7 +22,7 @@ function Home() {
   const [eye, seteye] = useState([])
   const [open, setopen] = useState(false)
   const [seconds, setSeconds] = useState(60)
-  const [activeTab, setactiveTab] = useState("All")
+  const [activeTab, setactiveTab] = useState("fruit")
   const [fashion, setfashion] = useState("Miria")
   const [quantity, setquantity] = useState({})
   const nav = useNavigate()
@@ -42,6 +42,7 @@ function Home() {
   useLayoutEffect(() => {
     setfashion("Maria")
   }, [])
+
 
   const settings1 = {
     dots: true,
@@ -188,7 +189,10 @@ function Home() {
   }, [seconds]);
 
   const products = useSelector(state => state.Products?.data?.data ? state.Products.data.data : [])
+  useEffect(() => {
+    dispatch(Prodcuer_Filter_Action("fruit"))
 
+  }, [products])
   const handleEye = (product) => {
     seteye(product)
     setopen(true)
@@ -200,8 +204,6 @@ function Home() {
 
   const filtered = useSelector(state => state.Product_Filtered.data || [])
   const HandleCategoryes = (category) => {
-    console.log(category);
-
     dispatch(Prodcuer_Filter_Action(category))
     setactiveTab(category)
   }
@@ -526,7 +528,7 @@ function Home() {
         </Swiper >
       </div>
 
-      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 2xl:h-[160vh] xl:h-[140vh] lg:h-[166vh] md:h-auto sm:h-[160vh] h-screen relative overflow-hidden'>
+      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 2xl:h-[160vh] xl:h-[140vh] lg:h-[166vh] md:h-auto sm:h-[160vh] h-[110vh] relative overflow-hidden my-3'>
         <div className=' min-h-[76%] 2xl:h-[80%] xl:h-[80%] lg:h-[96%] h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
           <div className='h-[auto] 2xl:h-[100%] xl:h-[88%] lg:h-[90%] relative'>
             <img src="./category.jpg" alt="" className='relative h-full rounded-3xl img-clip object-cover' />
@@ -633,13 +635,13 @@ function Home() {
           </div>
         </div>
         {
-          products.length === 0 ? ("0") :
+          products.length === 0 ? ("Product Not Found") :
             <>
               <div className='mt-5 overflow-hidden'>
                 <Slider {...settings1}>
                   {products.map((el) => (
-                    <div key={el.id} className="px-2">
-                      <div className="relative group card w-[80%] h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
+                    <div key={el.id} className="px-4">
+                      <div className="relative group card w-full h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
                         <div className="h-[240px] w-full relative overflow-hidden">
                           <span className="absolute z-10 top-3 left-2 group-hover:hidden" style={{ writingMode: "vertical-rl", textOrientation: "upright" }}>
                             {el.tag}
@@ -934,92 +936,70 @@ function Home() {
             </div>
           )}
 
-          {/* Other Tabs (snack, fruit, vegetable) */}
           {(activeTab === "snack" || activeTab === "fruit" || activeTab === "vegetable") && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {filtered.map((el) => (
-                <div key={el.id} className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-100">
-                  {/* Image Container with Hover Effect */}
-                  <div className="relative h-64 overflow-hidden">
-                    {/* Tag Badge */}
-                    <span className="absolute top-4 left-4 z-10 bg-white/90 text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
-                      {el.tag}
-                    </span>
-
-                    {/* Image Transition */}
-                    <div className="relative h-full w-full">
-                      <img
-                        src={el.image[0]}
-                        alt={el.name}
-                        className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"
-                      />
-                      <img
-                        src={el.image[1] || el.image[0]}
-                        alt={`${el.name} back`}
-                        className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                      />
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="absolute bottom-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                      <button className="p-2 bg-white/90 text-gray-600 rounded-full shadow hover:bg-blue-600 hover:text-white transition-colors">
-                        <i className="fa-regular fa-heart"></i>
-                      </button>
-                      <button
-                        className="p-2 bg-white/90 text-gray-600 rounded-full shadow hover:bg-blue-600 hover:text-white transition-colors"
-                        onClick={() => handleEye(el)}
-                      >
-                        <i className="fa-regular fa-eye"></i>
-                      </button>
-                      <button className="p-2 bg-white/90 text-gray-600 rounded-full shadow hover:bg-blue-600 hover:text-white transition-colors">
-                        <i className="fa-solid fa-recycle"></i>
-                      </button>
-                      <button className="p-2 bg-white/90 text-gray-600 rounded-full shadow hover:bg-blue-600 hover:text-white transition-colors">
-                        <i className="fa-solid fa-bag-shopping"></i>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Product Info */}
-                  <div
-                    className="p-5 cursor-pointer"
-                    onClick={() => handleSinglePage(el._id)}
-                  >
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-lg font-semibold text-gray-800 truncate">{el.name}</h3>
-                      <div className="flex items-center bg-blue-50 px-2 py-1 rounded-full">
-                        <span className="text-yellow-400 text-sm mr-1">
-                          {'★'.repeat(Math.floor(el.rating || 0))}
-                        </span>
-                        <span className="text-xs text-blue-800">{el.rating || 0}</span>
-                      </div>
-                    </div>
-
-                    <p className="text-sm text-gray-500 line-clamp-2 mb-3">{el.des}</p>
-
-                    <div className="flex justify-between items-center">
-                      <div>
-                        <span className="text-lg font-bold text-gray-900">
-                          ${el.price}
-                        </span>
-                        {el.strike && (
-                          <span className="text-sm text-gray-400 ml-2 line-through">
-                            ${el.strike}
-                          </span>
-                        )}
-                      </div>
-                      <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
-                        {el.weight}
+                <div key={el.id} className="px-2">
+                  <div className="relative group card w-full h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
+                    <div className="h-[240px] w-full relative overflow-hidden">
+                      <span className="absolute z-10 top-3 left-2 group-hover:hidden" style={{ writingMode: "vertical-rl", textOrientation: "upright" }}>
+                        {el.tag}
                       </span>
+
+
+                      <div className="relative h-full w-full overflow-hidden group">
+                        {/* Front Image */}
+                        <img
+                          src={el.image[0]}
+                          alt={el.name}
+                          className="absolute z-10 h-full w-full object-cover transform transition-all duration-700 group-hover:-translate-x-full"
+                        />
+
+                        {/* Back Image */}
+                        <img
+                          src={el.image[1]}
+                          alt={`${el.name} back`}
+                          className="absolute z-0 h-full w-full object-cover transform translate-x-full scale-100 transition-all duration-700 group-hover:translate-x-0 group-hover:scale-110"
+                        />
+
+                        {/* Optional: Glass Shine Effect */}
+                        <div className="absolute z-20 top-0 left-[-75%] w-[200%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent rotate-12 transition-all duration-700 group-hover:left-[100%] pointer-events-none" />
+                      </div>
+
+
+
+                      <div className="hidden group-hover:block absolute bottom-0 right-[4rem]">
+                        <i className="fa-regular  fa-heart p-2 text-[#777] rounded-lg shadow-md border bg-white hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
+                        <i
+                          className="bg-white text-[#777] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] fa-regular fa-eye p-2 rounded-lg shadow-md border m-1 hover:text-white"
+                          onClick={() => handleEye(el)}
+                        ></i>
+                        <i className="bg-white text-[#777] fa-solid fa-recycle p-2 rounded-lg shadow-md border hover:border-[#6c7fd8] hover:bg-[#6c7fd8] hover:text-white m-1"></i>
+                        <i className="bg-white text-[#777] fa-solid fa-bag-shopping p-2 rounded-lg shadow-md border hover:bg-[#6c7fd8] hover:border-[#6c7fd8] m-1 hover:text-white"></i>
+                      </div>
+                    </div>
+
+                    <div className="p-4 flex flex-col gap-2" onClick={() => handleSinglePage(el._id)}>
+                      <div className="flex justify-between items-center">
+                        <h3 className="text-lg font-semibold truncate">{el.name}</h3>
+                        <div className="text-yellow-500 text-sm">
+                          {'★'.repeat(Math.floor(el.rating || 0))}
+                        </div>
+                      </div>
+                      <p className="text-sm text-gray-600 line-clamp-2">{el.des}</p>
+                      <div className="flex justify-between items-center mt-2">
+                        <span className="text-gray-800 font-bold">
+                          ${el.price}
+                          {el.strike && (
+                            <span className="text-sm text-gray-400 ms-2 line-through">
+                              ${el.strike}
+                            </span>
+                          )}
+                        </span>
+                        <span className="text-sm text-gray-500">{el.weight}</span>
+                      </div>
                     </div>
                   </div>
-
-                  {/* Discount Badge */}
-                  {el.strike && (
-                    <div className="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                      {Math.round((1 - el.price / el.strike) * 100)}% OFF
-                    </div>
-                  )}
                 </div>
               ))}
             </div>

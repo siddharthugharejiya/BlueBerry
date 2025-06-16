@@ -22,7 +22,7 @@ const Product_add = () => {
         tag: "",
     });
     const [imageLink, setImageLink] = useState("");
-    const [activeTab, setActiveTab] = useState("upload"); // 'upload' or 'link'
+    const [activeTab, setActiveTab] = useState("upload")
 
     // Clean up object URLs when component unmounts
     useEffect(() => {
@@ -35,7 +35,7 @@ const Product_add = () => {
         };
     }, [state.image]);
 
-    // Set form data when editing a product
+   
     useEffect(() => {
         if (product_edite?.message) {
             setstate({
@@ -83,7 +83,7 @@ const Product_add = () => {
         const newImages = [...state.image];
         const removed = newImages.splice(index, 1);
 
-        // Revoke object URL if it's a blob
+
         if (removed[0].startsWith('blob:')) {
             URL.revokeObjectURL(removed[0]);
         }
@@ -105,6 +105,8 @@ const Product_add = () => {
             dispatch(product_edite_action(state.id, state));
         } else {
             dispatch(product_add_action(state));
+            console.log(state);
+
             setstate({
                 id: "",
                 name: "",
