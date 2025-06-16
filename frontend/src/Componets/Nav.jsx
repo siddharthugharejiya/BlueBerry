@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUser, FaStar, FaShoppingCart } from "react-icons/fa";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import { cart_get_Acation } from "../Redux/action";
+import { cart_get_Acation, remove_action } from "../Redux/action";
 import { useDispatch, useSelector } from "react-redux";
 
 function Nav() {
@@ -98,7 +98,11 @@ function Nav() {
     }));
   };
 
+  const handleClosed = (id) => {
+    console.log(id);
+    dispatch(remove_action(id))
 
+  }
 
   return (
     <div className="container mx-auto ">
@@ -359,7 +363,8 @@ function Nav() {
           <div className="w-full max-w-3xl mx-auto px-4 py-6  rounded-lg shadow  bg-[#FFFFFF]">
             <h1>My Cart</h1>
             {cartItems.map((el) => (
-              <div key={el._id} className="cart bg-[#F8F8FB]  text-black my-4 p-3 rounded-md shadow-sm">
+              <div key={el._id} className="cart bg-[#F8F8FB]  text-black my-4 p-3 rounded-md shadow-sm relative">
+                <span className="absolute right-4 top-1 text-xl" onClick={() => handleClosed(el._id)}>x</span>
                 <div className="grid grid-cols-2 lg:grid-cols-3 md:grid-cols-3 gap-4 lg:justify-items-start md:justify-items-center items-center group">
 
                   <div className="relative lg:w-[67%] md:w-full overflow-hidden h-[100px] ms-5">

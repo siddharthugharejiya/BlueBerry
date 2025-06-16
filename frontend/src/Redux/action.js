@@ -166,7 +166,7 @@ export const cart_get_Acation = () => async (dispatch) => {
         const res = await response.json();
         if (response.ok) {
             dispatch({ type: "Cart_Get", payload: res.data });
-            toast.success("Cart fetched successfully.");
+            // toast.success("Cart fetched successfully.");
         } else {
             toast.error("Cart fetch failed.");
         }
@@ -185,9 +185,26 @@ export const single_action = (id) => async (dispatch) => {
         });
         const data = await res.json();
         dispatch({ type: "single", payload: data });
-        toast.success("Product details loaded.");
+        // toast.success("Product details loaded.");
     } catch (err) {
         toast.error("Failed to load product detail.");
         console.error("Single action error:", err);
+    }
+};
+
+export const remove_action = (id) => async (dispatch) => {
+    try {
+        const res = await fetch(`http://localhost:9595/remo/${id}`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" }
+        });
+
+        const data = await res.json();
+
+        dispatch({ type: "REMOVE_FROM_CART", payload: id })
+        toast.success("Product removed from cart.");
+    } catch (err) {
+        toast.error("Failed to remove product.");
+        console.error("Remove action error:", err);
     }
 };

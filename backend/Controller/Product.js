@@ -142,3 +142,23 @@ export const cart_particular = async (req, res) => {
         res.status(500).send({ message: "Internal Server Error", error: err });
     }
 };
+
+
+
+export const cart_remove = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const cartData = await CartModel.findByIdAndDelete(id);
+        if (!cartData) {
+            return res.status(404).json({ message: "Cart item not found" });
+        }
+        res.status(200).json({
+            message: "Delete Cart Item",
+            data: cartData
+        });
+    } catch (err) {
+        console.error("Delete Cart Item:", err);
+        res.status(500).json({ message: "Internal Server Error", error: err });
+    }
+};
+

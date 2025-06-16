@@ -103,7 +103,7 @@ const SinglePage = () => {
 
                                     {product?.image?.length > 0 && (
                                         <img
-                                            src={product.image[0]}
+                                            src={product.image[1]}
                                             alt={product.name || "Product"}
                                             className="object-cover inset-0 absolute top-0 w-full h-full rounded-lg transition-transform duration-500  ease-in-out group-hover:translate-x-0 translate-x-full"
                                         />
