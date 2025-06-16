@@ -1,12 +1,26 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Nav from './Nav';
 import Footer from './Footer';
+import { Cart_action, single_action } from '../Redux/action';
+import { useParams } from 'react-router-dom';
 
 const SinglePage = () => {
-    const product = useSelector(state => state.singelpage_combine.data)
-   
+    const dispatch = useDispatch();
+    const { id } = useParams();
+    console.log(id);
 
+
+    const product = useSelector(state => state.singelpage_combine.data || {});
+    console.log(product);
+
+    useEffect(() => {
+        dispatch(single_action(id))
+    }, [dispatch, id])
+
+    const handleCart = (product) => {
+        dispatch(Cart_action(product));
+    };
     return (
         <div>
             <Nav />
@@ -79,17 +93,22 @@ const SinglePage = () => {
                             {/* Left Image Section */}
                             <div className="w-full flex items-center justify-center bg-gray-100 rounded-xl">
                                 <div className='group relative h-[70vh] w-full overflow-hidden bg-gray-100'>
+                                    {product?.image?.length > 0 && (
+                                        <img
+                                            src={product.image[0]}
+                                            alt={product.name || "Product"}
+                                            className="object-cover inset-0 absolute top-0 w-full h-full rounded-lg transition-transform duration-500 ease-in-out group-hover:-translate-x-full"
+                                        />
+                                    )}
 
-                                    <img
-                                        src={product.image[0]}
-                                        alt={product.name}
-                                        className="object-cover inset-0 absolute top-0 w-full h-full rounded-lg transition-transform duration-500 ease-in-out group-hover:-translate-x-full"
-                                    />
-                                    <img
-                                        src={product.image[1]}
-                                        alt={product.name}
-                                        className="object-cover inset-0 absolute top-0 w-full h-full rounded-lg transition-transform duration-500  ease-in-out group-hover:translate-x-0 translate-x-full"
-                                    />
+                                    {product?.image?.length > 0 && (
+                                        <img
+                                            src={product.image[0]}
+                                            alt={product.name || "Product"}
+                                            className="object-cover inset-0 absolute top-0 w-full h-full rounded-lg transition-transform duration-500  ease-in-out group-hover:translate-x-0 translate-x-full"
+                                        />
+                                    )}
+
                                 </div>
                             </div>
 

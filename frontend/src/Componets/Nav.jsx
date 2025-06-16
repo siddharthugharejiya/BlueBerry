@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUser, FaStar, FaShoppingCart } from "react-icons/fa";
 import { ChevronDownIcon } from "@heroicons/react/solid";
@@ -64,7 +64,7 @@ function Nav() {
 
 
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (cartItems && cartItems.length > 0) {
       const qtyMap = {};
       cartItems.forEach((item) => {
