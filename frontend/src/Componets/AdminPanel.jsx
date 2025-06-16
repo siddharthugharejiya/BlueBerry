@@ -239,7 +239,7 @@ const AdminPanel = () => {
 
         {state === "add" && (
           <div className="bg-white rounded-xl shadow p-6 max-w-4xl mx-auto">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6">Add New Product</h1>
+
             <Product_add />
           </div>
         )}
