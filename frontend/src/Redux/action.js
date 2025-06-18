@@ -46,7 +46,7 @@ export const Product = () => async (dispatch) => {
     try {
         const res = await axios.get("http://localhost:9595/product");
         dispatch({ type: GET, payload: res.data });
-        toast.success("Products fetched successfully.");
+        // toast.success("Products fetched successfully.");
     } catch (err) {
         toast.error("Error fetching products.");
         console.error("Error fetching product:", err);

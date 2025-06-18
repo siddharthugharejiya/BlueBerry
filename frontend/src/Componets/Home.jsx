@@ -528,22 +528,56 @@ function Home() {
         </Swiper >
       </div>
 
-      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 2xl:h-[160vh] xl:h-[140vh] lg:h-[166vh] md:h-auto sm:h-[160vh] h-[110vh] relative overflow-hidden my-3'>
+      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 2xl:h-[170vh] xl:h-[152vh] lg:h-[166vh] md:h-auto sm:h-[160vh] h-[110vh] relative overflow-hidden my-3'>
         <div className=' min-h-[76%] 2xl:h-[80%] xl:h-[80%] lg:h-[96%] h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
-          <div className='h-[auto] 2xl:h-[100%] xl:h-[88%] lg:h-[90%] relative'>
-            <img src="./category.jpg" alt="" className='relative h-full rounded-3xl img-clip object-cover' />
-            <img src="./top-shape.png" className='right-0 absolute 2xl:top-[79%] xl:top-[79%] xl:right-[-1px] lg:top-[64%] top-[65%]' alt="" />
-            <img src="./top-shape.png" className='2xl:right-[45%] xl:right-[45%] lg:right-[235px] md:right-[54px] sm:right-[69px]  absolute bottom-0 ' alt="" />
+          <div className='h-auto 2xl:h-[100%] xl:h-[100%] lg:h-[90%] relative w-full'>
+            {/* Main Image Container - maintains responsive behavior */}
+            <div className='relative w-full h-full'>
+              {/* Main Image */}
+              <img
+                src="./category.jpg"
+                alt=""
+                className='w-full h-full rounded-3xl img-clip object-cover'
+              />
 
+              {/* Top Right Shape - moves with main image */}
+              <div className='
+      absolute 
+      right-0 
+      2xl:top-[65%] xl:top-[69%] lg:top-[56%] top-[65%]
+      2xl:right-[-1px] xl:right-[-1px]
+    '>
+                <img
+                  src="./top-shape.png"
+                  className='h-auto max-w-full'
+                  alt=""
+                  style={{ transform: 'translateX(1px)' }}
+                />
+              </div>
 
-            <span className='p-1 px-4 bg-[rgba(0,0,0,0.86)] rounded-full text-white opacity-80 absolute top-5 right-5'>
-              50% off
-            </span>
+              {/* Bottom Center Shape - moves with main image */}
+              <div className='
+      absolute 
+      bottom-0 
+      2xl:right-[45%] xl:right-[45%] lg:right-[235px] md:right-[54px] sm:right-[69px]
+    '>
+                <img
+                  src="./top-shape.png"
+                  className='h-auto max-w-full'
+                  alt=""
+                />
+              </div>
+
+              {/* Discount Badge - fixed position relative to main image */}
+              <span className='p-1 px-4 bg-[rgba(0,0,0,0.86)] rounded-full text-white opacity-80 absolute top-5 right-5'>
+                50% off
+              </span>
+            </div>
           </div>
         </div>
 
-        <div className='h-full w-full'>
-          <div className='sm:h-[60%] h-[50%] flex justify-center items-center'>
+        <div className='h-full sm:h-[160vh] w-full'>
+          <div className='sm:h-[55%] h-[25%] flex justify-center items-center'>
             <svg width="100%" height="100%" viewBox="0 0 800 200" className="w-full group lg:h-[165vh] md:h-screen sm:h-[70vh] h-[66vh] ">
               <defs>
                 <linearGradient id="light-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -604,7 +638,7 @@ function Home() {
           xl:w-[72%]
           lg:left-[27%] 
           lg:w-[78%]
-          md:left-[4%] 
+          md:left-[0%] 
           md:w-[99%]
           sm:left-[4%] left-[0%] 
           sm:w-full
