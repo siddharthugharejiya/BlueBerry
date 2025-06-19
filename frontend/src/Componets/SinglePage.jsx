@@ -2,16 +2,14 @@ import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Nav from './Nav';
 import Footer from './Footer';
-import { Cart_action, single_action } from '../Redux/action';
+import { Cart_action, cart_get_Acation, single_action } from '../Redux/action';
 import { useParams } from 'react-router-dom';
 
 const SinglePage = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
-    console.log(id);
 
-
-    const product = useSelector(state => state.singelpage_combine.data || {});
+    const product = useSelector(state => state.singelpage_combine.data || {})
     console.log(product);
 
     useEffect(() => {
@@ -19,15 +17,17 @@ const SinglePage = () => {
     }, [dispatch, id])
 
     const handleCart = (product) => {
-        dispatch(Cart_action(product));
+        dispatch(Cart_action(product))
+        dispatch(cart_get_Acation())
     };
+
     return (
         <div>
             <Nav />
             <div className="grid xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 my-3 gap-4 px-4">
-                {/* Left Sidebar - Category Section (narrower width) */}
-                <div className='xl:col-span-1 lg:col-span-1 md:col-span-1'>
-                    <div className='w-full bg-[#F8F8FB] rounded-2xl'>
+
+                <div className='xl:col-span-1 lg:col-span-1 md:col-span-1' data-aos="fade-right">
+                    <div className='w-full bg-[#F8F8FB] rounded-2xl shadow-lg'>
                         <div className='w-auto p-4 border-b-2'>
                             <h1 className='font-semibold text-xl p-1 text-text'>Category</h1>
                             {["Clothes", "Bags", "Shoes", "Cosmetics", "Electrics", "Phone", "Watch"].map((el, index) => (
@@ -86,85 +86,103 @@ const SinglePage = () => {
                     </div>
                 </div>
 
-                {/* Right Content Section (wider width) */}
-                <div className="xl:col-span-4 lg:col-span-4 md:col-span-1 h-auto py-6">
-                    <div className="w-full mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6">
-                            {/* Left Image Section */}
-                            <div className="w-full flex items-center justify-center bg-gray-100 rounded-xl">
-                                <div className='group relative h-[70vh] w-full overflow-hidden bg-gray-100'>
-                                    {product?.image?.length > 0 && (
-                                        <img
-                                            src={product.image[0]}
-                                            alt={product.name || "Product"}
-                                            className="object-cover inset-0 absolute top-0 w-full h-full rounded-lg transition-transform duration-500 ease-in-out group-hover:-translate-x-full"
-                                        />
-                                    )}
-
-                                    {product?.image?.length > 0 && (
-                                        <img
-                                            src={product.image[1]}
-                                            alt={product.name || "Product"}
-                                            className="object-cover inset-0 absolute top-0 w-full h-full rounded-lg transition-transform duration-500  ease-in-out group-hover:translate-x-0 translate-x-full"
-                                        />
-                                    )}
-
+                <div className="xl:col-span-4 lg:col-span-4 md:col-span-1 h-auto py-3" data-aos="fade-left">
+                    <div className="w-full md:h-auto sm:h-auto h-auto mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div className="flex flex-col lg:flex-row gap-6 p-6">
+                            {/* Image Section - Comes first on mobile */}
+                            <div className="w-full lg:w-1/2 flex-shrink-0">
+                                <div className="w-full h-64 md:h-80 lg:h-[60%] flex items-center justify-center bg-gray-100 rounded-xl overflow-hidden">
+                                    <div className='group relative h-full w-full overflow-hidden bg-gray-100'>
+                                        {product?.image?.length > 0 && (
+                                            <img
+                                                src={product.image[0]}
+                                                alt={product.name || "Product"}
+                                                className="object-cover w-full h-full rounded-lg transition-transform duration-500 ease-in-out group-hover:-translate-x-full"
+                                            />
+                                        )}
+                                        {product?.image?.length > 0 && (
+                                            <img
+                                                src={product.image[1]}
+                                                alt={product.name || "Product"}
+                                                className="object-cover w-full h-full rounded-lg transition-transform duration-500 ease-in-out group-hover:translate-x-0 translate-x-full"
+                                            />
+                                        )}
+                                    </div>
                                 </div>
                             </div>
 
                             {/* Right Details Section */}
-                            <div className="flex flex-col justify-between gap-5">
+                            <div className="w-full lg:w-1/2 flex flex-col ">
                                 {/* Title & Description */}
-                                <div>
-                                    <h2 className="text-3xl font-bold text-gray-800 mb-2">
-                                        {product.des}
-                                    </h2>
-                                    <p className="text-gray-500 mb-3">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. In, iure minus error doloribus saepe natus?
-                                    </p>
+                                <div className="space-y-4">
+                                    <div>
+                                        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+                                            {product.des}
+                                        </h2>
+                                        <p className="text-gray-500 text-sm md:text-base">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. In, iure minus error doloribus saepe natus?
+                                        </p>
+                                    </div>
 
                                     {/* Ratings */}
-                                    <div className="text-yellow-500 text-lg mb-3">
-                                        {"★".repeat(5)}{" "}
-                                        <span className="text-sm text-gray-400">(75 Reviews)</span>
+                                    <div className="flex items-center">
+                                        <div className="text-yellow-500 text-lg">
+                                            {"★".repeat(5)}
+                                        </div>
+                                        <span className="ml-2 text-sm text-gray-400">(75 Reviews)</span>
                                     </div>
 
                                     {/* Product Info */}
-                                    <div className="space-y-2 text-gray-700 text-base">
-                                        <p>Brand: <span className="text-gray-500">{product.name}</span></p>
-                                        <p>Description: <span className="text-gray-500">{product.des}</span></p>
-                                        <p>Diet Type: <span className="text-gray-500">Vegetarian</span></p>
-                                        <p>Weight: <span className="text-gray-500">{product.weight}</span></p>
-                                        <p>Speciality: <span className="text-gray-500">Gluten Free, Sugar Free</span></p>
-                                        <p>Info: <span className="text-gray-500">Egg Free, Allergen-Free</span></p>
-                                        <p>Items: <span className="text-gray-500">1</span></p>
+                                    <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-gray-700 text-sm md:text-base">
+                                        <p className="font-medium">Brand:</p>
+                                        <p className="text-gray-500">{product.name}</p>
+
+                                        <p className="font-medium">Description:</p>
+                                        <p className="text-gray-500">{product.des}</p>
+
+                                        <p className="font-medium">Diet Type:</p>
+                                        <p className="text-gray-500">Vegetarian</p>
+
+                                        <p className="font-medium">Weight:</p>
+                                        <p className="text-gray-500">{product.weight}</p>
+
+                                        <p className="font-medium">Speciality:</p>
+                                        <p className="text-gray-500">Gluten Free, Sugar Free</p>
+
+                                        <p className="font-medium">Info:</p>
+                                        <p className="text-gray-500">Egg Free, Allergen-Free</p>
+
+                                        <p className="font-medium">Items:</p>
+                                        <p className="text-gray-500">1</p>
                                     </div>
                                 </div>
 
                                 {/* Price, Sizes, and Cart Button */}
-                                <div className="mt-1">
+                                <div className="mt-6 space-y-4">
                                     {/* Price */}
-                                    <h2 className="text-3xl font-extrabold text-text mb-4">
+                                    <h2 className="text-2xl md:text-3xl font-extrabold text-text">
                                         ${product.price}
                                     </h2>
 
                                     {/* Size Selection */}
-                                    <p className="text-gray-700 font-medium mb-2">Size / Weight:</p>
-                                    <div className="flex flex-wrap gap-2 mb-4">
-                                        {["50kg", "80kg", "120kg", "200kg"].map((size, idx) => (
-                                            <div
-                                                key={idx}
-                                                className="px-4 py-2 bg-gray-100 rounded-md text-sm font-medium hover:bg-them hover:text-white cursor-pointer transition"
-                                            >
-                                                {size}
-                                            </div>
-                                        ))}
+                                    <div>
+                                        <p className="text-gray-700 font-medium mb-2">Size / Weight:</p>
+                                        <div className="flex flex-wrap gap-2">
+                                            {["50kg", "80kg", "120kg", "200kg"].map((size, idx) => (
+                                                <button
+                                                    key={idx}
+                                                    className="px-3 py-1.5 bg-gray-100 rounded-md text-sm font-medium hover:bg-them hover:text-white transition-colors"
+                                                >
+                                                    {size}
+                                                </button>
+                                            ))}
+                                        </div>
                                     </div>
 
                                     {/* Add to Cart Button */}
                                     <button
                                         onClick={() => handleCart(product)}
-                                        className="w-full bg-text hover:bg-them text-white font-semibold py-3 rounded-md shadow transition"
+                                        className="w-full bg-text hover:bg-them text-white font-semibold py-3 rounded-md shadow hover:shadow-md transition-all"
                                     >
                                         Add To Cart
                                     </button>

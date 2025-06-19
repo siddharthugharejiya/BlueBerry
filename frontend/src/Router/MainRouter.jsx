@@ -9,6 +9,8 @@ import AdminPanel from '../Componets/AdminPanel'
 import Product_add from '../Componets/Product_add'
 import Cart from '../Componets/Cart'
 import SinglePage from '../Componets/SinglePage'
+import PayPalCheckout from '../Componets/Paymentgetway'
+import { PrivateRoute } from '../Componets/PrivateRoute'
 
 
 function MainRouter() {
@@ -21,11 +23,18 @@ function MainRouter() {
         <Route path='/admin' element={<AdminPanel />}></Route>
         <Route path='/cart' element={<Cart />}></Route>
         <Route path='/product' element={<Product_add />}></Route>
-        <Route path='/single/:id' element={<SinglePage />}></Route>
+        <Route path='/single/:id'
+          element={
+            <PrivateRoute>
+              <SinglePage />
+            </PrivateRoute>
+          }
+        ></Route>
+        <Route path='/payment' element={<PayPalCheckout />}></Route>
 
 
       </Routes>
-    </div>
+    </div >
   )
 }
 

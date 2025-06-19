@@ -9,16 +9,14 @@ export const adminValidation = (req, res, next) => {
 
     try {
         const extractToken = token.split(" ")[1];
-        const decode = jwt.verify(extractToken, "SID"); // "SID" आपकी secret key है
+        const decode = jwt.verify(extractToken, "SID");
 
         req.user = {
             userId: decode.userId,
             userRole: decode.userRole
         };
 
-        console.log(req.user, "this is middleware"); // ✅ सही log
-
-        next(); // बहुत जरूरी: middleware से आगे जाने के लिए
+        next()
 
     } catch (error) {
         return res.status(401).json({ message: "Invalid token", error: error.message });

@@ -40,16 +40,22 @@ const AdminPanel = () => {
   };
   const products = useSelector(state => state.Products.data.data || []);
   const handleDelete = (el) => {
-    dispatch(Product_del(el));
-  };
+    dispatch(Product_del(el)).then(() => {
+      dispatch(Product())
+    })
+  }
+
   const nav = useNavigate();
   const handleEdite = (el) => {
-    dispatch(Product_edite_get(el))
-    nav("/product", { state: { reload: true } });
-  }
+    dispatch(Product_edite_get(el)).then(() => {
+      dispatch(Product())
+      setstate("add");
+    });
+  };
+
   useLayoutEffect(() => {
-    dispatch(Product());
-  }, [dispatch])
+    dispatch(Product())
+  }, [dispatch, Product_edite_get(),])
 
   useEffect(() => {
     if (location.state?.reload) {
@@ -145,7 +151,7 @@ const AdminPanel = () => {
 
         {state === "prod" && (
           <div>
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 ">
               <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Product Management</h1>
               <button onClick={() => handleClick("add")} className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
                 Add Product

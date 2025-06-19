@@ -24,6 +24,7 @@ export const login_action = (state, nav) => async (dispatch) => {
         const token = res.data.token || res.data.Token;
         const decoded = jwtDecode(token);
         localStorage.setItem("Token", token);
+        localStorage.setItem("Login", "true");
         localStorage.setItem("UserRole", decoded.userRole);
 
         toast.success(res.data.message);
@@ -48,7 +49,7 @@ export const Product = () => async (dispatch) => {
         dispatch({ type: GET, payload: res.data });
         // toast.success("Products fetched successfully.");
     } catch (err) {
-        toast.error("Error fetching products.");
+        // toast.error("Error fetching products.");
         console.error("Error fetching product:", err);
     }
 };
@@ -168,7 +169,7 @@ export const cart_get_Acation = () => async (dispatch) => {
             dispatch({ type: "Cart_Get", payload: res.data });
             // toast.success("Cart fetched successfully.");
         } else {
-            toast.error("Cart fetch failed.");
+            // toast.error("Cart fetch failed.");
         }
     } catch (error) {
         toast.error("Error fetching cart.");

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUser, FaStar, FaShoppingCart } from "react-icons/fa";
 import { ChevronDownIcon } from "@heroicons/react/solid";
@@ -15,7 +15,7 @@ function Nav() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // const popclosed = sessionStorage.getItem("popclose");
+      const popclosed = sessionStorage.getItem("popclose");
       if (!popclosed) {
         setoffcanvas(true);
       }
@@ -50,18 +50,19 @@ function Nav() {
     setUserRole(role);
   }, []);
   const cartItems = useSelector(state => state.cart_get_items.cartItems || [])
+  const prevLengthRef = useRef(cartItems.length);
   // console.log(cartItems.length);
 
+  useLayoutEffect(() => {
+    dispatch(cart_get_Acation())
+  }, [dispatch])
 
 
 
 
-
-
-  useEffect(() => {
-    dispatch(cart_get_Acation());
-  }, [dispatch]);
-
+  const handlePay = () => {
+    nav("/payment")
+  }
 
 
   useLayoutEffect(() => {
@@ -209,7 +210,8 @@ function Nav() {
 
               {/* Dropdown */}
               {/* <div className="absolute left-0 top-10 w-40 bg-white border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all transform group-hover:translate-y-2 z-50">
-                <Link to="/cart" className="block px-4 py-2 hover:bg-gray-100">View Cart</Link>
+                <Link to="/cart" className="block px-4
+                 py-2 hover:bg-gray-100">View Cart</Link>
                 <Link to="/checkout" className="block px-4 py-2 hover:bg-gray-100">Checkout</Link>
               </div> */}
             </div>
@@ -414,7 +416,7 @@ function Nav() {
               </div>
               <div className="flex  justify-between mt-3 ">
                 <button className="p-2 border rounded-lg hover:bg-them hover:text-white transition duration-300">View Cart</button>
-                <button className="p-2 border text-white rounded-lg bg-them hover:bg-white hover:text-black  transition duration-300">Checkout</button>
+                <button className="p-2 border text-white rounded-lg bg-them hover:bg-white hover:text-black  transition duration-300" onClick={handlePay}>Checkout</button>
               </div>
             </div>
 

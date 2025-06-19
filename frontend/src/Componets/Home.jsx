@@ -215,10 +215,9 @@ function Home() {
 
 
   const AddToCart = (cart) => {
-    console.log(cart)
-    console.log(cart._id)
+
     const q = quantity[cart._id] || 1;
-    console.log(q);
+
 
     dispatch(Cart_action(cart, q))
 
@@ -230,17 +229,16 @@ function Home() {
 
   }
 
-
   return (
     <>
       <Nav />
       {/* slider */}
-      <div className='h-[150vh] 2xl:h-screen  xl:h-screen lg:h-screen sm:h-screen '>
+      <div className='h-[150vh]  2xl:h-screen  xl:h-screen lg:h-screen sm:h-screen '>
         <Swiper
           spaceBetween={50}
           modules={[Autoplay, Pagination]}
           slidesPerView={1}
-          pagination={{ clickable: true, bulletClass: "swiper-pagination-bullet h-full w-full", }}
+          // pagination={{ clickable: true, bulletClass: "swiper-pagination-bullet swiper-container ", }}
 
 
           loop={true} autoplay={{ delay: 7000 }}
@@ -528,9 +526,10 @@ function Home() {
         </Swiper >
       </div>
 
-      <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 2xl:h-[170vh] xl:h-[152vh] lg:h-[166vh] md:h-auto sm:h-[160vh] h-[110vh] relative overflow-hidden my-3'>
+      <div className='grid  2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 2xl:h-[125vh] xl:h-[152vh] lg:h-[166vh] md:h-auto sm:h-[160vh] h-[110vh] relative overflow-hidden my-3'
+      >
         <div className=' min-h-[76%] 2xl:h-[80%] xl:h-[80%] lg:h-[96%] h-full w-full rounded-xl lg:flex justify-center items-center relative  hidden'>
-          <div className='h-auto 2xl:h-[100%] xl:h-[100%] lg:h-[90%] relative w-full'>
+          <div className='h-auto 2xl:h-[76%] xl:h-[100%] lg:h-[65%] relative w-full' data-aos="fade-right">
             {/* Main Image Container - maintains responsive behavior */}
             <div className='relative w-full h-full'>
               {/* Main Image */}
@@ -544,7 +543,7 @@ function Home() {
               <div className='
       absolute 
       right-0 
-      2xl:top-[65%] xl:top-[69%] lg:top-[56%] top-[65%]
+      2xl:top-[75%] xl:top-[69%] lg:top-[58%] top-[65%]
       2xl:right-[-1px] xl:right-[-1px]
     '>
                 <img
@@ -576,8 +575,8 @@ function Home() {
           </div>
         </div>
 
-        <div className='h-full sm:h-[160vh] w-full'>
-          <div className='sm:h-[55%] h-[25%] flex justify-center items-center'>
+        <div className='h-full sm:h-[160vh] w-full' >
+          <div className='sm:h-[55%] h-[2s5%] flex justify-center items-center' data-aos="fade-left">
             <svg width="100%" height="100%" viewBox="0 0 800 200" className="w-full group lg:h-[165vh] md:h-screen sm:h-[70vh] h-[66vh] ">
               <defs>
                 <linearGradient id="light-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -606,9 +605,9 @@ function Home() {
                 textAnchor="middle"
                 x="50%"
                 y="80"
-                className="fill-white xl:text-[140px] md:text-[140px] sm:text-[140px] stroke-black stroke-[1px] font-bold transition-all duration-500"
+                className="fill-white xl:text-[123px] md:text-[140px] sm:text-[140px] stroke-black stroke-[1px] font-bold transition-all duration-500"
                 fontFamily="Arial"
-                style={{ fontSize: "140px" }}
+                // style={{ fontSize: "140px" }}
                 id="mainText"
               >
                 <tspan x="30%" dy="40">Explore</tspan>
@@ -651,13 +650,13 @@ function Home() {
         </div>
       </div>
 
-      <div className=" h-auto w-auto">
+      <div className=" h-auto w-auto" >
         <div className="grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-2 ">
-          <div >
+          <div data-aos="fade-right" >
             <b className='font-bold text-2xl'>Day of the <span className='text-them'> Deal </span> </b>
             <p className='text-text'>Don't wait. The time will never be just right.</p>
           </div>
-          <div className='flex justify-end items-center me-1'>
+          <div className='flex justify-end items-center me-1' data-aos="fade-left">
             <div className=' bg-[#F8F8FB] p-3 rounded-xl font-bold'>
               695
               <span className='text-text px-2' >
@@ -674,7 +673,7 @@ function Home() {
               <div className='mt-5 overflow-hidden'>
                 <Slider {...settings1}>
                   {products.map((el) => (
-                    <div key={el.id} className="px-4">
+                    <div key={el.id} className="px-4" data-aos={el % 3 === 0 ? "fade-right" : el % 3 === 1 ? "fade-left" : "zoom-in"}>
                       <div className="relative group card w-full h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
                         <div className="h-[240px] w-full relative overflow-hidden">
                           <span className="absolute z-10 top-3 left-2 group-hover:hidden" style={{ writingMode: "vertical-rl", textOrientation: "upright" }}>
@@ -746,7 +745,7 @@ function Home() {
         }
 
         <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 h-auto justify-center items-start w-ful gap-5 mt-4'>
-          <div className='h-full w-full flex justify-center'>
+          <div className='h-full w-full flex justify-center' data-aos="fade-right">
             <div className="2xl:w-[85%] xl:w-[85%] w-full  relative grid grid-cols-1 md:grid-cols-2 group justify-center items-center bg-[#F4DAB4] rounded-2xl overflow-hidden">
               <div className='absolute top-0 left-1/2 -translate-x-[40%] h-full w-[60%] bg-[#FBF2E5] transform skew-x-[-30deg] z-0 transition-all duration-500 ease-in-out group-hover:w-[70%]'></div>
               <div className="relative z-10 flex justify-end items-start p-6">
@@ -762,7 +761,7 @@ function Home() {
             </div>
           </div>
 
-          <div className='h-full w-full flex justify-center'>
+          <div className='h-full w-full flex justify-center' data-aos="fade-left">
             <div className="2xl:w-[85%] xl:w-[85%] w-full relative grid grid-cols-1 md:grid-cols-2 group justify-center items-center bg-[#FFC6CE] rounded-2xl overflow-hidden">
               <div className='absolute top-0 left-1/2 -translate-x-[40%] h-full w-[60%] bg-[#FBF2E5] transform skew-x-[-30deg] z-0 transition-all duration-500 ease-in-out group-hover:w-[70%]'></div>
               <div className="relative z-10 flex justify-end items-start sm:p-6 p-6">
@@ -782,9 +781,9 @@ function Home() {
 
           </div>
 
-        </div>
+        </div >
 
-      </div>
+      </div >
       {
         open &&
         <>
@@ -869,7 +868,7 @@ function Home() {
 
       {/* background image */}
 
-      <div className="overflow-hidden h-screen sm:h-[90vh] bg-[url('/banner.jpg')] bg-center bg-no-repeat bg-cover mt-4 relative">
+      <div className="overflow-hidden h-screen sm:h-[90vh] bg-[url('/banner.jpg')] bg-center bg-no-repeat bg-cover mt-4 relative" data-aos="zoom-in">
         <div className="absolute bottom-0 right-4 sm:right-10 md:right-20 lg:right-28 xl:right-40 2xl:right-60 w-[90%] sm:w-[370px]">
           <div className="bg-white p-5 rounded-t-3xl relative h-[245px] ">
             <h1 className="text-[#6c7fd8] font-bold text-xl">25% Off</h1>
@@ -886,11 +885,11 @@ function Home() {
 
       <div className='h-auto sm:p-9 p-0 mt-5 overflow-hidden'>
         <div className="grid 2xl:grid-cols-2 gap-4 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1  grid-cols-1  ">
-          <div className='md:text-start  text-center'>
+          <div className='md:text-start  text-center' data-aos="fade-right">
             <b className='font-bold text-2xl'>New <span className='text-them'> Arrivals </span> </b>
             <p className='text-text'>Shop online for new arrivals and get free shipping!</p>
           </div>
-          <div className='flex md:justify-end justify-center items-center me-1 text-center'>
+          <div className='flex md:justify-end justify-center items-center me-1 text-center' data-aos="fade-left">
             <div>
               <button className={`px-3 text-xl relative ${activeTab === "All" && "text-them"}`} onClick={() => HandleCategoryes("All")}>All <span className=' absolute top-[8px] right-0 h-[13px] border-r-2 border-[rgb(108_127_216)] transform skew-x-[-22deg]'></span></button>
               <button className={`px-3 text-xl relative ${activeTab === "snack" && "text-them"}`} onClick={() => HandleCategoryes("snack")}>Snack & Spices <span className=' absolute top-[8px] right-0 h-[13px] border-r-2 border-[rgb(108_127_216)] transform skew-x-[-22deg]'></span></button>
@@ -902,7 +901,7 @@ function Home() {
         <div className="container mx-auto px-4 py-8">
           {/* All Products Tab */}
           {activeTab === "All" && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" data-aos="zoom-in">
               {filtered.map((el) => (
                 <div key={el.id} className="px-2">
                   <div className="relative group card w-full h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
@@ -971,7 +970,7 @@ function Home() {
           )}
 
           {(activeTab === "snack" || activeTab === "fruit" || activeTab === "vegetable") && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" data-aos="zoom-in">
               {filtered.map((el) => (
                 <div key={el.id} className="px-2">
                   <div className="relative group card w-full h-full flex flex-col justify-between rounded-2xl overflow-hidden shadow-md border hover:shadow-lg transition-all duration-300">
@@ -1041,7 +1040,7 @@ function Home() {
 
           {/* Empty State */}
           {filtered.length === 0 && (
-            <div className="text-center py-16">
+            <div className="text-center py-16" data-aos="zoom-in">
               <div className="text-gray-300 text-5xl mb-4">
                 <i className="fa-solid fa-box-open"></i>
               </div>
@@ -1056,25 +1055,25 @@ function Home() {
 
       <div className="px-4 sm:px-8 py-10  overflow-hidden">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          <div className="bg-white border rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition-shadow">
+          <div className="bg-white border rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition-shadow" data-aos="fade-right">
             <img src="./1.png" alt="Free Shipping" className="w-12 mx-auto mb-4" />
             <h2 className="text-lg font-semibold mb-2">Free Shipping</h2>
             <p className="text-gray-600 text-sm">Free shipping on all US orders above $200</p>
           </div>
 
-          <div className="bg-white border rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition-shadow">
+          <div className="bg-white border rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition-shadow" data-aos="fade-top">
             <img src="./2.png" alt="24x7 Support" className="w-12 mx-auto mb-4" />
             <h2 className="text-lg font-semibold mb-2">24x7 Support</h2>
             <p className="text-gray-600 text-sm">Contact us 24 hours a day, 7 days a week</p>
           </div>
 
-          <div className="bg-white border rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition-shadow">
+          <div className="bg-white border rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition-shadow" data-aos="fade-top">
             <img src="./3.png" alt="30 Days Return" className="w-12 mx-auto mb-4" />
             <h2 className="text-lg font-semibold mb-2">30 Days Return</h2>
             <p className="text-gray-600 text-sm">Simply return it within 30 days for an exchange</p>
           </div>
 
-          <div className="bg-white border rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition-shadow">
+          <div className="bg-white border rounded-2xl shadow-md p-6 text-center hover:shadow-lg transition-shadow" data-aos="fade-left">
             <img src="./4.png" alt="Payment Secure" className="w-12 mx-auto mb-4" />
             <h2 className="text-lg font-semibold mb-2">Payment Secure</h2>
             <p className="text-gray-600 text-sm">Your payment information is processed securely</p>
@@ -1084,7 +1083,7 @@ function Home() {
       </div>
 
       <div className="py-10">
-        <div className="text-center px-4 py-6">
+        <div className="text-center px-4 py-6" data-aos="fade-top">
           <b className="text-3xl">
             Top <span className="text-them font-bold">Vendors</span>
           </b>
@@ -1096,7 +1095,7 @@ function Home() {
           <div className='flex xl:justify-end justify-center items-center xl:me-10 me-0'>
             {
               fashion === "Mira" &&
-              <div className='relative'>
+              <div className='relative' data-aos="fade-right">
                 <img src="./newsletter.jpg" alt="" className='w-[33rem] rounded-2xl ' />
                 <i className="fa-solid fa-arrow-up-right-from-square absolute top-5 hover:bg-[#000000cc] transition-all duration-200 text-white right-6 bg-[#00000080] p-2 rounded-lg"></i>
                 <div className='bg-white relative w-full h-250px rounded-3xl z-auto'>
@@ -1108,7 +1107,7 @@ function Home() {
             }
             {
               fashion === "Eelna" &&
-              <div className='relative cursor-pointer'>
+              <div className='relative cursor-pointer' data-aos="fade-right">
                 <img src="./img-2.jpg" alt="" className='w-[33rem] rounded-2xl ' />
                 <i className="fa-solid fa-arrow-up-right-from-square absolute top-5 hover:bg-[#000000cc] transition-all duration-200 text-white right-6 bg-[#00000080] p-2 rounded-lg"></i>
                 <div className='bg-white relative w-full h-250px rounded-3xl z-auto'>
@@ -1121,7 +1120,7 @@ function Home() {
 
             {
               fashion === "Mario" &&
-              <div className='relative cursor-pointer'>
+              <div className='relative cursor-pointer' data-aos="fade-right">
                 <img src="./img-3.jpg" alt="" className='w-[33rem] rounded-2xl ' />
                 <i className="fa-solid fa-arrow-up-right-from-square absolute top-5 hover:bg-[#000000cc] transition-all duration-200 text-white right-6 bg-[#00000080] p-2 rounded-lg"></i>
                 <div className='bg-white relative w-full h-250px rounded-3xl z-auto'>
@@ -1134,7 +1133,7 @@ function Home() {
 
             {
               fashion === "Maria" &&
-              <div className='relative cursor-pointer'>
+              <div className='relative cursor-pointer' data-aos="fade-right">
                 <img src="./img-4.jpg" alt="" className='w-[33rem] rounded-2xl ' />
                 <i className="fa-solid fa-arrow-up-right-from-square absolute top-5 hover:bg-[#000000cc] transition-all duration-200 text-white right-6 bg-[#00000080] p-2 rounded-lg"></i>
                 <div className='bg-white relative w-full h-250px rounded-3xl z-auto'>
@@ -1146,7 +1145,7 @@ function Home() {
             }
           </div>
           <div>
-            <div className=' flex flex-col md:justify-grid xl:grid-cols-2 gap-5'>
+            <div className=' flex flex-col md:justify-grid xl:grid-cols-2 gap-5' data-aos="fade-left">
               <div className={`p-6 max-w-[40rem] bg-[#f8f8fb] rounded-2xl border ${fashion === "Mira" ? 'border-1 border-them shadow-md' : ""}  `} onClick={() => setfashion("Mira")}>
                 <div className="flex  justify-between items-center flex-wrap text-center">
                   <h1 className='text-them font-semibold text-xl'>Mira Fashion Pvt. Ltd.</h1>
@@ -1187,7 +1186,7 @@ function Home() {
 
       </div>
 
-      <div className='min-h-[100vh] max-h-[130vh]  h-auto w-full flex justify-center items-center overflow-hidden '>
+      <div className='min-h-[65vh] max-h-[130vh]  h-auto w-full flex justify-center items-center overflow-hidden ' data-aos="zoom-in">
         <div className='w-full max-w-6xl px-4 relative'>
           <img
             src="./img-1.png"
@@ -1228,7 +1227,7 @@ function Home() {
           </h4>
 
 
-          <Slider {...settings2}>
+          <Slider {...settings2} >
             <div className="flex justify-center items-center w-full flex-wrap ">
               <div className="card grid md:grid-cols-2 grid-cols-1 gap-5 lg:w-[68%] w-full ">
                 <div className="flex md:justify-end justify-center items-start">
@@ -1306,7 +1305,7 @@ function Home() {
 
 
 
-      <div className="min-h-[50vh] m-auto h-auto py-1 ">
+      <div className="min-h-[50vh] m-auto h-auto py-1 " data-aos="zoom-in">
         <Slider {...settings3} className='m-auto overflow-hidden '>
           <div className='flex justify-center items-center gap-8' style={{ display: "flex" }}>
             <div className='flex xl:justify-center lg:justify-center  justify-center items-center gap-3 mx-1'>
@@ -1364,40 +1363,40 @@ function Home() {
 
       {/* insta */}
       <div className="grid 2xl:grid-cols-6 xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1  gap-3 relative justify-items-center items-center">
-        <div className="absolute top-14 lg:right-[42%] right-[45%] z-50 bg-white lg:block hidden py-4 px-12 rounded-3xl text-3xl font-bold" >#insta</div>
-        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center">
+        <div className="absolute top-14 lg:right-[42%] right-[45%] z-50 bg-white lg:block hidden py-4 px-12 rounded-3xl text-3xl font-bold" data-aos="zoom-in">#insta</div>
+        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center" data-aos="fade-right">
           <img src="./1 (1).jpg" alt="" className="h-full w-full object-cover rounded-2xl" />
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-500 rounded-2xl"></div>
           <i className="fa-brands fa-instagram absolute text-white text-3xl opacity-0  group-hover:opacity-100 transform scale-[5.1] rotate-12 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500"></i>
         </div>
 
-        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center">
+        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center" data-aos="fade-top">
           <img src="./2 (1).jpg" alt="" className="h-full w-full object-cover rounded-2xl" />
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-500 rounded-2xl"></div>
           <i className="fa-brands fa-instagram absolute text-white text-3xl opacity-0  group-hover:opacity-100 transform scale-[5.1] rotate-12 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500"></i>
         </div>
 
-        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center">
+        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center" data-aos="fade-top">
           <img src="./5.jpg" alt="" className="h-full w-full object-cover rounded-2xl" />
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-500 rounded-2xl"></div>
           <i className="fa-brands fa-instagram absolute text-white text-3xl opacity-0  group-hover:opacity-100 transform scale-[5.1] rotate-12 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500"></i>
         </div>
 
-        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center">
+        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center" data-aos="fade-top">
           <img src="./4.jpg" alt="" className="h-full w-full object-cover rounded-2xl" />
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-500 rounded-2xl"></div>
           <i className="fa-brands fa-instagram absolute text-white text-3xl opacity-0  group-hover:opacity-100 transform scale-[5.1] rotate-12 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500"></i>
         </div>
 
 
-        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center">
+        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center" data-aos="fade-top">
           <img src="./5.jpg" alt="" className="h-full w-full object-cover rounded-2xl" />
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-500 rounded-2xl"></div>
           <i className="fa-brands fa-instagram absolute text-white text-3xl opacity-0  group-hover:opacity-100 transform scale-[5.1] rotate-12 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500"></i>
         </div>
 
 
-        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center">
+        <div className="w-[200px] rounded-2xl group relative overflow-hidden flex justify-center items-center" data-aos="fade-left">
           <img src="./2 (1).jpg" alt="" className="h-full w-full object-cover rounded-2xl" />
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-500 rounded-2xl"></div>
           <i className="fa-brands fa-instagram absolute text-white text-3xl opacity-0  group-hover:opacity-100 transform scale-[5.1] rotate-12 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500"></i>

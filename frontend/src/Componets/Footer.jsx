@@ -1,15 +1,14 @@
-
 import { Link } from 'react-router-dom';
 
 function Footer() {
+
     return (
         <>
-            <div className='bg-[#F8F8FB] mt-5 px-4 md:px-10 py-10'>
-                {/* Brand dire */}
+            <div className='bg-[#F8F8FB] mt-5 px-4 md:px-10 py-10' data-aos="fade-up">
                 <div>
-                    <h1 className='font-semibold text-2xl text-center mb-6'>Brands Directory</h1>
+                    <h1 className='font-semibold text-2xl text-center mb-6' data-aos="zoom-in">Brands Directory</h1>
 
-                    <div className="grid 2xl:grid-cols-2 gap-6 mb-6">
+                    <div className="grid 2xl:grid-cols-2 gap-6 mb-6" data-aos="fade-right">
                         <div className="text-text flex flex-wrap">
                             <span className="font-bold mr-2">Footwear :</span>
                             <span className="pr-4 relative">Sneakers <span className="absolute right-0">|</span></span>
@@ -43,7 +42,7 @@ function Footer() {
                         </div>
                     </div>
 
-                    <div className="grid 2xl:grid-cols-2 xl:grid-cols-2 gap-6">
+                    <div className="grid 2xl:grid-cols-2 xl:grid-cols-2 gap-6" data-aos="fade-left">
                         <div className="text-text flex flex-wrap">
                             <span className="font-bold mr-2">Fashion :</span>
                             <span className="pr-4 relative">T-shirt <span className="absolute right-0">|</span></span>
@@ -79,9 +78,8 @@ function Footer() {
                     <hr className='border-solid border-[1px] mt-6' />
                 </div>
 
-
-                <div className="grid  2xl:grid-cols-5 xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 p-10">
-                    <div className='grid  items-center mr-5'>
+                <div className="grid 2xl:grid-cols-5 xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 p-10" data-aos="zoom-in-up">
+                    <div className='grid items-center mr-5'>
                         <img src="./logo.png" alt="" />
                         <p className='text-text my-5'>BlueBerry is the biggest market of grocery products. Get your daily needs from our store</p>
                         <div className='grid grid-cols-2 gap-3'>
@@ -91,7 +89,7 @@ function Footer() {
                     </div>
 
                     <div>
-                        <h1 className='font-bold text-text border-b-2 w-[75%] pb-4  mb-2'>Category</h1>
+                        <h1 className='font-bold text-text border-b-2 w-[75%] pb-4 mb-2'>Category</h1>
                         <p className='text-text pb-2 font-medium'>Dairy & Milk</p>
                         <p className='text-text pb-2 font-medium'>Snack & Spice</p>
                         <p className='text-text pb-2 font-medium'>Fast Food</p>
@@ -132,11 +130,11 @@ function Footer() {
                             <i className="text-xl py-1 px-2 bg-[#3d4750] text-white hover:bg-text ms-1 rounded-2xl fa-brands fa-x-twitter"></i>
                         </div>
                     </div>
-
                 </div>
+
                 <hr className='border-solid' />
                 <div>
-                    <div class="footer-bottom py-[10px] border-t-[1px] border-solid border-[#eee] max-[991px]:py-[15px]">
+                    <div class="footer-bottom py-[10px] border-t-[1px] border-solid border-[#eee] max-[991px]:py-[15px]" data-aos="fade-up">
                         <div class="flex flex-wrap justify-between relative items-center mx-auto min-[1400px]:max-w-[1320px] min-[1200px]:max-w-[1140px] min-[992px]:max-w-[960px] min-[768px]:max-w-[720px] min-[576px]:max-w-[540px]">
                             <div class="flex flex-wrap w-full">
                                 <div class="bb-bottom-info w-full flex flex-row items-center justify-between max-[991px]:flex-col px-[12px]">
@@ -158,9 +156,9 @@ function Footer() {
                             </div>
                         </div>
                     </div></div>
-            </div >
+            </div>
         </>
     )
 }
 
-export default Footer
+export default Footer;

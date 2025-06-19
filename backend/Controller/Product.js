@@ -4,7 +4,7 @@ import { ProductModel } from "../modules/ProductModel.js"
 
 export const AddProduct = async (req, res) => {
     try {
-        console.log(req.body, "this is all product addding");
+        // console.log(req.body, "this is all product addding");
 
         const data = await ProductModel.create({ ...req.body, user: req.user.userId })
 
@@ -21,7 +21,7 @@ export const All_product = async (req, res) => {
         // console.log(category)
         if (category) {
             const data = await ProductModel.find({ category: category })
-            console.log(data);
+            // console.log(data);
             return res.send({ message: "Products Filtered", data: data });
         }
         else {
@@ -49,7 +49,7 @@ export const edite_get = async (req, res) => {
         const { id } = req.params
 
         const data = await ProductModel.findById(id)
-        console.log(data);
+        // console.log(data);
 
         res.status(200).json({ message: data })
     } catch (error) {
@@ -119,7 +119,7 @@ export const cart = async (req, res) => {
 
 export const singlepage = async (req, res) => {
     const { id } = req.params
-    console.log(id);
+    // console.log(id);
     const data = await ProductModel.findById(id)
 
     res.json(data)
